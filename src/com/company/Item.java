@@ -11,7 +11,8 @@ public abstract class Item {
         this.weight = weight;
         this.value = value;
     }
-
-    @Override
-    public abstract String toString();
+    public abstract void showDescription();
+    /*
+  @Override
+    public abstract String toString();*/
 }
