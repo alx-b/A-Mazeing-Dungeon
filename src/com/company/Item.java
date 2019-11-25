@@ -23,6 +23,20 @@ public abstract class Item {
         return weight;
     }
 
-    @Override
-    public abstract String toString();
+    public int getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public abstract void showDescription();
+    /*
+  @Override
+    public abstract String toString();*/
 }
