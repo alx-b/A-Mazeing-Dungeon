@@ -12,6 +12,8 @@ public abstract class Item {
         this.value = value;
     }
 
-    @Override
-    public abstract String toString();
+    public abstract void showDescription();
+
+    /*@Override
+    public abstract String toString();*/
 }
