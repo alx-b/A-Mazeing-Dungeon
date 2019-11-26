@@ -10,19 +10,22 @@ public class Main {
         Gold gold3 = new Gold("Gold-3", 0.1f, 2);
         Gold gold4 = new Gold("Gold-4", 0.1f, 10);
         Gold gold5 = new Gold("Gold-5", 0.1f, 20);
-        Sword sword = new Sword("Dragons toothbrush", 0.1f, 10000);
+        //Sword sword = new Sword("Dragons toothbrush", 0.1f, 10000);
         backpack.addItem(gold1);
         backpack.addItem(gold2);
         backpack.addItem(gold3);
         backpack.addItem(gold4);
         backpack.addItem(gold5);
-        backpack.addItem(sword);
+       // backpack.addItem(sword);
         backpack.showDescription();
         backpack.totalGold();
         //backpack.removeItem();
         backpack.showDescription();
-        Sword tom = new Sword("Dragons gosedjur", 0.1f, 30);
-        backpack.buyItemWithGold(tom);
+       // Sword tom = new Sword("Dragons gosedjur", 0.1f, 30);
+       // backpack.buyItemWithGold(tom);
         backpack.showDescription();
+
+        new Maze();
+
     }
 }
