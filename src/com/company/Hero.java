@@ -1,4 +1,7 @@
 package com.company;
 
-public class Hero {
+public class Hero extends Creature{
+
+
+
 }
