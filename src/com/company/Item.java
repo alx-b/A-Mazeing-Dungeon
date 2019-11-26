@@ -11,9 +11,32 @@ public abstract class Item {
         this.weight = weight;
         this.value = value;
     }
+    public int getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
 
     public abstract void showDescription();
-
-    /*@Override
+    /*
+  @Override
     public abstract String toString();*/
 }
