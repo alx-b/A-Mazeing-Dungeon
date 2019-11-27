@@ -31,8 +31,8 @@ public class Room {
     private String getRandomEvent(){
         Random random = new Random();
         String[] events = {
-                "You found %d gold coins in the dirty rags of a skeleton!\n",
-                "Something shinny caught your attention in the crevices of the ground, you found %d gold coins!\n"
+                "You found " + this.item + " gold coins in the dirty rags of a skeleton!\n",
+                "Something shinny caught your attention in the crevices of the ground, you found " + this.item + " gold coins!\n"
         };
         int max = events.length;
         int idx = random.nextInt(max);
