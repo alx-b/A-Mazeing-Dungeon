@@ -3,6 +3,8 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
+       DungeonGame game = new DungeonGame();
+       game.start();
 	/*
         Backpack backpack = new Backpack("backpack", 0);
 

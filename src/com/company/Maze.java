@@ -47,21 +47,35 @@ public class Maze {
     public Maze(Hero hero){
         addHeroOnMapAndMaze(hero);
         addHeroSurroundingToMap(hero);
+    }
+
+    public String[][] getMaze() {
+        return maze;
+    }
+
+    public void print(Hero hero){
+        addHeroOnMapAndMaze(hero);
+        addHeroSurroundingToMap(hero);
         printMap();
+        printMaze();
+        System.out.println(hero.getRow());
+        System.out.println(hero.getCol());
     }
 
     public void createRoom(){
         for (int row = 0; row < this.maze.length; row++){
             for (int col = 0; col < this.maze[0].length; col++){
-                if (isARoom(row, col)){
+                if (isARoom(new int[]{row, col})){
                     this.rooms.add(new Room(row, col));
                 }
             }
         }
     }
 
-    private boolean isARoom(int pos_y, int pos_x){
-        return this.maze[pos_y][pos_x].equals(ROOM);
+    public boolean isARoom(int[] position){
+        int row = position[0];
+        int col = position[1];
+        return this.maze[row][col].equals(ROOM);
     }
 /*
     public void teleportHero(Hero hero, int posY, int posX){
@@ -82,29 +96,6 @@ public class Maze {
         hero.move(posY, posX);
     }
 */
-    public void moveHeroWest(Hero hero){
-        if (isARoom(hero.getRow(), hero.getCol() - 1) && hero.getCol() > 0) {
-            hero.moveWest();
-        }
-    }
-
-    public void moveHeroEast(Hero hero){
-        if (isARoom(hero.getRow(), hero.getCol() + 1) && hero.getCol() < this.maze[0].length-1){
-            hero.moveEast();
-        }
-    }
-
-    public void moveHeroNorth(Hero hero){
-        if (isARoom(hero.getRow() - 1, hero.getCol()) && hero.getRow() > 0){
-            hero.moveNorth();
-        }
-    }
-
-    public void moveHeroSouth(Hero hero){
-        if (isARoom(hero.getRow() + 1, hero.getCol()) && hero.getRow() < this.maze.length-1) {
-            hero.moveSouth();
-        }
-    }
 
 
     private void addHeroOnMapAndMaze(Hero hero){
