@@ -2,13 +2,15 @@ package com.company;
 
 public class Gold extends Item{
 
-    public Gold(String name, float weight, int value) {
-        super(name, weight, value);
+    private int amountOfGold;
+
+    public Gold(String name, int amountOfGold) {
+        super(name);
+        this.amountOfGold = amountOfGold;
     }
 
-
     @Override
-    public void showDescription() {
-        System.out.println("Item name : "+ getName() + ", Weight : " + getWeight() + " kg, Value : " + getValue()+ "\n");
+    public String toString() {
+        return String.format("You received %d gold!", amountOfGold);
     }
 }
