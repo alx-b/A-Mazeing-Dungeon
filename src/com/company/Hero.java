@@ -45,20 +45,36 @@ public class Hero extends Creature{
     }
     */
 
+    public int[] westOfHero(){
+        return new int[]{this.row, this.col - 1};
+    }
+
+    public int[] eastOfHero(){
+        return new int[]{this.row, this.col + 1};
+    }
+
+    public int[] northOfHero(){
+        return new int[]{this.row - 1, this.col};
+    }
+
+    public int[] southOfHero(){
+        return new int[]{this.row + 1, this.col};
+    }
+
     public void moveWest(){
-        this.col--;
+        this.col -= 1;
     }
 
     public void moveEast(){
-        this.col++;
+        this.col += 1;
     }
 
     public void moveNorth(){
-        this.row--;
+        this.row -= 1;
     }
 
     public void moveSouth(){
-        this.row++;
+        this.row += 1;
     }
 
     @Override
