@@ -8,6 +8,7 @@ public class Hero extends Creature{
         super(name, health, damage, maxHealth);
     }
 
+    /* moveHero to be developed and adjusted to maze.*/
     private void moveHero() {
         String wall = "[W]";
 
@@ -34,5 +35,10 @@ public class Hero extends Creature{
     @Override
     public void getDamage() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Hero{}";
     }
 }

@@ -1,10 +1,10 @@
 package com.company;
 
 public abstract class Creature {
-    String name;
-    int health;
-    int damage;
-    int maxHealth;
+    private String name;
+    private int health;
+    private int damage;
+    private int maxHealth;
 
     //private final int MAX_HEALTH =  200;
 
@@ -17,4 +17,13 @@ public abstract class Creature {
 
     public abstract void getDamage();
 
+    @Override
+    public String toString() {
+        return "Creature{" +
+                "name='" + name + '\'' +
+                ", health=" + health +
+                ", damage=" + damage +
+                ", maxHealth=" + maxHealth +
+                '}';
+    }
 }
