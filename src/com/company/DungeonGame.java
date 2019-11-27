@@ -1,5 +1,5 @@
 package com.company;
-
+/*
 public class DungeonGame {
 
         Maze map = new Maze();
@@ -12,4 +12,4 @@ public class DungeonGame {
         System.out.println("-------------------");
         map.printMaze();
 
-}
+}*/

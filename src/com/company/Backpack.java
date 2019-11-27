@@ -5,79 +5,79 @@ import java.util.Scanner;
 
 public class Backpack extends Item {
 
-    private static final float MAX_TOTAL_WEIGHT = 5.0f;
+    private static final int MAX_TOTAL_ITEM = 10;
     private ArrayList<Item> items = new ArrayList<>();
-    private float totalWeightWithBackpack = 0;
     private int totalGold = 0;
 
-    public Backpack(String name, float weight, int value) {
-        super(name, weight, value);
+    public Backpack(String name, int amount) {
+        super(name, amount);
     }
 
 
     public void addItem(Item newItem) {
-        totalWeightWithBackpack = getWeight() + newItem.getWeight();
-        if (totalWeightWithBackpack <= MAX_TOTAL_WEIGHT) {
+        if (items.size() < MAX_TOTAL_ITEM) {
             items.add(newItem);
         } else {
-            totalWeightWithBackpack = totalWeightWithBackpack - newItem.getWeight();
-            System.out.println("Too heavy, can't add item.");
+            System.out.println("You have already " + MAX_TOTAL_ITEM + " items. You can't add anymore.");
         }
-    }
-
-
-    public float getWeight() {
-        return super.getWeight() + getTotalWeightWithoutBP();
-    }   ///total weight with backpack
-
-    private float getTotalWeightWithoutBP() {
-        float total = 0;
-        for (Item item : items) {
-            total += item.getWeight();
-        }
-        return total;
     }
 
     public void removeItem() {
+        System.out.println("The backpack contains the following items ; ");
+        for (Item item : items){
+            System.out.println(item);
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input item name which you want to remove from the Backpack");
         String str = scanner.nextLine();
-        String nametoSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();   // when you input "gold", it transforms Gold automatiaclly
+        String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+
         for (Item item : items) {
-            if (nametoSearchFor.equals(item.getName())) {
+            if (nameToSearchFor.equals(item.getName())) {
                 items.remove(item);
-                totalWeightWithBackpack -= item.getWeight();
             }
         }
     }
 
     public int totalGold() {
-
         for (Item item : items) {
-            String[] parts = item.getName().split("-");         //it works iff golds names are like Gold-1, Gold-2 ...
-            String firstPart = parts[0];
-            if (firstPart.equals("Gold")) {
-                totalGold += item.getValue();
+            if (item.getName().equals("Gold")) {
+                totalGold += item.getAmount();
             }
         }
         return totalGold;
     }
 
+
     public void buyItemWithGold(Item newItem) {
-        if (totalGold > newItem.getValue()) {
-            addItem(newItem);
-            totalGold -= newItem.getValue();
-        } else {
+        System.out.println("You have "+ totalGold() + " gold.");
+        if (totalGold < newItem.getAmount()) {
             System.out.println("You don't have enough gold.");
+        }
+        else if (totalGold > newItem.getAmount() && items.size()> MAX_TOTAL_ITEM) {
+            System.out.println("You have too much items.");
+        }
+        else if (totalGold > newItem.getAmount() && items.size()< MAX_TOTAL_ITEM){
+            System.out.println("Thank you!");
+            addItem(newItem);
+            totalGold -= newItem.getAmount();
+            System.out.println("Now your total gold is " + totalGold);
         }
     }
 
-
-    @Override
-    public void showDescription() {
-        System.out.println("This backpack is " + super.getWeight()+ "kg. Total gold is "+ totalGold + " and it contains the following items:");
-        for (Item item : items){
-            item.showDescription();
+/*
+    public void showDescription(){
+        System.out.println("You have "+ totalGold() + " gold.");
+        for(Item item : items){
+            System.out.println(item);
         }
+    }*/
+
+    public String toString() {
+        String results ="+";
+        for(Item item : items) {
+            results += item.toString();
+        }
+        return results;
     }
 }
