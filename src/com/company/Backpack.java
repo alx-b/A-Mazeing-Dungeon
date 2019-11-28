@@ -24,17 +24,16 @@ public class Backpack extends Item {
 
     public void removeItem() {
         System.out.println("The backpack contains the following items ; ");
-        for (Item item : items){
-            System.out.println(item);
-        }
+        System.out.println(items);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input item name which you want to remove from the Backpack");
         String str = scanner.nextLine();
         String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 
-        for (Item item : items) {
-            if (nameToSearchFor.equals(item.getName())) {
-                items.remove(item);
+        java.util.Iterator<Item> iter = items.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().getName().equals(nameToSearchFor)) {
+                iter.remove();
             }
         }
     }
