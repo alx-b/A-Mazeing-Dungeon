@@ -82,9 +82,22 @@ public class Hero extends Creature{
         this.row += 1;
     }
 
-    @Override
-    public void getDamage() {
+    public void restoreHealth(HealthPotion potion){ //Added method restore health
+        if(getHealth() < 100){
+            setHeroHealth(potion.getHealthPoints());
+            if(getHealth() > getMaxHealth()){
+                setHeroHealth(getMaxHealth());
+            }
+        }
+    }
 
+    public Backpack getBackpack() {
+        return backpack;
+    }
+
+    @Override
+    public int getDamage() {
+        return getDamage();
     }
 
     public void displayInfo(){
