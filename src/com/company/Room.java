@@ -16,6 +16,15 @@ public class Room {
         this.item = createGold();
         this.event = getRandomEvent();
     }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
     // room will have an item (gold), can have enemies.
     // display description of the room?
     // randomize the amount of gold found and where it is found
@@ -39,7 +48,20 @@ public class Room {
         return events[idx];
     }
 
-    public void displayRoom(){
-        System.out.printf("%s\n", this.event);
+    public void heroGetItem(Hero hero){
+        if (this.item != null){
+            hero.addItemToBackpack(this.item);
+        }
+    }
+
+    public void displayRoom(Hero hero){
+        if (!this.visited){
+            System.out.printf("%s\n", this.event);
+            heroGetItem(hero);
+            this.visited = true;
+        }
+        else{
+            System.out.println("You've already visited this room, nothing new!");
+        }
     }
 }
