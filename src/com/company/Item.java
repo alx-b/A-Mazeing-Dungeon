@@ -10,6 +10,9 @@ public abstract class Item {
         this.name = name;
     }
 
+    public int getAmountOfGold() {
+        return amountOfGold;
+    }
 
     public String getName() {
         return name;
