@@ -11,7 +11,7 @@ public class DungeonGame {
         this.maze = new Maze(hero);
     }
 
-    public boolean isHeroInLastRoom(){
+    private boolean isHeroInLastRoom(){
         return (hero.getRow() == 0 && hero.getCol() == 1);
     }
 
@@ -33,10 +33,10 @@ public class DungeonGame {
         System.out.println("You found the exit!");
     }
 
-
-    public String menu(){
+    private String menu(){
         Scanner scan = new Scanner(System.in);
 
+        System.out.println("---- Actions ----");
         System.out.println("Enter w to go West");
         System.out.println("Enter n to go North");
         System.out.println("Enter e to go East");
@@ -46,30 +46,30 @@ public class DungeonGame {
         return scan.nextLine();
     }
 
-    public void moveHeroWest(){
+    private void moveHeroWest(){
         if (this.maze.isARoom(this.hero.westOfHero()) && this.hero.getCol() > 0) {
-            this.maze.removeHero(this.hero);
+            this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveWest();
         }
     }
 
-    public void moveHeroEast(){
+    private void moveHeroEast(){
         if (this.maze.isARoom(this.hero.eastOfHero()) && this.hero.getCol() < this.maze.getMaze()[0].length-1){
-            this.maze.removeHero(this.hero);
+            this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveEast();
         }
     }
 
-    public void moveHeroNorth(){
+    private void moveHeroNorth(){
         if (this.maze.isARoom(this.hero.northOfHero()) && this.hero.getRow() > 0){
-            this.maze.removeHero(this.hero);
+            this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveNorth();
         }
     }
 
-    public void moveHeroSouth(){
+    private void moveHeroSouth(){
         if (this.maze.isARoom(this.hero.southOfHero()) && this.hero.getRow() < this.maze.getMaze().length-1) {
-            this.maze.removeHero(this.hero);
+            this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveSouth();
         }
     }

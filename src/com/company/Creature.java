@@ -17,8 +17,16 @@ public abstract class Creature {
 
     public abstract void getDamage();
 
+    public void displayInfo(){
+        System.out.printf("Name: %s\n", this.name);
+        System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
+        System.out.printf("Damage: %s\n", this.damage);
+    }
+
+    /*
     @Override
     public String toString() {
+
         return "Creature{" +
                 "name='" + name + '\'' +
                 ", health=" + health +
@@ -26,4 +34,5 @@ public abstract class Creature {
                 ", maxHealth=" + maxHealth +
                 '}';
     }
+    */
 }
