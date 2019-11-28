@@ -3,10 +3,11 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-       DungeonGame game = new DungeonGame();
-       game.start();
-	/*
-        Backpack backpack = new Backpack("backpack", 0);
+        DungeonGame game = new DungeonGame();
+        game.start();
+        //new Maze();
+
+        Backpack backpack = new Backpack("backpack");
 
         Gold gold1 = new Gold("Gold", 10);
         Gold gold2 = new Gold("Gold", 10);
@@ -24,9 +25,8 @@ public class Main {
         backpack.addItem(yume);
         backpack.addItem(gold1);
         backpack.addItem(tom);
-        backpack.addItem(gold3);*/
+        backpack.addItem(gold3);
 
-        new Maze();
 
     }
 }

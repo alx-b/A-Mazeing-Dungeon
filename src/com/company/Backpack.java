@@ -9,8 +9,8 @@ public class Backpack extends Item {
     private ArrayList<Item> items = new ArrayList<>();
     private int totalGold = 0;
 
-    public Backpack(String name, int amount) {
-        super(name, amount);
+    public Backpack(String name) {
+        super(name);
     }
 
 
@@ -42,13 +42,14 @@ public class Backpack extends Item {
     public int totalGold() {
         for (Item item : items) {
             if (item.getName().equals("Gold")) {
-                totalGold += item.getAmount();
+                totalGold += item.amountOfGold;
             }
         }
         return totalGold;
     }
 
-
+    //getAmount() == new items pris           här vi måste ändras!
+/*
     public void buyItemWithGold(Item newItem) {
         System.out.println("You have "+ totalGold() + " gold.");
         if (totalGold < newItem.getAmount()) {
@@ -63,15 +64,15 @@ public class Backpack extends Item {
             totalGold -= newItem.getAmount();
             System.out.println("Now your total gold is " + totalGold);
         }
-    }
+    }*/
 
-/*
+
     public void showDescription(){
         System.out.println("You have "+ totalGold() + " gold.");
         for(Item item : items){
             System.out.println(item);
         }
-    }*/
+    }
 
     public String toString() {
         String results ="+";
