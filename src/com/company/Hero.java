@@ -5,10 +5,15 @@ import java.util.Scanner;
 public class Hero extends Creature{
     private int row;
     private int col;
+    private Backpack backpack = new Backpack("Backpack");
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
         this.col = 1;
+    }
+
+    public void addItemToBackpack(Item item){
+        backpack.addItem(item);
     }
 
     public int getRow() {
@@ -82,8 +87,10 @@ public class Hero extends Creature{
 
     }
 
-    @Override
-    public String toString() {
-        return "Hero{}";
+    public void displayInfo(){
+        System.out.println(super.toString());
+        System.out.println("---- Backpack ----");
+        this.backpack.showDescription();
+        System.out.println("------------------");
     }
 }
