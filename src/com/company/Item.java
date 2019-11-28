@@ -3,7 +3,7 @@ package com.company;
 public abstract class Item {
 
     private String name;
-
+    protected int amountOfGold;
 
 
     public Item(String name) {
