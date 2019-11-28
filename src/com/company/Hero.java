@@ -88,9 +88,9 @@ public class Hero extends Creature{
     }
 
     public void displayInfo(){
-        System.out.println(super.toString());
+        System.out.println("---- Hero ----");
+        super.displayInfo();
         System.out.println("---- Backpack ----");
         this.backpack.showDescription();
-        System.out.println("------------------");
     }
 }
