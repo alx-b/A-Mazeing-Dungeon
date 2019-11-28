@@ -3,13 +3,30 @@ package com.company;
 import java.util.Scanner;
 
 public class Hero extends Creature{
-
+    private int row;
+    private int col;
+    private Backpack backpack = new Backpack("Backpack");
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
+        this.row = 12;
+        this.col = 1;
+    }
+
+    public void addItemToBackpack(Item item){
+        backpack.addItem(item);
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 
     /* moveHero to be developed and adjusted to maze.*/
-    private void moveHero() {
+    /*
+    public void moveHero() {
         String wall = "[W]";
 
         System.out.println();
@@ -31,14 +48,49 @@ public class Hero extends Creature{
             board[--x][y] = hero;
         }
     }
+    */
+
+    public int[] westOfHero(){
+        return new int[]{this.row, this.col - 1};
+    }
+
+    public int[] eastOfHero(){
+        return new int[]{this.row, this.col + 1};
+    }
+
+    public int[] northOfHero(){
+        return new int[]{this.row - 1, this.col};
+    }
+
+    public int[] southOfHero(){
+        return new int[]{this.row + 1, this.col};
+    }
+
+    public void moveWest(){
+        this.col -= 1;
+    }
+
+    public void moveEast(){
+        this.col += 1;
+    }
+
+    public void moveNorth(){
+        this.row -= 1;
+    }
+
+    public void moveSouth(){
+        this.row += 1;
+    }
 
     @Override
     public void getDamage() {
 
     }
 
-    @Override
-    public String toString() {
-        return "Hero{}";
+    public void displayInfo(){
+        System.out.println(super.toString());
+        System.out.println("---- Backpack ----");
+        this.backpack.showDescription();
+        System.out.println("------------------");
     }
 }

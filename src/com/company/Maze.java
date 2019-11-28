@@ -44,50 +44,61 @@ public class Maze {
     private final String HERO = "H";
     private final String ROOM = " ";
 
-    //int hero_pos_y = 12;
-    //int hero_pos_x = 1;
-
-    public Maze(){
-        //addHeroOnMapAndMaze();
-        //addHeroSurroundingToMap();
-        //printMap();
+    public Maze(Hero hero){
+        addHeroOnMapAndMaze(hero);
+        addHeroSurroundingToMap(hero);
+        createRoom();
     }
 
-    public void createRoom(){
+    public String[][] getMaze() {
+        return maze;
+    }
+
+    public void print(Hero hero){
+        addHeroOnMapAndMaze(hero);
+        addHeroSurroundingToMap(hero);
+        printMap();
+        printMaze();
+        System.out.println(hero.getRow());
+        System.out.println(hero.getCol());
+    }
+
+    public void displayCurrentRoom(Hero hero){
+        for (Room room : this.rooms){
+            if (room.getPosY() == hero.getRow() && room.getPosX() == hero.getCol()){
+                room.displayRoom(hero);
+            }
+        }
+    }
+
+    private void createRoom(){
         for (int row = 0; row < this.maze.length; row++){
             for (int col = 0; col < this.maze[0].length; col++){
-                if (isARoom(row, col)){
+                if (isARoom(new int[]{row, col})){
                     this.rooms.add(new Room(row, col));
                 }
             }
         }
     }
 
-    private boolean isARoom(int pos_y, int pos_x){
-        return this.maze[pos_y][pos_x].equals(ROOM);
+    public boolean isARoom(int[] position){
+        int row = position[0];
+        int col = position[1];
+        return this.maze[row][col].equals(ROOM);
+    }
+
+    public void removeHero(Hero hero){
+        this.map[hero.getRow()][hero.getCol()] = ROOM;
+        this.maze[hero.getRow()][hero.getCol()] = ROOM;
     }
 /*
-    public void teleportHero(Hero hero, int posY, int posX){
-        if (isARoom(posY, posX)){
-            removeHero(hero);
-            changeHeroPositionTo(hero, posY, posX);
-            addHeroOnMapAndMaze(hero);
-            addHeroSurroundingToMap(hero);
-        }
-    }
-
-    private void removeHero(Hero hero){
-        this.map[hero.getPosY()][hero.getPosX()] = ROOM;
-        this.maze[hero.getPosY()][hero.getPosX()] = ROOM;
-    }
-
     private void changeHeroPositionTo(Hero hero, int posY, int posX){
         hero.move(posY, posX);
     }
-
+*/
     private void addHeroOnMapAndMaze(Hero hero){
-        this.map[hero.getPosY()][hero.getPosX()] = HERO;
-        this.maze[hero.getPosY()][hero.getPosX()] = HERO;
+        this.map[hero.getRow()][hero.getCol()] = HERO;
+        this.maze[hero.getRow()][hero.getCol()] = HERO;
     }
 
     public void printMap(){
@@ -109,15 +120,15 @@ public class Maze {
     }
 
     private void addHeroSurroundingToMap(Hero hero){
-        int heroPosY = hero.getPosY();
-        int heroPosX = hero.getPosX();
+        int heroPosY = hero.getRow();
+        int heroPosX = hero.getCol();
 
         // left of hero
         if (heroPosX > 0) {
             this.map[heroPosY][heroPosX - 1] = this.maze[heroPosY][heroPosX - 1];
         }
         // right
-        if (heroPosX + 1 < this.map.length){
+        if (heroPosX + 1 < this.map[0].length){
             this.map[heroPosY][heroPosX + 1] = this.maze[heroPosY][heroPosX + 1];
         }
         // top
@@ -129,5 +140,5 @@ public class Maze {
             this.map[heroPosY + 1][heroPosX] = this.maze[heroPosY + 1][heroPosX];
         }
     }
-*/
+
 }
