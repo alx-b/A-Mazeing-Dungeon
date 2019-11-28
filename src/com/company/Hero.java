@@ -1,18 +1,21 @@
 package com.company;
 
+import java.util.Random;
 import java.util.Scanner;
 
-public class Hero extends Creature{
+public class Hero extends Creature {
     private int row;
     private int col;
     private Backpack backpack = new Backpack("Backpack");
+
+
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
         this.col = 1;
     }
 
-    public void addItemToBackpack(Item item){
+    public void addItemToBackpack(Item item) {
         backpack.addItem(item);
     }
 
@@ -23,6 +26,65 @@ public class Hero extends Creature{
     public int getCol() {
         return col;
     }
+
+    public void heroFight(Creature creature) { //in parameter monster, bara test
+
+        boolean control = true;
+
+        while (control) {
+
+            int fight = attack();
+
+            if (fight <= 50 && getHealth() > 0 && creature.getHealth() > 0) { //getHealthSpider
+                getHealth() -= spider.getDamage();
+                System.out.println("The enemy hit you!");
+                System.out.println("Health: " + getHealth());
+            } else if (fight >= 50 && getHealth() > 0 && creature.getHealth() > 0) {
+                spider.getHealth() -= getDamage();
+                System.out.println("You hit the enemy!");
+                System.out.println("Health: " + getHealth());
+            } else if (getHealth() == 0) {
+                restart();
+            } else {
+                getMaxHealth() += 10; //Setter?
+                setHeroDamage(getDamage() += 10);
+                System.out.println("You won, game continues...add function");
+                System.out.println("Max health is now: " + getMaxHealth());
+                System.out.println("Damage is now: " + getDamage());
+                control = false;
+            }
+
+        }
+    }
+
+    private void restart() {
+        String yesNo;
+        System.out.println("You are dead");
+        System.out.println("Restart game, Yes or No?");
+        Scanner scanner = new Scanner(System.in);
+        yesNo = scanner.nextLine();
+        if (yesNo.equals("Yes")) {
+            System.out.println("Return to beginning of map, add function."); //Behöver åtgärdas.
+            System.exit(0);
+        } else if (yesNo.equals("No")){
+            System.exit(0);
+        }
+
+    }
+
+    private int attack() {
+        Random r = new Random();
+        int low = 1;
+        int high = 100;
+        int result = r.nextInt(high - low) + low;
+        return result;
+
+    }
+
+
+
+
+
 
     /* moveHero to be developed and adjusted to maze.*/
     /*
@@ -50,35 +112,35 @@ public class Hero extends Creature{
     }
     */
 
-    public int[] westOfHero(){
+    public int[] westOfHero() {
         return new int[]{this.row, this.col - 1};
     }
 
-    public int[] eastOfHero(){
+    public int[] eastOfHero() {
         return new int[]{this.row, this.col + 1};
     }
 
-    public int[] northOfHero(){
+    public int[] northOfHero() {
         return new int[]{this.row - 1, this.col};
     }
 
-    public int[] southOfHero(){
+    public int[] southOfHero() {
         return new int[]{this.row + 1, this.col};
     }
 
-    public void moveWest(){
+    public void moveWest() {
         this.col -= 1;
     }
 
-    public void moveEast(){
+    public void moveEast() {
         this.col += 1;
     }
 
-    public void moveNorth(){
+    public void moveNorth() {
         this.row -= 1;
     }
 
-    public void moveSouth(){
+    public void moveSouth() {
         this.row += 1;
     }
 
