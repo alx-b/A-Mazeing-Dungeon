@@ -1,18 +1,21 @@
 package com.company;
 
+import java.util.Random;
 import java.util.Scanner;
 
-public class Hero extends Creature{
+public class Hero extends Creature {
     private int row;
     private int col;
     private Backpack backpack = new Backpack("Backpack");
+
+
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
         this.col = 1;
     }
 
-    public void addItemToBackpack(Item item){
+    public void addItemToBackpack(Item item) {
         backpack.addItem(item);
     }
 
@@ -23,6 +26,7 @@ public class Hero extends Creature{
     public int getCol() {
         return col;
     }
+
 
     /* moveHero to be developed and adjusted to maze.*/
     /*
@@ -50,47 +54,60 @@ public class Hero extends Creature{
     }
     */
 
-    public int[] westOfHero(){
+    public int[] westOfHero() {
         return new int[]{this.row, this.col - 1};
     }
 
-    public int[] eastOfHero(){
+    public int[] eastOfHero() {
         return new int[]{this.row, this.col + 1};
     }
 
-    public int[] northOfHero(){
+    public int[] northOfHero() {
         return new int[]{this.row - 1, this.col};
     }
 
-    public int[] southOfHero(){
+    public int[] southOfHero() {
         return new int[]{this.row + 1, this.col};
     }
 
-    public void moveWest(){
+    public void moveWest() {
         this.col -= 1;
     }
 
-    public void moveEast(){
+    public void moveEast() {
         this.col += 1;
     }
 
-    public void moveNorth(){
+    public void moveNorth() {
         this.row -= 1;
     }
 
-    public void moveSouth(){
+    public void moveSouth() {
         this.row += 1;
     }
 
-    @Override
-    public void getDamage() {
+    public void restoreHealth(HealthPotion potion){ //Added method restore health
+        if(getHealth() < 100){
+            setHeroHealth(potion.getHealthPoints());
+            if(getHealth() > getMaxHealth()){
+                setHeroHealth(getMaxHealth());
+            }
+        }
+    }
 
+    public Backpack getBackpack() {
+        return backpack;
+    }
+
+    @Override
+    public int getDamage() {
+        return getDamage();
     }
 
     public void displayInfo(){
-        System.out.println(super.toString());
+        System.out.println("---- Hero ----");
+        super.displayInfo();
         System.out.println("---- Backpack ----");
         this.backpack.showDescription();
-        System.out.println("------------------");
     }
 }

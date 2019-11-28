@@ -6,9 +6,10 @@ public abstract class Monster extends Creature{
         super(name, health, damage, maxHealth);
     }
 
-    @Override
-    public void getDamage() {
 
+    @Override
+    public int getDamage() {
+        return getDamage();
     }
 
     @Override

@@ -58,9 +58,10 @@ public class Maze {
         addHeroOnMapAndMaze(hero);
         addHeroSurroundingToMap(hero);
         printMap();
-        printMaze();
-        System.out.println(hero.getRow());
-        System.out.println(hero.getCol());
+        //::wa
+        // printMaze(); // Temporary there, delete later
+        //System.out.println(hero.getRow());
+        //System.out.println(hero.getCol());
     }
 
     public void displayCurrentRoom(Hero hero){
@@ -87,7 +88,7 @@ public class Maze {
         return this.maze[row][col].equals(ROOM);
     }
 
-    public void removeHero(Hero hero){
+    public void removeHeroFromMapAndMaze(Hero hero){
         this.map[hero.getRow()][hero.getCol()] = ROOM;
         this.maze[hero.getRow()][hero.getCol()] = ROOM;
     }
@@ -102,6 +103,7 @@ public class Maze {
     }
 
     public void printMap(){
+        System.out.println("------ Map ------");
         for (String[] row : this.map){
             for (String elem : row){
                 System.out.printf("[%s]", elem);
@@ -111,6 +113,7 @@ public class Maze {
     }
 
     public void printMaze(){
+        System.out.println("------ Maze ------");
         for (String[] row : this.maze){
             for (String elem : row){
                 System.out.printf("[%s]", elem);

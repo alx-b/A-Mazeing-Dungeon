@@ -9,6 +9,10 @@ public class Gold extends Item{
         this.amountOfGold = amountOfGold;
     }
 
+    public int getAmountOfGold() {
+        return amountOfGold;
+    }
+
     @Override
     public String toString() {
         return String.format("You received %d gold!", amountOfGold);
