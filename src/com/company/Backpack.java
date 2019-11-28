@@ -7,7 +7,8 @@ public class Backpack extends Item {
 
     private static final int MAX_TOTAL_ITEM = 10;
     private ArrayList<Item> items = new ArrayList<>();
-    private int totalGold = 0;
+    private static final int MIN_TOTAL_GOLD = 100;
+    private int totalGold = MIN_TOTAL_GOLD;
 
     public Backpack(String name) {
         super(name);
@@ -39,9 +40,10 @@ public class Backpack extends Item {
     }
 
     public int totalGold() {
+        totalGold = MIN_TOTAL_GOLD;
         for (Item item : items) {
             if (item.getName().equals("Gold")) {
-                totalGold += item.amountOfGold;
+                totalGold += item.getAmountOfGold();
             }
         }
         return totalGold;
