@@ -8,6 +8,10 @@ public class HealthPotion extends Item {
         this.healthPoints = healthPoints;
     }
 
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
     @Override
     public String toString() {
         return String.format("You found Health Potion that restores %d health points!", healthPoints);
