@@ -8,6 +8,10 @@ public class Sword extends Item {
         this.swordDamage = swordDamage;
     }
 
+    public int getSwordDamage() {
+        return swordDamage;
+    }
+
     @Override
     public String toString() {
         return String.format("You just got a new sword! \n Sword name: %s \n Sword damage: %d", getName(), swordDamage);
