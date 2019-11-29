@@ -167,7 +167,7 @@ public class Hero extends Creature {
 
     @Override
     public int getDamage() {
-        return getDamage();
+        return this.damage;
     }
 
     public void displayInfo() {
