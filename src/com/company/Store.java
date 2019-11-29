@@ -13,7 +13,7 @@ public class Store {
     private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 70);
 
 
-    public void buyItemsInStore(Hero hero){
+    public void buyItemsInStore(Hero hero) {
         boolean isBuying = true;
         while (isBuying) {
             Scanner scanner = new Scanner(System.in);
@@ -38,6 +38,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 20) {
                         hero.getBackpack().addItem(woodenSword);
                         hero.setHeroDamage(hero.getDamage() + woodenSword.getSwordDamage()); // Plus both together, or assign swordDamage to heroDamage?
+                        hero.getBagOfGold().removeGold(20);
+                        System.out.println("You just bought yourself " + woodenSword.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
@@ -47,6 +59,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 40) {
                         hero.getBackpack().addItem(dagger);
                         hero.setHeroDamage(hero.getDamage() + dagger.getSwordDamage());
+                        hero.getBagOfGold().removeGold(40);
+                        System.out.println("You just bought yourself " + dagger.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
@@ -56,6 +80,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 60) {
                         hero.getBackpack().addItem(claymore);
                         hero.setHeroDamage(hero.getDamage() + claymore.getSwordDamage());
+                        hero.getBagOfGold().removeGold(60);
+                        System.out.println("You just bought yourself " + claymore.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
@@ -65,6 +101,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 5) {
                         hero.getBackpack().addItem(weakHealthPotion);
                         hero.restoreHealth(weakHealthPotion);
+                        hero.getBagOfGold().removeGold(5);
+                        System.out.println("You just bought yourself " + weakHealthPotion.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("Your health is now " + hero.getHealth());
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
@@ -74,6 +122,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 10) {
                         hero.getBackpack().addItem(mediumHealthPotion);
                         hero.restoreHealth(mediumHealthPotion);
+                        hero.getBagOfGold().removeGold(10);
+                        System.out.println("You just bought yourself " + mediumHealthPotion.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("Your health is now " + hero.getHealth());
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
@@ -83,6 +143,18 @@ public class Store {
                     if (hero.getTotalGoldInBag() >= 15) {
                         hero.getBackpack().addItem(strongHealthPotion);
                         hero.restoreHealth(strongHealthPotion);
+                        hero.getBagOfGold().removeGold(15);
+                        System.out.println("You just bought yourself " + strongHealthPotion.getName() + "!");
+                        System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
+                        System.out.println("Your health is now " + hero.getHealth());
+                        System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                        int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
+                        if (buyMoreOreLeave == 1) {
+                            buyItemsInStore(hero);
+                        } else if (buyMoreOreLeave == 2) {
+                            isBuying = false;
+                            break;
+                        }
                     } else {
                         System.out.println("You don't have enough gold.");
                     }
