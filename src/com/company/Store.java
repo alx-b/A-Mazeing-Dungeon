@@ -1,5 +1,5 @@
 package com.company;
-/*
+
 import java.util.Scanner;
 
 public class Store {
@@ -13,7 +13,7 @@ public class Store {
     private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 70);
 
 
-    public void buyItemsInStore(Hero hero) throws InterruptedException {
+    public void buyItemsInStore(Hero hero){
         boolean isBuying = true;
         while (isBuying) {
             Scanner scanner = new Scanner(System.in);
@@ -35,68 +35,61 @@ public class Store {
             int userInput = Integer.parseInt(scanner.nextLine());
             switch (userInput) {
                 case 1:
-                    if (hero.getBackpack().totalGold() >= 20) {
+                    if (hero.getTotalGoldInBag() >= 20) {
                         hero.getBackpack().addItem(woodenSword);
                         hero.setHeroDamage(hero.getDamage() + woodenSword.getSwordDamage()); // Plus both together, or assign swordDamage to heroDamage?
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 2:
-                    if (hero.getBackpack().totalGold() >= 40) {
+                    if (hero.getTotalGoldInBag() >= 40) {
                         hero.getBackpack().addItem(dagger);
                         hero.setHeroDamage(hero.getDamage() + dagger.getSwordDamage());
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 3:
-                    if (hero.getBackpack().totalGold() >= 60) {
+                    if (hero.getTotalGoldInBag() >= 60) {
                         hero.getBackpack().addItem(claymore);
                         hero.setHeroDamage(hero.getDamage() + claymore.getSwordDamage());
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 4:
-                    if (hero.getBackpack().totalGold() >= 5) {
+                    if (hero.getTotalGoldInBag() >= 5) {
                         hero.getBackpack().addItem(weakHealthPotion);
                         hero.restoreHealth(weakHealthPotion);
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 5:
-                    if (hero.getBackpack().totalGold() >= 10) {
+                    if (hero.getTotalGoldInBag() >= 10) {
                         hero.getBackpack().addItem(mediumHealthPotion);
                         hero.restoreHealth(mediumHealthPotion);
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 6:
-                    if (hero.getBackpack().totalGold() >= 15) {
+                    if (hero.getTotalGoldInBag() >= 15) {
                         hero.getBackpack().addItem(strongHealthPotion);
                         hero.restoreHealth(strongHealthPotion);
                     } else {
                         System.out.println("You don't have enough gold.");
-                        Thread.sleep(1000);
                     }
                     break;
 
                 case 7:
                     System.out.println("Are you sure you want to quit? \n 'Yes: type 1 and hit <enter>' : 'No: type 2 and hit <enter>'");
-                    Thread.sleep(1000);
                     int quitOrStay = Integer.parseInt(scanner.nextLine());
                     switch (quitOrStay) {
                         case 1:
@@ -110,4 +103,3 @@ public class Store {
         }
     }
 }
-*/
