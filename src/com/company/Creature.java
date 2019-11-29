@@ -15,6 +15,10 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
+    public void setName(String newName){
+        this.name = newName;
+    }
+
     public abstract int getDamage(); //Changed to int (Mantas)
 
     public void setHeroDamage(int damage) { // Setter for new damage?

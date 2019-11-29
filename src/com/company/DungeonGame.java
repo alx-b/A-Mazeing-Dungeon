@@ -7,7 +7,7 @@ public class DungeonGame {
     private Maze maze;
 
     public DungeonGame() {
-        this.hero = new Hero (getHerosName(), 100, 10, 100);
+        this.hero = new Hero ("Player", 100, 10, 100);
         this.maze = new Maze (hero);
     }
 
@@ -75,13 +75,12 @@ public class DungeonGame {
     }
 
 
-    public String getHerosName() {
+    public void getHerosName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Greetings hero!\n What is your name?");
         System.out.println("_________________________");
         String name = scanner.nextLine();
-        return name;
-
+        this.hero.setName(name);
     }
 
     public void showMainMenu() {
@@ -104,6 +103,6 @@ public class DungeonGame {
 
 
        }
-}
+    }
 
 }
