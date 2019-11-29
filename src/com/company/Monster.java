@@ -8,9 +8,7 @@ public abstract class Monster extends Creature{
 
 
     @Override
-    public int getDamage() {
-        return getDamage();
-    }
+    public abstract int getDamage();
 
     @Override
     public String toString() {
