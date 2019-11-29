@@ -6,6 +6,7 @@ public class Spider extends Monster {
         super(name, health, damage, maxHealth);
     }
 
+
     @Override
     public String toString() {
         return "Spider{}";
