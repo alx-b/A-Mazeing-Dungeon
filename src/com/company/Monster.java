@@ -7,6 +7,7 @@ public abstract class Monster extends Creature{
     }
 
 
+
     @Override
     public abstract int getDamage();
 

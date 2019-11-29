@@ -8,6 +8,7 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
@@ -22,7 +23,7 @@ public class Hero extends Creature {
         backpack.addItem(item);
     }
 
-    public void addGoldToBagOfGold(int gold){
+    public void addGoldToBagOfGold(int gold) {
         this.bagOfGold.addAmountOfGold(gold);
     }
 
@@ -34,37 +35,28 @@ public class Hero extends Creature {
         return col;
     }
 
-    //Monster array, getCreature,
 
-    /*public Monster getMonster(String name) {
-        for (Monster monster : monsters) {
-            if (name.equals(monster.getName())) {
-                return monster;
-            }
-        }
-        return null;
-    }*/
-
-    public void heroFight(Creature creature) throws InterruptedException { //in parameter monster, bara test
+    public void heroFight(Monster monster) throws InterruptedException { //in parameter monster
 
         boolean control = true;
 
         while (control) {
 
             int fight = attack();
+
             Thread.sleep(1000);
-            if (fight <= 50 && getHealth() > 0 && creature.getHealth() > 0) {
-                //getHealth() -= spider.getDamage();//Setter?
+            if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
+                int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + getHealth());//Setter?
-            } else if (fight >= 50 && getHealth() > 0 && creature.getHealth() > 0) {
-                //spider.getHealth() -= getDamage();
+                System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()));
+            } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
+                int changeMonsterHealth = monster.getHealth();
+                monster.setHealth(changeMonsterHealth - getDamage());
                 System.out.println("You hit the enemy!");
-                System.out.println("Health: " + getHealth());
-            } else if (getHealth() == 0) {
+            } else if (super.getHealth() <= 0) {
                 restart();
-            } else {
-                //getMaxHealth() + 10; //Setter?
+            } else if (monster.getHealth() <= 0) {
+                setMaxHealth(super.getHealth() + 10);
                 setHeroDamage(getDamage() + 10);
                 System.out.println("You won, game continues...add function");
                 System.out.println("Max health is now: " + getMaxHealth());
@@ -75,6 +67,7 @@ public class Hero extends Creature {
         }
     }
 
+
     private void restart() {
         String yesNo;
         System.out.println("You are dead");
@@ -82,7 +75,7 @@ public class Hero extends Creature {
         Scanner scanner = new Scanner(System.in);
         yesNo = scanner.nextLine();
         if (yesNo.equals("Yes")) {
-            System.out.println("Return to beginning of map, add function."); //Behöver åtgärdas.
+            System.out.println("Return to beginning of map, add function."); //Return to start menu
             System.exit(0);
         } else if (yesNo.equals("No")) {
             System.exit(0);
@@ -158,9 +151,9 @@ public class Hero extends Creature {
 
     public void restoreHealth(HealthPotion potion) { //Added method restore health
         if (getHealth() < 100) {
-            setHeroHealth(potion.getHealthPoints());
+            setHealth(potion.getHealthPoints());
             if (getHealth() > getMaxHealth()) {
-                setHeroHealth(getMaxHealth());
+                setHealth(getMaxHealth());
             }
         }
     }
