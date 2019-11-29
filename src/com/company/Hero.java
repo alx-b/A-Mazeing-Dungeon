@@ -8,6 +8,7 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
@@ -18,7 +19,7 @@ public class Hero extends Creature {
         backpack.addItem(item);
     }
 
-    public void addGoldToBagOfGold(int gold){
+    public void addGoldToBagOfGold(int gold) {
         this.bagOfGold.addAmountOfGold(gold);
     }
 
@@ -50,18 +51,18 @@ public class Hero extends Creature {
             int fight = attack();
 
             Thread.sleep(1000);
-            if (fight <= 50 && getHealth() > 0 && monster.getHealth() > 0) {
-                super.setHeroHealth(getHealth()) -= monster.getDamage();//Super för att hämta från superklassen och inte härifrån.
+            if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
+                int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + getHealth());//Setter?
-            } else if (fight >= 50 && getHealth() > 0 && monster.getHealth() > 0) {
-                monster.getHealth() -= getDamage();
+                System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()));
+            } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
+                int changeMonsterHealth = monster.getHealth();
+                monster.setHealth(changeMonsterHealth - getDamage());
                 System.out.println("You hit the enemy!");
-                System.out.println("Health: " + getHealth());
-            } else if (getHealth() == 0) {
+            } else if (super.getHealth() <= 0) {
                 restart();
-            } else {
-                getMaxHealth() =+ 10; //Setter?
+            } else if (monster.getHealth() <= 0) {
+                getMaxHealth() = +10;
                 setHeroDamage(getDamage() + 10);
                 System.out.println("You won, game continues...add function");
                 System.out.println("Max health is now: " + getMaxHealth());
@@ -73,11 +74,11 @@ public class Hero extends Creature {
     }
 
     /*
-    * public void changeHealth(){
-    *
-    *
-    * }
-    * */
+     * public void changeHealth(){
+     *
+     *
+     * }
+     * */
 
     private void restart() {
         String yesNo;

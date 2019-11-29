@@ -25,8 +25,8 @@ public abstract class Creature {
         return health;
     }
 
-    public void setHeroHealth(int health) { //Setter for health ?
-        this.health = health;
+    public int setHealth(int health) { //Setter for health ?
+        return this.health = health;
     }
 
     public int getMaxHealth() {
