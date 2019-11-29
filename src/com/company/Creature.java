@@ -37,6 +37,10 @@ public abstract class Creature {
         return maxHealth;
     }
 
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public void displayInfo(){
         System.out.printf("Name: %s\n", this.name);
         System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
