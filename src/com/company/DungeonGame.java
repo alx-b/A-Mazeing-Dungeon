@@ -6,16 +6,16 @@ public class DungeonGame {
     private Hero hero;
     private Maze maze;
 
-    public DungeonGame(){
-        this.hero = new Hero("Barry", 100, 10, 100);
-        this.maze = new Maze(hero);
+    public DungeonGame() {
+        this.hero = new Hero ("Player", 100, 10, 100);
+        this.maze = new Maze (hero);
     }
 
     private boolean isHeroInLastRoom(){
         return (hero.getRow() == 0 && hero.getCol() == 1);
     }
 
-    public void start(){
+    public void start() {
 
         while (!isHeroInLastRoom()){
             this.maze.print(this.hero);
@@ -72,6 +72,37 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveSouth();
         }
+    }
+
+
+    public void getHerosName() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Greetings hero!\n What is your name?");
+        System.out.println("_________________________");
+        String name = scanner.nextLine();
+        this.hero.setName(name);
+    }
+
+    public void showMainMenu() {
+       Scanner scanner1 = new Scanner(System.in);
+       System.out.println("Welcome to the Main Menu");
+       System.out.println("_________________________");
+       System.out.println("Start Game: type 1");
+       System.out.println("Exit: type 2");
+
+       int userInitialChoice = Integer.parseInt(scanner1.nextLine());
+
+       switch (userInitialChoice) {
+           case 1:
+               getHerosName();
+               start();
+               break;
+           case 2:
+               System.exit(0);
+               break;
+
+
+       }
     }
 
 }

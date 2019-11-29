@@ -2,10 +2,10 @@ package com.company;
 
 import java.util.Scanner;
 
-public class DragonBoss extends Monster{
+/*public class DragonBoss extends Monster{
 
 
-    public DragonBoss(String name, int health, int damage, int maxHealth) {
+    /*public DragonBoss(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
     }
 
@@ -39,3 +39,4 @@ public class DragonBoss extends Monster{
         return "DragonBoss{}";
     }
 }
+*/
