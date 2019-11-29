@@ -41,26 +41,27 @@ public class Hero extends Creature {
         return null;
     }*/
 
-    public void heroFight(Creature creature) throws InterruptedException { //in parameter monster, bara test
+    public void heroFight(Monster monster) throws InterruptedException { //in parameter monster, bara test
 
         boolean control = true;
 
         while (control) {
 
             int fight = attack();
+
             Thread.sleep(1000);
-            if (fight <= 50 && getHealth() > 0 && creature.getHealth() > 0) {
-                getHealth() -= spider.getDamage();//Setter?
+            if (fight <= 50 && getHealth() > 0 && monster.getHealth() > 0) {
+                super.setHeroHealth(getHealth()) -= monster.getDamage();//Super för att hämta från superklassen och inte härifrån.
                 System.out.println("The enemy hit you!");
                 System.out.println("Health: " + getHealth());//Setter?
-            } else if (fight >= 50 && getHealth() > 0 && creature.getHealth() > 0) {
-                spider.getHealth() -= getDamage();
+            } else if (fight >= 50 && getHealth() > 0 && monster.getHealth() > 0) {
+                monster.getHealth() -= getDamage();
                 System.out.println("You hit the enemy!");
                 System.out.println("Health: " + getHealth());
             } else if (getHealth() == 0) {
                 restart();
             } else {
-                getMaxHealth() + 10; //Setter?
+                getMaxHealth() =+ 10; //Setter?
                 setHeroDamage(getDamage() + 10);
                 System.out.println("You won, game continues...add function");
                 System.out.println("Max health is now: " + getMaxHealth());
@@ -70,6 +71,13 @@ public class Hero extends Creature {
 
         }
     }
+
+    /*
+    * public void changeHealth(){
+    *
+    *
+    * }
+    * */
 
     private void restart() {
         String yesNo;
