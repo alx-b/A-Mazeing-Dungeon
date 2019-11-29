@@ -36,7 +36,7 @@ public class Hero extends Creature {
     }
 
 
-    public void heroFight(Monster monster) throws InterruptedException { //in parameter monster
+    public void heroFight(Monster monster) throws InterruptedException { //needs to be tested
 
         boolean control = true;
 
