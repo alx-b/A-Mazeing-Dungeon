@@ -15,11 +15,11 @@ public class Hero extends Creature {
         this.col = 1;
     }
 
-    public int getTotalGoldInBag(){
+    public int getTotalGoldInBag() {
         return this.bagOfGold.getAmountOfGold();
     }
 
-    public void addItemToBackpack(Item item){
+    public void addItemToBackpack(Item item) {
         backpack.addItem(item);
     }
 
@@ -43,15 +43,15 @@ public class Hero extends Creature {
         while (control) {
 
             int fight = attack();
-
             Thread.sleep(1000);
+
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()));
+                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()));
             } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeMonsterHealth = monster.getHealth();
-                monster.setHealth(changeMonsterHealth - getDamage());
+                monster.setHeroHealth(changeMonsterHealth - getDamage());
                 System.out.println("You hit the enemy!");
             } else if (super.getHealth() <= 0) {
                 restart();
@@ -151,9 +151,9 @@ public class Hero extends Creature {
 
     public void restoreHealth(HealthPotion potion) { //Added method restore health
         if (getHealth() < 100) {
-            setHealth(potion.getHealthPoints());
+            setHeroHealth(getHealth() + potion.getHealthPoints());
             if (getHealth() > getMaxHealth()) {
-                setHealth(getMaxHealth());
+                setHeroHealth(getMaxHealth());
             }
         }
     }
@@ -161,7 +161,11 @@ public class Hero extends Creature {
     public Backpack getBackpack() {
         return backpack;
     }
-    
+
+    public BagOfGold getBagOfGold() {
+        return bagOfGold;
+    }
+
     @Override
     public int getDamage() {
         return this.damage;

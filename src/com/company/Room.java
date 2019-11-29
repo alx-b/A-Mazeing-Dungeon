@@ -13,15 +13,14 @@ public class Room {
     private Monster monster = null;
     private Store store = null;
 
-    public Room (String name, int row, int col){
+    public Room(String name, int row, int col) {
         this.name = name;
         this.row = row;
         this.col = col;
 
-        if (this.name.equals("Store")){
+        if (this.name.equals("Store")) {
             addStoreToRoom();
-        }
-        else{
+        } else {
             addRandomEventToRoom();
         }
 
@@ -39,11 +38,11 @@ public class Room {
         return col;
     }
 
-    private void addGoldToRoom(){
+    private void addGoldToRoom() {
         this.gold = randomizer(50, 100);
     }
 
-    private void addRandomEventToRoom(){
+    private void addRandomEventToRoom() {
         String[] events = {
                 "You found " + this.gold + " gold coins in the dirty rags of a skeleton!\n",
                 "Something shinny caught your attention in the crevices of the ground,\n you found " + this.gold + " gold coins!\n",
@@ -55,16 +54,16 @@ public class Room {
         this.event = events[idx];
     }
 
-    private void addStoreToRoom(){
+    private void addStoreToRoom() {
         this.store = new Store();
     }
 
-    private int randomizer(int min, int max){
+    private int randomizer(int min, int max) {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
     }
 
-    private void addRandomPotionToRoom(){
+    private void addRandomPotionToRoom() {
         HealthPotion[] potions = {
                 new HealthPotion("Small health potion", 50),
                 new HealthPotion("Medium health potion", 100),
@@ -74,25 +73,23 @@ public class Room {
         this.item = potions[idx];
     }
 
-    public void heroGetItem(Hero hero){
-        if (this.item != null){
+    public void heroGetItem(Hero hero) {
+        if (this.item != null) {
             hero.addItemToBackpack(this.item);
         }
-        if (this.gold != 0){
+        if (this.gold != 0) {
             hero.addGoldToBagOfGold(this.gold);
         }
     }
 
-    public void displayRoom(Hero hero){
-        if (this.store != null){
+    public void displayRoom(Hero hero) {
+        if (this.store != null) {
             this.store.buyItemsInStore(hero);
-        }
-        else if (!this.visited){
+        } else if (!this.visited) {
             System.out.printf("%s\n", this.event);
             heroGetItem(hero);
             this.visited = true;
-        }
-        else{
+        } else {
             System.out.println("You've already visited this room, nothing new!");
         }
     }

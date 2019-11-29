@@ -6,7 +6,7 @@ public class Spider extends Monster {
         super(name, health, damage, maxHealth);
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 

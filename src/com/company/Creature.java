@@ -15,7 +15,7 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         this.name = newName;
     }
 
@@ -33,8 +33,8 @@ public abstract class Creature {
         return this.health = health;
     }
 
-    public int setHeroMaxHealth(int health){
-       return this.maxHealth = health;
+    public int setHeroMaxHealth(int health) {
+        return this.maxHealth = health;
     }
 
     public int getMaxHealth() {
@@ -45,7 +45,7 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
-    public void displayInfo(){
+    public void displayInfo() {
         System.out.printf("Name: %s\n", this.name);
         System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
         System.out.printf("Damage: %s\n", this.damage);

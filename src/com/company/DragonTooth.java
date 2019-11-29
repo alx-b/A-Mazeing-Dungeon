@@ -1,6 +1,6 @@
 package com.company;
 
-public class DragonTooth extends Item{
+public class DragonTooth extends Item {
 
 
     public DragonTooth(String name) {
