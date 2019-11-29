@@ -6,6 +6,7 @@ public class Room {
     private int posY;
     private int posX;
     private Item item;
+    private int gold;
     private Monster monster;
     private String event;
     private boolean visited = false;
@@ -13,7 +14,7 @@ public class Room {
     public Room (int posY, int posX){
         this.posY = posY;
         this.posX = posX;
-        this.item = createGold();
+        this.gold = addGold();
         this.event = getRandomEvent();
     }
 
@@ -29,19 +30,18 @@ public class Room {
     // display description of the room?
     // randomize the amount of gold found and where it is found
 
-    private Gold createGold(){
+    private int addGold(){
         Random random = new Random();
         int min = 50;
         int max = 150;
-        int value = random.nextInt(max + 1 - min) + min;
-        return new Gold("Gold", value);
+        return random.nextInt(max + 1 - min) + min;
     }
 
     private String getRandomEvent(){
         Random random = new Random();
         String[] events = {
-                "You found " + this.item + " gold coins in the dirty rags of a skeleton!\n",
-                "Something shinny caught your attention in the crevices of the ground, you found " + this.item + " gold coins!\n"
+                "You found " + this.gold + " gold coins in the dirty rags of a skeleton!\n",
+                "Something shinny caught your attention in the crevices of the ground, you found " + this.gold + " gold coins!\n"
         };
         int max = events.length;
         int idx = random.nextInt(max);
@@ -51,6 +51,9 @@ public class Room {
     public void heroGetItem(Hero hero){
         if (this.item != null){
             hero.addItemToBackpack(this.item);
+        }
+        if (this.gold != 0){
+            hero.addGoldToBagOfGold(this.gold);
         }
     }
 

@@ -1,5 +1,5 @@
 package com.company;
-
+/*
 import java.util.Scanner;
 
 public class Store {
@@ -110,3 +110,4 @@ public class Store {
         }
     }
 }
+*/
