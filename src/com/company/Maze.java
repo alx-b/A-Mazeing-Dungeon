@@ -34,7 +34,7 @@ public class Maze {
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#"},
             {"#", "#", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
-            {"#", "H", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", " ", "#"},
+            {"#", "H", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
             {"#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
     };
@@ -43,6 +43,7 @@ public class Maze {
     private final String WALL = "#";
     private final String HERO = "H";
     private final String ROOM = " ";
+    private final String STORE = "S";
 
     public Maze(Hero hero){
         addHeroOnMapAndMaze(hero);
@@ -76,8 +77,13 @@ public class Maze {
     private void createRoom(){
         for (int row = 0; row < this.maze.length; row++){
             for (int col = 0; col < this.maze[0].length; col++){
-                if (isARoom(new int[]{row, col})){
-                    this.rooms.add(new Room(row, col));
+                if (isARoom(new int[]{row, col})) {
+                    if (row == 12 && col == 13){
+                        this.rooms.add(new Room("Store", row, col));
+                    }
+                    else{
+                        this.rooms.add(new Room("Room", row, col));
+                    }
                 }
             }
         }
@@ -86,7 +92,7 @@ public class Maze {
     public boolean isARoom(int[] position){
         int row = position[0];
         int col = position[1];
-        return this.maze[row][col].equals(ROOM);
+        return !this.maze[row][col].equals(WALL);
     }
 
     public void removeHeroFromMapAndMaze(Hero hero){
