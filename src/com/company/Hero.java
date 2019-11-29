@@ -27,6 +27,17 @@ public class Hero extends Creature {
         return col;
     }
 
+    //Monster array, getCreature,
+
+    /*public Monster getMonster(String name) {
+        for (Monster monster : monsters) {
+            if (name.equals(monster.getName())) {
+                return monster;
+            }
+        }
+        return null;
+    }*/
+
     public void heroFight(Creature creature) throws InterruptedException { //in parameter monster, bara test
 
         boolean control = true;
