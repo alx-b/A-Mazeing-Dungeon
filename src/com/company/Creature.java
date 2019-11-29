@@ -15,6 +15,10 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
+    public void setName(String newName){
+        this.name = newName;
+    }
+
     public abstract int getDamage(); //Changed to int (Mantas)
 
     public int setHeroDamage(int damage) { // Setter for new damage?
@@ -35,6 +39,10 @@ public abstract class Creature {
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
     public void displayInfo(){
