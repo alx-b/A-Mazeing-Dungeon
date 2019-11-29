@@ -15,7 +15,11 @@ public class Hero extends Creature {
         this.col = 1;
     }
 
-    public void addItemToBackpack(Item item) {
+    public int getTotalGoldInBag(){
+        return this.bagOfGold.getAmountOfGold();
+    }
+
+    public void addItemToBackpack(Item item){
         backpack.addItem(item);
     }
 
