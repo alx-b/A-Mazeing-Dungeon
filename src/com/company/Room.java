@@ -10,13 +10,20 @@ public class Room {
     private Monster monster;
     private String event;
     private boolean visited = false;
+    private String name;
+    private Store store;
 
-    public Room (int posY, int posX){
+    public Room (String name, int posY, int posX){
+        this.name = name;
         this.posY = posY;
         this.posX = posX;
         this.gold = addGold();
         this.event = getRandomEvent();
+        if (this.name.equals("Store")){
+           this.store = new Store();
+        }
     }
+
 
     public int getPosY() {
         return posY;
@@ -41,7 +48,10 @@ public class Room {
         Random random = new Random();
         String[] events = {
                 "You found " + this.gold + " gold coins in the dirty rags of a skeleton!\n",
-                "Something shinny caught your attention in the crevices of the ground, you found " + this.gold + " gold coins!\n"
+                "Something shinny caught your attention in the crevices of the ground, you found " + this.gold + " gold coins!\n",
+                "There is nothing in this room.",
+                "There is nothing in this room.",
+                "There is nothing in this room."
         };
         int max = events.length;
         int idx = random.nextInt(max);
@@ -58,6 +68,9 @@ public class Room {
     }
 
     public void displayRoom(Hero hero){
+        if (this.name.equals("Store")){
+            this.store.buyItemsInStore(hero);
+        }
         if (!this.visited){
             System.out.printf("%s\n", this.event);
             heroGetItem(hero);
