@@ -7,6 +7,11 @@ public class Bandit extends Monster {
     }
 
     @Override
+    public int getDamage() {
+        return this.damage;
+    }
+
+    @Override
     public String toString() {
         return "Bandit{}";
     }

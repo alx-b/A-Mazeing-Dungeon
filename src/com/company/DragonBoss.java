@@ -30,6 +30,9 @@ public class DragonBoss extends Monster{
 
         }
     }
+    public int getDamage(){
+        return this.damage;
+    }
 
     @Override
     public String toString() {

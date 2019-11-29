@@ -2,9 +2,9 @@ package com.company;
 
 public abstract class Creature {
     private String name;
-    private int health;
-    private int damage;
-    private int maxHealth;
+    protected int health;  //Changed healt, maxHealt, damage to protected.
+    protected int damage;
+    protected int maxHealth;
 
     //private final int MAX_HEALTH =  200;
 
