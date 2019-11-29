@@ -7,8 +7,8 @@ public class Backpack extends Item {
 
     private static final int MAX_TOTAL_ITEM = 10;
     private ArrayList<Item> items = new ArrayList<>();
-    private static final int MIN_TOTAL_GOLD = 100;
-    private int totalGold = MIN_TOTAL_GOLD;
+    //private static final int MIN_TOTAL_GOLD = 100;
+    //private int totalGold = MIN_TOTAL_GOLD;
 
     public Backpack(String name) {
         super(name);
@@ -38,7 +38,7 @@ public class Backpack extends Item {
             }
         }
     }
-
+/*
     public int totalGold() {
         totalGold = MIN_TOTAL_GOLD;
         for (Item item : items) {
@@ -48,7 +48,7 @@ public class Backpack extends Item {
         }
         return totalGold;
     }
-
+*/
     //getAmount() == new items pris           här vi måste ändras!
 /*
     public void buyItemWithGold(Item newItem) {
@@ -69,7 +69,7 @@ public class Backpack extends Item {
 
 
     public void showDescription(){
-        System.out.println("You have "+ totalGold() + " gold.");
+        //System.out.println("You have "+ totalGold() + " gold.");
         for(Item item : items){
             System.out.println(item);
         }
