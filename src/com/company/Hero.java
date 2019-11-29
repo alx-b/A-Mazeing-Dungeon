@@ -164,7 +164,7 @@ public class Hero extends Creature {
     public Backpack getBackpack() {
         return backpack;
     }
-
+    
     @Override
     public int getDamage() {
         return this.damage;

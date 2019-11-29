@@ -17,16 +17,20 @@ public abstract class Creature {
 
     public abstract int getDamage(); //Changed to int (Mantas)
 
-    public void setHeroDamage(int damage) { // Setter for new damage?
-        this.damage = damage;
+    public int setHeroDamage(int damage) { // Setter for new damage?
+        return this.damage = damage;
     }
 
     public int getHealth() { // getter for health
         return health;
     }
 
-    public void setHeroHealth(int health) { //Setter for health ?
-        this.health = health;
+    public int setHeroHealth(int health) { //Setter for health ?
+        return this.health = health;
+    }
+
+    public int setHeroMaxHealth(int health){
+       return this.maxHealth = health;
     }
 
     public int getMaxHealth() {
