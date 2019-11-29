@@ -20,7 +20,7 @@ public class DragonBoss extends Monster{
         switch (userInput){
             case 1:
                 System.out.println("Shall be it!");
-                hero.heroFight();
+                //hero.heroFight();
                 Thread.sleep(1000);
                 break;
 
