@@ -34,7 +34,7 @@ public class Maze {
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#"},
             {"#", "#", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
-            {"#", "H", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
+            {"#", "H", " ", "S", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
             {"#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
     };
@@ -44,6 +44,8 @@ public class Maze {
     private final String HERO = "H";
     private final String ROOM = " ";
     private final String STORE = "S";
+
+    private Room currentRoom;
 
     public Maze(Hero hero){
         addHeroOnMapAndMaze(hero);
@@ -68,8 +70,9 @@ public class Maze {
     public void displayCurrentRoom(Hero hero){
         System.out.println("---- Event ----");
         for (Room room : this.rooms){
-            if (room.getPosY() == hero.getRow() && room.getPosX() == hero.getCol()){
+            if (room.getRow() == hero.getRow() && room.getCol() == hero.getCol()){
                 room.displayRoom(hero);
+                this.currentRoom = room;
             }
         }
     }
@@ -78,7 +81,7 @@ public class Maze {
         for (int row = 0; row < this.maze.length; row++){
             for (int col = 0; col < this.maze[0].length; col++){
                 if (isARoom(new int[]{row, col})) {
-                    if (row == 12 && col == 13){
+                    if (row == 12 && col == 13 || row == 12 && col == 3){
                         this.rooms.add(new Room("Store", row, col));
                     }
                     else{
@@ -96,8 +99,16 @@ public class Maze {
     }
 
     public void removeHeroFromMapAndMaze(Hero hero){
-        this.map[hero.getRow()][hero.getCol()] = ROOM;
-        this.maze[hero.getRow()][hero.getCol()] = ROOM;
+        if (this.currentRoom.getName().equals("Store")){
+            this.map[hero.getRow()][hero.getCol()] = STORE;
+            this.maze[hero.getRow()][hero.getCol()] = STORE;
+            System.out.println("HELLO");
+        }
+        else{
+            this.map[hero.getRow()][hero.getCol()] = ROOM;
+            this.maze[hero.getRow()][hero.getCol()] = ROOM;
+            System.out.println("BYE");
+        }
     }
 /*
     private void changeHeroPositionTo(Hero hero, int posY, int posX){
