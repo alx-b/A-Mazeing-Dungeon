@@ -65,6 +65,7 @@ public class Maze {
     }
 
     public void displayCurrentRoom(Hero hero){
+        System.out.println("---- Event ----");
         for (Room room : this.rooms){
             if (room.getPosY() == hero.getRow() && room.getPosX() == hero.getCol()){
                 room.displayRoom(hero);

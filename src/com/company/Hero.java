@@ -7,8 +7,7 @@ public class Hero extends Creature {
     private int row;
     private int col;
     private Backpack backpack = new Backpack("Backpack");
-
-
+    private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 12;
@@ -17,6 +16,10 @@ public class Hero extends Creature {
 
     public void addItemToBackpack(Item item) {
         backpack.addItem(item);
+    }
+
+    public void addGoldToBagOfGold(int gold){
+        this.bagOfGold.addAmountOfGold(gold);
     }
 
     public int getRow() {
@@ -170,6 +173,7 @@ public class Hero extends Creature {
     public void displayInfo() {
         System.out.println("---- Hero ----");
         super.displayInfo();
+        System.out.println("Gold: " + this.bagOfGold);
         System.out.println("---- Backpack ----");
         this.backpack.showDescription();
     }

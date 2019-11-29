@@ -1,10 +1,10 @@
 package com.company;
 
-public class Gold extends Item{
+public class BagOfGold extends Item{
 
     private int amountOfGold;
 
-    public Gold(String name, int amountOfGold) {
+    public BagOfGold(String name, int amountOfGold) {
         super(name);
         this.amountOfGold = amountOfGold;
     }
@@ -13,8 +13,12 @@ public class Gold extends Item{
         return amountOfGold;
     }
 
+    public void addAmountOfGold(int amount){
+        this.amountOfGold += amount;
+    }
+
     @Override
     public String toString() {
-        return String.format("You received %d gold!", amountOfGold);
+        return String.format("%d", amountOfGold);
     }
 }
