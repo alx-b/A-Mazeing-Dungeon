@@ -25,14 +25,22 @@ public class DungeonGame {
 
             String choice = menu();
 
-            if (choice.equals("a")) {
-                moveHeroWest();
-            } else if (choice.equals("w")) {
-                moveHeroNorth();
-            } else if (choice.equals("d")) {
-                moveHeroEast();
-            } else if (choice.equals("s")) {
-                moveHeroSouth();
+            switch (choice) {
+                case "a":
+                    moveHeroWest();
+                    break;
+                case "w":
+                    moveHeroNorth();
+                    break;
+                case "d":
+                    moveHeroEast();
+                    break;
+                case "s":
+                    moveHeroSouth();
+                    break;
+                default:
+                    System.out.println("Not a valid input!");
+                    break;
             }
         }
         System.out.println("You found the exit!");
