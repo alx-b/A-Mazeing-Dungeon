@@ -37,16 +37,16 @@ public class Room {
 
 
     private void addRandomEventToRoom() {
-        int rand = randomizer(1, 8);
-        if  (rand == 1){addGoldToRoom();}
-        else if (rand == 2){addRandomPotionToRoom();}
-        else if (rand == 3){addRandomSwordToRoom();}
-        else if (rand == 4){addRandomMonsterToRoom();}
-        else if (rand == 5){
-            addGoldToRoom();
+        int rand = randomizer(1, 10);
+        if  (rand == 1 || rand == 5){addGoldToRoom();}
+        else if (rand == 2 || rand == 7){addRandomPotionToRoom();}
+        else if (rand == 4){addRandomSwordToRoom();}
+        else if (rand == 8){addRandomMonsterToRoom();}
+        else if (rand == 10){
             addRandomMonsterToRoom();
+            addGoldToRoom();
         }
-        else if (rand == 6 || rand == 7 || rand == 8) {
+        else if (rand == 3 || rand == 6 || rand == 9) {
             addEmptyRoomEvent();
         }
         else{
@@ -56,9 +56,9 @@ public class Room {
 
     private void addGoldEvent(){
         String[] events = {
-                "You found " + this.gold + " gold coins in the dirty rags of a skeleton!\n",
-                "Something shinny caught your attention in the crevices of the ground,\n you found " + this.gold + " gold coins!\n",
-                "You found " + this.gold + "gold coins in an unlocked chest!",
+                "You found " + this.gold + " gold coins in the dirty rags of a skeleton!",
+                "Something shinny caught your attention in the crevices of the ground,\nyou found " + this.gold + " gold coins!",
+                "You found " + this.gold + " gold coins in an unlocked chest!",
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);

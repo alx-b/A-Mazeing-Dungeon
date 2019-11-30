@@ -18,7 +18,6 @@ public class Store {
         while (isBuying) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("");
                 System.out.println("Welcome to the store, traveler!");
                 System.out.println("What would you like to buy? ");
                 System.out.println("");

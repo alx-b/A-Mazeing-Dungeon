@@ -46,9 +46,10 @@ public abstract class Creature {
     }
 
     public void displayInfo() {
-        System.out.printf("Name: %s\n", this.name);
-        System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
-        System.out.printf("Damage: %s\n", this.damage);
+        System.out.printf(
+                "Name: %s - Health: %d/%d - Damage: %s\n",
+                this.name, this.health, this.maxHealth, this.damage
+        );
     }
 
     /*
