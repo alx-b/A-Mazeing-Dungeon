@@ -25,11 +25,11 @@ public class DungeonGame {
 
             String choice = menu();
 
-            if (choice.equals("w")) {
+            if (choice.equals("a")) {
                 moveHeroWest();
-            } else if (choice.equals("n")) {
+            } else if (choice.equals("w")) {
                 moveHeroNorth();
-            } else if (choice.equals("e")) {
+            } else if (choice.equals("d")) {
                 moveHeroEast();
             } else if (choice.equals("s")) {
                 moveHeroSouth();
@@ -42,9 +42,9 @@ public class DungeonGame {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("---- Actions ----");
-        System.out.println("Enter w to go West");
-        System.out.println("Enter n to go North");
-        System.out.println("Enter e to go East");
+        System.out.println("Enter a to go West");
+        System.out.println("Enter w to go North");
+        System.out.println("Enter d to go East");
         System.out.println("Enter s to go South");
 
         System.out.print("Where do you want to go: ");
