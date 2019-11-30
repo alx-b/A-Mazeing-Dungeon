@@ -36,7 +36,7 @@ public class Hero extends Creature {
     }
 
 
-    public void heroFight(Monster monster) throws InterruptedException { //in parameter monster
+    public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
 
@@ -48,19 +48,20 @@ public class Hero extends Creature {
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()));
+                System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
             } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeMonsterHealth = monster.getHealth();
-                monster.setHeroHealth(changeMonsterHealth - getDamage());
                 System.out.println("You hit the enemy!");
+                System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
             } else if (super.getHealth() <= 0) {
                 restart();
             } else if (monster.getHealth() <= 0) {
-                setMaxHealth(super.getHealth() + 10);
+                setMaxHealth(super.getMaxHealth() + 10);
                 setHeroDamage(getDamage() + 10);
                 System.out.println("You won, game continues...add function");
-                System.out.println("Max health is now: " + getMaxHealth());
-                System.out.println("Damage is now: " + getDamage());
+                System.out.println("Health is: " + getHealth());
+                System.out.println("Max health is: " + getMaxHealth());
+                System.out.println("Damage is: " + getDamage());
                 control = false;
             }
 
@@ -75,7 +76,7 @@ public class Hero extends Creature {
         Scanner scanner = new Scanner(System.in);
         yesNo = scanner.nextLine();
         if (yesNo.equals("Yes")) {
-            System.out.println("Return to beginning of map, add function."); //Return to start menu
+            System.out.println("Return to beginning of map, add function."); //Link to start menu need to be added.
             System.exit(0);
         } else if (yesNo.equals("No")) {
             System.exit(0);
