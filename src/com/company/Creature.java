@@ -15,22 +15,26 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         this.name = newName;
     }
 
     public abstract int getDamage(); //Changed to int (Mantas)
 
-    public void setHeroDamage(int damage) { // Setter for new damage?
-        this.damage = damage;
+    public int setHeroDamage(int damage) { // Setter for new damage?
+        return this.damage = damage;
     }
 
     public int getHealth() { // getter for health
         return health;
     }
 
-    public int setHealth(int health) { //Setter for health ?
+    public int setHeroHealth(int health) { //Setter for health ?
         return this.health = health;
+    }
+
+    public int setHeroMaxHealth(int health) {
+        return this.maxHealth = health;
     }
 
     public int getMaxHealth() {
@@ -41,10 +45,11 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
-    public void displayInfo(){
-        System.out.printf("Name: %s\n", this.name);
-        System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
-        System.out.printf("Damage: %s\n", this.damage);
+    public void displayInfo() {
+        System.out.printf(
+                "Name: %s - Health: %d/%d - Damage: %s\n",
+                this.name, this.health, this.maxHealth, this.damage
+        );
     }
 
     /*

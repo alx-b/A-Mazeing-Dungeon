@@ -43,8 +43,8 @@ public class Hero extends Creature {
         while (control) {
 
             int fight = attack();
-
             Thread.sleep(1000);
+
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
@@ -152,15 +152,19 @@ public class Hero extends Creature {
 
     public void restoreHealth(HealthPotion potion) { //Added method restore health
         if (getHealth() < 100) {
-            setHealth(potion.getHealthPoints());
+            setHeroHealth(getHealth() + potion.getHealthPoints());
             if (getHealth() > getMaxHealth()) {
-                setHealth(getMaxHealth());
+                setHeroHealth(getMaxHealth());
             }
         }
     }
 
     public Backpack getBackpack() {
         return backpack;
+    }
+
+    public BagOfGold getBagOfGold() {
+        return bagOfGold;
     }
 
     @Override
