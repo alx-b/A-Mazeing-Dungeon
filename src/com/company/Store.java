@@ -18,19 +18,21 @@ public class Store {
         while (isBuying) {
             try {
                 Scanner scanner = new Scanner(System.in);
+                System.out.println("");
                 System.out.println("Welcome to the store, traveler!");
                 System.out.println("What would you like to buy? ");
-                System.out.printf("%s \nSword damage: %d \nPrice: 20 gold \ntype 1 and hit <enter> \n", woodenSword.getName(), woodenSword.getSwordDamage());
+                System.out.println("");
+                System.out.printf("Name: %s. Sword damage: %d. Price: 20 gold. Type '1' to buy and hit <enter> \n", woodenSword.getName(), woodenSword.getSwordDamage());
                 System.out.println("__________________________");
-                System.out.printf("%s \nSword damage: %d \nPrice: 40 gold \ntype 2 and hit <enter> \n", dagger.getName(), dagger.getSwordDamage());
+                System.out.printf("Name: %s. Sword damage: %d. Price: 40 gold. Type '2' to buy and hit <enter> \n", dagger.getName(), dagger.getSwordDamage());
                 System.out.println("__________________________");
-                System.out.printf("%s \nSword damage: %d \nPrice: 60 gold \ntype 3 and hit <enter> \n", claymore.getName(), claymore.getSwordDamage());
+                System.out.printf("Name: %s. Sword damage: %d. Price: 60 gold. Type '3' to buy and hit <enter> \n", claymore.getName(), claymore.getSwordDamage());
                 System.out.println("__________________________");
-                System.out.printf("%s \nHealth Points: %d \nPrice: 5 gold \ntype 4 and hit <enter> \n", weakHealthPotion.getName(), weakHealthPotion.getHealthPoints());
+                System.out.printf("Name: %s. Health Points: %d. Price: 5 gold. Type '4' and hit <enter> \n", weakHealthPotion.getName(), weakHealthPotion.getHealthPoints());
                 System.out.println("__________________________");
-                System.out.printf("%s \nHealth Points: %d \nPrice: 10 gold \ntype 5 and hit <enter> \n", mediumHealthPotion.getName(), mediumHealthPotion.getHealthPoints());
+                System.out.printf("Name: %s. Health Points: %d. Price: 10 gold. Type '5' and hit <enter> \n", mediumHealthPotion.getName(), mediumHealthPotion.getHealthPoints());
                 System.out.println("__________________________");
-                System.out.printf("%s \nHealth Points: %d \nPrice: 15 gold \ntype 6 and hit <enter> \n", strongHealthPotion.getName(), strongHealthPotion.getHealthPoints());
+                System.out.printf("Name: %s. Health Points: %d. Price: 15 gold. Type '6' and hit <enter> \n", strongHealthPotion.getName(), strongHealthPotion.getHealthPoints());
                 System.out.println("__________________________");
                 System.out.println("To exit store: type 7 and hit <enter>");
                 int userInput = Integer.parseInt(scanner.nextLine());
@@ -43,7 +45,7 @@ public class Store {
                             System.out.println("You just bought yourself " + woodenSword.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -66,7 +68,7 @@ public class Store {
                             System.out.println("You just bought yourself " + dagger.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -89,7 +91,7 @@ public class Store {
                             System.out.println("You just bought yourself " + claymore.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -112,7 +114,7 @@ public class Store {
                             System.out.println("You just bought yourself " + weakHealthPotion.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("Your health is now " + hero.getHealth());
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -135,7 +137,7 @@ public class Store {
                             System.out.println("You just bought yourself " + mediumHealthPotion.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("Your health is now " + hero.getHealth());
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -158,7 +160,7 @@ public class Store {
                             System.out.println("You just bought yourself " + strongHealthPotion.getName() + "!");
                             System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
                             System.out.println("Your health is now " + hero.getHealth());
-                            System.out.println("Would you like to buy something else? If yes: type 1 -- If no: type 2 and hit <enter>");
+                            System.out.println("Would you like to buy something else? If YES: type 1 -- If NO: type 2 and hit <enter>");
                             int buyMoreOreLeave = Integer.parseInt(scanner.nextLine());
                             if (buyMoreOreLeave == 1) {
                                 buyItemsInStore(hero);
@@ -174,7 +176,7 @@ public class Store {
                         break;
 
                     case 7:
-                        System.out.println("Are you sure you want to quit? \n 'Yes: type 1 and hit <enter>' : 'No: type 2 and hit <enter>'");
+                        System.out.println("Are you sure you want to quit? \n 'YES: type 1 and hit <enter>' : 'NO: type 2 and hit <enter>'");
                         int quitOrStay = Integer.parseInt(scanner.nextLine());
                         switch (quitOrStay) {
                             case 1:
@@ -192,7 +194,7 @@ public class Store {
 
                 }
             } catch (Exception ex) {
-                System.out.println("Letters are not allowed! You have to enter a number");
+                System.out.println("Letters are not allowed! You have to enter a number.");
                 System.out.println("Hit <enter> to try again.");
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
