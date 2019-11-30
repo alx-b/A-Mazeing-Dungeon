@@ -94,8 +94,8 @@ public class DungeonGame {
                 Scanner scanner1 = new Scanner(System.in);
                 System.out.println("Welcome to the A-Mazeing Dungeon!");
                 System.out.println("-----------------------------------");
-                System.out.println("Start Game: type 1 and hit <enter>");
-                System.out.println("Exit Game: type 2 and hit <enter>");
+                System.out.println("Start Game: type '1' and hit <enter>");
+                System.out.println("Exit Game: type '2' and hit <enter>");
 
                 int userInitialChoice = Integer.parseInt(scanner1.nextLine());
 
