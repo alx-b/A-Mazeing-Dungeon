@@ -48,11 +48,11 @@ public class Hero extends Creature {
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                //System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
             } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println("You hit the enemy!");
-                System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                //System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
             } else if (super.getHealth() <= 0) {
                 restart();
             } else if (monster.getHealth() <= 0) {
