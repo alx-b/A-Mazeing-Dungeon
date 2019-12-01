@@ -90,36 +90,35 @@ public class DungeonGame {
 
     public void getHeroName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Greetings, Hero!\n What is your name?");
-        System.out.println("_________________________");
+        System.out.println("---- Greetings, Hero! What is your name? ----");
+        System.out.print("Enter name: ");
         String name = scanner.nextLine();
         this.hero.setName(name);
     }
 
+    private boolean invalidInput(String choice){
+        return !choice.equals("1") && !choice.equals("2");
+    }
+
     public void showMainMenu() {
-        while(true) {
-            try {
-                Scanner scanner1 = new Scanner(System.in);
-                System.out.println("Welcome to the A-Mazeing Dungeon!");
-                System.out.println("-----------------------------------");
-                System.out.println("Start Game: type '1' and hit <enter>");
-                System.out.println("Exit Game: type '2' and hit <enter>");
-
-                int userInitialChoice = Integer.parseInt(scanner1.nextLine());
-
-                switch (userInitialChoice) {
-                    case 1:
-                        getHeroName();
-                        start();
-                        break;
-                    case 2:
-                        System.exit(0);
-                        break;
-                }
-                break;
-            } catch (Exception ex) {
-                System.out.println("To choose, enter either '1' or '2' and hit <enter>");
-                System.out.println("___________________________________________________");
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("---- Welcome to the A-Mazeing Dungeon! ----");
+        System.out.println("Start Game: Enter '1'");
+        System.out.println("Exit Game: Enter '2'");
+        String userInitialChoice = "";
+        while(invalidInput(userInitialChoice)) {
+            System.out.print("Enter choice: ");
+            userInitialChoice = scanner1.next();
+            switch (userInitialChoice) {
+                case "1":
+                    getHeroName();
+                    start();
+                    break;
+                case "2":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("To choose, enter either '1' or '2'");
             }
         }
     }
