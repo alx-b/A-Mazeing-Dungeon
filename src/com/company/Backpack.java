@@ -68,16 +68,16 @@ public class Backpack extends Item {
     }*/
 
 
-    public void showDescription(){
+    public void showDescription() {
         //System.out.println("You have "+ totalGold() + " gold.");
-        for(Item item : items){
+        for (Item item : items) {
             System.out.println(item);
         }
     }
 
     public String toString() {
-        String results ="+";
-        for(Item item : items) {
+        String results = "+";
+        for (Item item : items) {
             results += item.toString();
         }
         return results;
