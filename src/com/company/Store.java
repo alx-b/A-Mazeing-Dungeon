@@ -11,6 +11,15 @@ public class Store {
     private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 40);
     private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 70);
 
+    public Store(){
+        woodenSword.setPrice(20);
+        dagger.setPrice(40);
+        claymore.setPrice(60);
+        weakHealthPotion.setPrice(5);
+        mediumHealthPotion.setPrice(10);
+        strongHealthPotion.setPrice(15);
+    }
+
 
     public void buyItemsInStore(Hero hero) {
         boolean isBuying = true;
@@ -113,7 +122,7 @@ public class Store {
     private void youBoughtSword(Hero hero, Sword sword){
         hero.getBackpack().addItem(sword);
         hero.setHeroDamage(hero.getDamage() + sword.getSwordDamage()); // Plus both together, or assign swordDamage to heroDamage?
-        hero.getBagOfGold().removeGold(20);
+        hero.getBagOfGold().removeGold(sword.getPrice());
         System.out.println("You just bought yourself " + sword.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
         System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
@@ -124,7 +133,7 @@ public class Store {
     private void youBoughtPotion(Hero hero, HealthPotion potion){
         hero.getBackpack().addItem(potion);
         hero.restoreHealth(potion);
-        hero.getBagOfGold().removeGold(5);
+        hero.getBagOfGold().removeGold(potion.getPrice());
         System.out.println("You just bought yourself " + potion.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
         System.out.println("Your health is now " + hero.getHealth());
