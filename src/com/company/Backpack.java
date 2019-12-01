@@ -38,6 +38,7 @@ public class Backpack extends Item {
     }
 
 
+
     public void showDescription() {
         for (Item item : items) {
             System.out.println(item);
