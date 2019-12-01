@@ -7,8 +7,6 @@ public class Backpack extends Item {
 
     private static final int MAX_TOTAL_ITEM = 10;
     private ArrayList<Item> items = new ArrayList<>();
-    //private static final int MIN_TOTAL_GOLD = 100;
-    //private int totalGold = MIN_TOTAL_GOLD;
 
     public Backpack(String name) {
         super(name);
@@ -38,38 +36,10 @@ public class Backpack extends Item {
             }
         }
     }
-/*
-    public int totalGold() {
-        totalGold = MIN_TOTAL_GOLD;
-        for (Item item : items) {
-            if (item.getName().equals("Gold")) {
-                totalGold += item.getAmountOfGold();
-            }
-        }
-        return totalGold;
-    }
-*/
-    //getAmount() == new items pris           här vi måste ändras!
-/*
-    public void buyItemWithGold(Item newItem) {
-        System.out.println("You have "+ totalGold() + " gold.");
-        if (totalGold < newItem.getAmount()) {
-            System.out.println("You don't have enough gold.");
-        }
-        else if (totalGold > newItem.getAmount() && items.size()> MAX_TOTAL_ITEM) {
-            System.out.println("You have too much items.");
-        }
-        else if (totalGold > newItem.getAmount() && items.size()< MAX_TOTAL_ITEM){
-            System.out.println("Thank you!");
-            addItem(newItem);
-            totalGold -= newItem.getAmount();
-            System.out.println("Now your total gold is " + totalGold);
-        }
-    }*/
+
 
 
     public void showDescription() {
-        //System.out.println("You have "+ totalGold() + " gold.");
         for (Item item : items) {
             System.out.println(item);
         }
