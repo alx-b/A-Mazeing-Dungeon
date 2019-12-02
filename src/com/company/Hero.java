@@ -9,6 +9,7 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    //DungeonGame dungeonGame = new DungeonGame();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
@@ -49,21 +50,15 @@ public class Hero extends Creature {
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                //System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
             } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println("You hit the enemy!");
-                //System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
             } else if (super.getHealth() <= 0) {
                 restart();
             } else if (monster.getHealth() <= 0) {
-                setMaxHealth(super.getMaxHealth() + 10);
-                setHeroDamage(getDamage() + 10);
-                System.out.println("You won, game continues...add function");
-                System.out.println("Health is: " + getHealth());
-                System.out.println("Max health is: " + getMaxHealth());
-                System.out.println("Damage is: " + getDamage());
-                control = false;
+                levelUp();
             }
 
         }
@@ -77,8 +72,8 @@ public class Hero extends Creature {
         Scanner scanner = new Scanner(System.in);
         yesNo = scanner.nextLine();
         if (yesNo.equals("Yes")) {
-            System.out.println("Return to beginning of map, add function."); //Link to start menu need to be added.
-            System.exit(0);
+            System.out.println("Returning to beginning of map");
+            //dungeonGame.showMainMenu();
         } else if (yesNo.equals("No")) {
             System.exit(0);
         }
@@ -135,6 +130,17 @@ public class Hero extends Creature {
 
         }
     }
+
+    private void levelUp() {
+        super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        setHeroDamage(getDamage() + 10);
+        System.out.println("You won, game continues...add function");
+        System.out.println("Health is: " + getHealth());
+        System.out.println("Max health is: " + getMaxHealth());
+        System.out.println("Damage is: " + getDamage());
+        //dungeonGame.start(); need to be public.
+    }
+
 
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {

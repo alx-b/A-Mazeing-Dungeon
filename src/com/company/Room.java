@@ -71,8 +71,8 @@ public class Room {
 
     private void addEmptyRoomEvent(){
         String[] events = {
-                "There is nothing in this room1.",
-                "There is nothing in this room2.",
+                "You enter a spacious room with several pillars that reach floor to ceiling,\nunfortunately there is nothing for you",
+                "There is nothing in this room.",
                 "There is nothing in this room3."
         };
         int idx = randomizer(0, events.length - 1);
@@ -111,8 +111,8 @@ public class Room {
 
     private void addMonsterEvent(){
         String[] events = {
-                "This " + this.monster + " wants to fight!",
-                "This " + this.monster + " wants to fight!2",
+                "This room smells of blood, " + this.monster + " wants to fight!",
+                "You sense danger approaching... " + this.monster + " wants to fight!",
                 "This " + this.monster + " wants to fight!3"
         };
         int idx = randomizer(0, events.length - 1);
@@ -120,8 +120,8 @@ public class Room {
     }
     private void addRandomMonsterToRoom(){
         Monster[] monsters = {
-                new Spider("Spider", 50,5,50),
-                new Bandit("Bandit", 100, 10, 100)
+                new Spider("Charlotte", 50,5,50),
+                new Bandit("Robin", 100, 10, 100)
         };
         int idx = randomizer(0, monsters.length - 1);
         this.monster = monsters[idx];
@@ -140,8 +140,9 @@ public class Room {
 
     private void addRandomSwordToRoom(){
         Sword[] swords = {
-                new Sword("sword1", 2),
-                new Sword("sword2", 4),
+                new Sword("Wooden Dagger", 2),
+                new Sword("Wooden Sword", 4),
+                new Sword("Fake Excalibur", 10)
         };
         int idx = randomizer(0, swords.length - 1);
         this.item = swords[idx];
