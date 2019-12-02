@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Hero extends Creature {
     private int row;
@@ -53,7 +52,8 @@ public class Hero extends Creature {
                 System.out.println("You hit the enemy!");
                 System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
             } else if (super.getHealth() <= 0) {
-                restart();
+                //restart();
+                control = false;
             } else if (monster.getHealth() <= 0) {
                 levelUp();
                 control = false;
@@ -131,12 +131,12 @@ public class Hero extends Creature {
     private void levelUp() {
         super.setHeroMaxHealth(super.getMaxHealth() + 10);
         setHeroDamage(getDamage() + 10);
-        System.out.println("You won, game continues...add function");
+        System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
         System.out.println("Damage is: " + getDamage());
-        //dungeonGame.start(); need to be public.
     }
+
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {
             if (item instanceof HealthPotion) {
@@ -145,6 +145,7 @@ public class Hero extends Creature {
         }
         return null;
     }
+
     public void consumeHealthPotion() {
         if (returnHealthPotion() != null) {
             restoreHealth(returnHealthPotion());
