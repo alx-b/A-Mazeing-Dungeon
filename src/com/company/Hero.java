@@ -9,7 +9,6 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
-    //DungeonGame dungeonGame = new DungeonGame();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
@@ -37,7 +36,6 @@ public class Hero extends Creature {
         return col;
     }
 
-
     public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
@@ -59,11 +57,11 @@ public class Hero extends Creature {
                 restart();
             } else if (monster.getHealth() <= 0) {
                 levelUp();
+                control = false;
             }
 
         }
     }
-
 
     private void restart() {
         String yesNo;
@@ -140,8 +138,6 @@ public class Hero extends Creature {
         System.out.println("Damage is: " + getDamage());
         //dungeonGame.start(); need to be public.
     }
-
-
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {
             if (item instanceof HealthPotion) {
@@ -150,7 +146,6 @@ public class Hero extends Creature {
         }
         return null;
     }
-
     public void consumeHealthPotion() {
         if (returnHealthPotion() != null) {
             restoreHealth(returnHealthPotion());
@@ -159,33 +154,6 @@ public class Hero extends Creature {
             System.out.println("You do not have any health potions.");
         }
     }
-
-
-    /* moveHero to be developed and adjusted to maze.*/
-    /*
-    public void moveHero() {
-        String wall = "[W]";
-
-        System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter direction: E W S N");
-        String direction = scanner.nextLine();
-
-        if (direction.equals("E") && (y < board.length - 1) && (!board[x][y + 1].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[x][++y] = hero;
-        } else if (direction.equals("W") && (y >= 2) && (!board[x][y - 1].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[x][--y] = hero;
-        } else if (direction.equals("S") && x < board.length - 1 && (!board[x + 1][y].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[++x][y] = hero;
-        } else if (direction.equals("N") && (x >= 2) && (!board[x - 1][y].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[--x][y] = hero;
-        }
-    }
-    */
 
     public int[] westOfHero() {
         return new int[]{this.row, this.col - 1};
