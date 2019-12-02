@@ -14,6 +14,6 @@ public class Sword extends Item {
 
     @Override
     public String toString() {
-        return String.format("%s - %d damagew", getName(), swordDamage);
+        return String.format("%s - %d damage", getName(), swordDamage);
     }
 }

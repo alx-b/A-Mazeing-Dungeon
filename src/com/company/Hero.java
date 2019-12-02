@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Hero extends Creature {
     private int row;
@@ -36,7 +37,7 @@ public class Hero extends Creature {
     }
 
 
-    public void heroFight(Monster monster) throws InterruptedException { //in parameter monster
+    public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
 
@@ -48,19 +49,20 @@ public class Hero extends Creature {
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()));
+                //System.out.println("Health: " + super.setHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
             } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeMonsterHealth = monster.getHealth();
-                monster.setHeroHealth(changeMonsterHealth - getDamage());
                 System.out.println("You hit the enemy!");
+                //System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
             } else if (super.getHealth() <= 0) {
                 restart();
             } else if (monster.getHealth() <= 0) {
-                setMaxHealth(super.getHealth() + 10);
+                setMaxHealth(super.getMaxHealth() + 10);
                 setHeroDamage(getDamage() + 10);
                 System.out.println("You won, game continues...add function");
-                System.out.println("Max health is now: " + getMaxHealth());
-                System.out.println("Damage is now: " + getDamage());
+                System.out.println("Health is: " + getHealth());
+                System.out.println("Max health is: " + getMaxHealth());
+                System.out.println("Damage is: " + getDamage());
                 control = false;
             }
 
@@ -75,7 +77,7 @@ public class Hero extends Creature {
         Scanner scanner = new Scanner(System.in);
         yesNo = scanner.nextLine();
         if (yesNo.equals("Yes")) {
-            System.out.println("Return to beginning of map, add function."); //Return to start menu
+            System.out.println("Return to beginning of map, add function."); //Link to start menu need to be added.
             System.exit(0);
         } else if (yesNo.equals("No")) {
             System.exit(0);
@@ -89,8 +91,70 @@ public class Hero extends Creature {
         int high = 100;
         int result = r.nextInt(high - low) + low;
         return result;
-
     }
+
+    public void openBackpack() {
+        boolean backpackIsOpen = true;
+        while (backpackIsOpen) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Inventory: ");
+                backpack.showItemsInBackpack();
+                System.out.println("'1' To heal yourself");
+                System.out.println("'2' To equip a weapon");
+                System.out.println("'3' To close backpack");
+                int userInput = Integer.parseInt(scanner.nextLine());
+                switch (userInput) {
+
+                    case 1:
+                        if (getHealth() < getMaxHealth()) {
+                            consumeHealthPotion();
+                            System.out.println("Your health is now " + getHealth());
+                        } else if (getHealth() >= getMaxHealth()) {
+                            setHeroHealth(getMaxHealth());
+                            System.out.println("Your health is full.");
+                        }
+
+                        break;
+                    case 2:
+                        break;
+
+                    case 3:
+                        backpackIsOpen = false;
+                        break;
+
+                    default:
+                        System.out.println("Incorrect button. To choose between options use '1', '2' or '3'");
+                }
+            } catch (Exception ex) {
+                System.out.println("Letters are not allowed! You have to enter a number.");
+                System.out.println("Hit <enter> to try again.");
+                Scanner scanner = new Scanner(System.in);
+                scanner.nextLine();
+            }
+
+        }
+    }
+
+    public HealthPotion returnHealthPotion() {
+        for (Item item : backpack.getItems()) {
+            if (item instanceof HealthPotion) {
+                return (HealthPotion)item;
+            }
+        }
+        return null;
+    }
+
+    public void consumeHealthPotion() {
+        if (returnHealthPotion() != null) {
+            restoreHealth(returnHealthPotion());
+            backpack.removeItemFromBackpack(returnHealthPotion());
+        } else {
+            System.out.println("You do not have any health potions.");
+        }
+    }
+
+
     /* moveHero to be developed and adjusted to maze.*/
     /*
     public void moveHero() {
@@ -150,9 +214,9 @@ public class Hero extends Creature {
     }
 
     public void restoreHealth(HealthPotion potion) { //Added method restore health
-        if (getHealth() < 100) {
+        if (getHealth() < getMaxHealth()) {
             setHeroHealth(getHealth() + potion.getHealthPoints());
-            if (getHealth() > getMaxHealth()) {
+            if (getHealth() >= getMaxHealth()) {
                 setHeroHealth(getMaxHealth());
             }
         }
