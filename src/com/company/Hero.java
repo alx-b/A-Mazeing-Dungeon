@@ -131,11 +131,10 @@ public class Hero extends Creature {
     private void levelUp() {
         super.setHeroMaxHealth(super.getMaxHealth() + 10);
         setHeroDamage(getDamage() + 10);
-        System.out.println("You won, game continues...add function");
+        System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
         System.out.println("Damage is: " + getDamage());
-        //dungeonGame.start(); need to be public.
     }
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {
