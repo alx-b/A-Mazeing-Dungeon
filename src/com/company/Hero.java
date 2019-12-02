@@ -2,14 +2,12 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Hero extends Creature {
     private int row;
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
-    //DungeonGame dungeonGame = new DungeonGame();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
@@ -37,33 +35,42 @@ public class Hero extends Creature {
         return col;
     }
 
-
-    public void heroFight(Monster monster) throws InterruptedException {
+    public void heroFight(Monster monster){
 
         boolean control = true;
 
         while (control) {
 
             int fight = attack();
-            Thread.sleep(1000);
 
-            if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
-                int changeHeroHealth = getHealth();
+            if (fight < 50) {
+                int changeHeroHealth = super.getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-            } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
-                int changeMonsterHealth = monster.getHealth();
-                System.out.println("You hit the enemy!");
-                System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
-            } else if (super.getHealth() <= 0) {
-                restart();
-            } else if (monster.getHealth() <= 0) {
-                levelUp();
+                int newHeroHealth= super.setHeroHealth(changeHeroHealth - monster.getDamage());
+                if (newHeroHealth <= 0){
+                    System.out.println("Health: 0"  + "/" + super.maxHealth);
+                    restart();
+                    control = false;
+                }
+                else {
+                    System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                }
             }
-
+            else if (fight >= 50) {
+                    int changeMonsterHealth = monster.getHealth();
+                    System.out.println("You hit the enemy!");
+                    int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+                    if (newMonsterHealth <= 0) {
+                        System.out.println("Health: 0" + "/" + monster.maxHealth);
+                        levelUp();
+                        control = false;
+                    }
+                    else {
+                        System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    }
+                }
         }
     }
-
 
     private void restart() {
         String yesNo;
@@ -134,13 +141,11 @@ public class Hero extends Creature {
     private void levelUp() {
         super.setHeroMaxHealth(super.getMaxHealth() + 10);
         setHeroDamage(getDamage() + 10);
-        System.out.println("You won, game continues...add function");
+        System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
         System.out.println("Damage is: " + getDamage());
-        //dungeonGame.start(); need to be public.
     }
-
 
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {
@@ -159,33 +164,6 @@ public class Hero extends Creature {
             System.out.println("You do not have any health potions.");
         }
     }
-
-
-    /* moveHero to be developed and adjusted to maze.*/
-    /*
-    public void moveHero() {
-        String wall = "[W]";
-
-        System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter direction: E W S N");
-        String direction = scanner.nextLine();
-
-        if (direction.equals("E") && (y < board.length - 1) && (!board[x][y + 1].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[x][++y] = hero;
-        } else if (direction.equals("W") && (y >= 2) && (!board[x][y - 1].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[x][--y] = hero;
-        } else if (direction.equals("S") && x < board.length - 1 && (!board[x + 1][y].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[++x][y] = hero;
-        } else if (direction.equals("N") && (x >= 2) && (!board[x - 1][y].equals(wall))) {
-            board[x][y] = "[ ]";
-            board[--x][y] = hero;
-        }
-    }
-    */
 
     public int[] westOfHero() {
         return new int[]{this.row, this.col - 1};
