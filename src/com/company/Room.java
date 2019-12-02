@@ -166,7 +166,7 @@ public class Room {
                 System.out.printf("%s\n", event);
             }
             if (this.monster != null){
-                //hero.heroFight(this.monster);
+                hero.heroFight(this.monster);
             }
             heroGetItem(hero);
             this.visited = true;
