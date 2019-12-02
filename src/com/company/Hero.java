@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
+
 
 public class Hero extends Creature {
     private int row;
