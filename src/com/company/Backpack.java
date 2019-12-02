@@ -37,7 +37,23 @@ public class Backpack extends Item {
         }
     }
 
+    public void showItemsInBackpack(){
+        if(items == null){
+            System.out.println("Backpack is empty.");
+        } else{
+        for(Item item : items) {
+            System.out.println(item);
+        }
+        }
+    }
 
+    public void removeItemFromBackpack(Item item){
+        items.remove(item);
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 
     public void showDescription() {
         for (Item item : items) {
