@@ -20,7 +20,7 @@ import java.util.Scanner;
         switch (userInput){
             case 1:
                 System.out.println("Shall be it!");
-                hero.heroFight();
+                //hero.heroFight();
                 Thread.sleep(1000);
                 break;
 
@@ -29,6 +29,9 @@ import java.util.Scanner;
 
 
         }
+    }
+    public int getDamage(){
+        return this.damage;
     }
 
     @Override

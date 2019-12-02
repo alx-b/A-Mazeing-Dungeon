@@ -1,7 +1,7 @@
 package com.company;
 
 public class Sword extends Item {
- private int swordDamage;
+    private int swordDamage;
 
     public Sword(String name, int swordDamage) {
         super(name);
@@ -14,6 +14,6 @@ public class Sword extends Item {
 
     @Override
     public String toString() {
-        return String.format("You just got a new sword! \n Sword name: %s \n Sword damage: %d", getName(), swordDamage);
+        return String.format("%s - %d damage", getName(), swordDamage);
     }
 }

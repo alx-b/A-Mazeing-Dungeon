@@ -1,6 +1,6 @@
 package com.company;
 
-public class BagOfGold extends Item{
+public class BagOfGold extends Item {
 
     private int amountOfGold;
 
@@ -13,8 +13,12 @@ public class BagOfGold extends Item{
         return amountOfGold;
     }
 
-    public void addAmountOfGold(int amount){
+    public void addAmountOfGold(int amount) {
         this.amountOfGold += amount;
+    }
+
+    public int removeGold(int amount) {
+        return this.amountOfGold -= amount;
     }
 
     @Override

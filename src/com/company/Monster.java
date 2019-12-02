@@ -1,6 +1,6 @@
 package com.company;
 
-public abstract class Monster extends Creature{
+public abstract class Monster extends Creature {
 
     public Monster(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
@@ -8,9 +8,7 @@ public abstract class Monster extends Creature{
 
 
     @Override
-    public int getDamage() {
-        return getDamage();
-    }
+    public abstract int getDamage();
 
     @Override
     public String toString() {

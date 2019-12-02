@@ -14,6 +14,6 @@ public class HealthPotion extends Item {
 
     @Override
     public String toString() {
-        return String.format("You found Health Potion that restores %d health points!", healthPoints);
+        return String.format("%s - Restores %d HP", getName(), healthPoints);
     }
 }

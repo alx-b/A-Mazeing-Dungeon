@@ -6,6 +6,9 @@ public class Spider extends Monster {
         super(name, health, damage, maxHealth);
     }
 
+    public int getDamage() {
+        return this.damage;
+    }
 
     @Override
     public String toString() {
