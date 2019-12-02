@@ -43,22 +43,32 @@ public class Hero extends Creature {
 
             int fight = attack();
 
-            if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
-                int changeHeroHealth = getHealth();
+            if (fight < 50) {
+                int changeHeroHealth = super.getHealth();
                 System.out.println("The enemy hit you!");
-                System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-            } else if (fight >= 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
-                int changeMonsterHealth = monster.getHealth();
-                System.out.println("You hit the enemy!");
-                System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
-            } else if (super.getHealth() <= 0) {
-                //restart();
-                control = false;
-            } else if (monster.getHealth() <= 0) {
-                levelUp();
-                control = false;
+                int newHeroHealth= super.setHeroHealth(changeHeroHealth - monster.getDamage());
+                if (newHeroHealth <= 0){
+                    System.out.println("Health: 0"  + "/" + super.maxHealth);
+                    restart();
+                    control = false;
+                }
+                else {
+                    System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                }
             }
-
+            else if (fight >= 50) {
+                    int changeMonsterHealth = monster.getHealth();
+                    System.out.println("You hit the enemy!");
+                    int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+                    if (newMonsterHealth <= 0) {
+                        System.out.println("Health: 0" + "/" + monster.maxHealth);
+                        levelUp();
+                        control = false;
+                    }
+                    else {
+                        System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    }
+                }
         }
     }
 
