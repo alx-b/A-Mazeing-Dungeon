@@ -37,16 +37,16 @@ public class Room {
 
 
     private void addRandomEventToRoom() {
-        int rand = randomizer(1, 8);
-        if  (rand == 1){addGoldToRoom();}
-        else if (rand == 2){addRandomPotionToRoom();}
-        else if (rand == 3){addRandomSwordToRoom();}
-        else if (rand == 4){addRandomMonsterToRoom();}
-        else if (rand == 5){
-            addGoldToRoom();
+        int rand = randomizer(1, 10);
+        if  (rand == 1 || rand == 5){addGoldToRoom();}
+        else if (rand == 2 || rand == 7){addRandomPotionToRoom();}
+        else if (rand == 4){addRandomSwordToRoom();}
+        else if (rand == 8){addRandomMonsterToRoom();}
+        else if (rand == 10){
             addRandomMonsterToRoom();
+            addGoldToRoom();
         }
-        else if (rand == 6 || rand == 7 || rand == 8) {
+        else if (rand == 3 || rand == 6 || rand == 9) {
             addEmptyRoomEvent();
         }
         else{
@@ -56,9 +56,9 @@ public class Room {
 
     private void addGoldEvent(){
         String[] events = {
-                "You found " + this.gold + " gold coins in the dirty rags of a skeleton!\n",
-                "Something shinny caught your attention in the crevices of the ground,\n you found " + this.gold + " gold coins!\n",
-                "You found " + this.gold + "gold coins in an unlocked chest!",
+                "You found " + this.gold + " gold coins in the dirty rags of a skeleton!",
+                "Something shinny caught your attention in the crevices of the ground,\nyou found " + this.gold + " gold coins!",
+                "You found " + this.gold + " gold coins in an unlocked chest!",
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
@@ -71,8 +71,8 @@ public class Room {
 
     private void addEmptyRoomEvent(){
         String[] events = {
-                "There is nothing in this room1.",
-                "There is nothing in this room2.",
+                "You enter a spacious room with several pillars that reach floor to ceiling,\nunfortunately there is nothing for you",
+                "There is nothing in this room.",
                 "There is nothing in this room3."
         };
         int idx = randomizer(0, events.length - 1);
@@ -111,8 +111,8 @@ public class Room {
 
     private void addMonsterEvent(){
         String[] events = {
-                "This " + this.monster + " wants to fight!",
-                "This " + this.monster + " wants to fight!2",
+                "This room smells of blood, " + this.monster + " wants to fight!",
+                "You sense danger approaching... " + this.monster + " wants to fight!",
                 "This " + this.monster + " wants to fight!3"
         };
         int idx = randomizer(0, events.length - 1);
@@ -120,8 +120,8 @@ public class Room {
     }
     private void addRandomMonsterToRoom(){
         Monster[] monsters = {
-                new Spider("Spider", 50,5,50),
-                new Bandit("Bandit", 100, 10, 100)
+                new Spider("Charlotte", 50,5,50),
+                new Bandit("Robin", 100, 10, 100)
         };
         int idx = randomizer(0, monsters.length - 1);
         this.monster = monsters[idx];
@@ -140,8 +140,9 @@ public class Room {
 
     private void addRandomSwordToRoom(){
         Sword[] swords = {
-                new Sword("sword1", 2),
-                new Sword("sword2", 4),
+                new Sword("Wooden Dagger", 2),
+                new Sword("Wooden Sword", 4),
+                new Sword("Fake Excalibur", 10)
         };
         int idx = randomizer(0, swords.length - 1);
         this.item = swords[idx];
@@ -163,6 +164,9 @@ public class Room {
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
+            }
+            if (this.monster != null){
+                hero.heroFight(this.monster);
             }
             heroGetItem(hero);
             this.visited = true;

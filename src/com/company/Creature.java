@@ -33,8 +33,12 @@ public abstract class Creature {
         return this.health = health;
     }
 
-    public int setHeroMaxHealth(int health) {
-        return this.maxHealth = health;
+    public int setHealth(int health){
+        return this.health = health;
+    } //Setter for monster health.
+
+    public void setHeroMaxHealth(int health) {
+        this.maxHealth = health;
     }
 
     public int getMaxHealth() {
@@ -43,12 +47,13 @@ public abstract class Creature {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
-    }
+    } //Överflödig?
 
     public void displayInfo() {
-        System.out.printf("Name: %s\n", this.name);
-        System.out.printf("Health: %d/%d\n", this.health, this.maxHealth);
-        System.out.printf("Damage: %s\n", this.damage);
+        System.out.printf(
+                "Name: %s - Health: %d/%d - Damage: %s\n",
+                this.name, this.health, this.maxHealth, this.damage
+        );
     }
 
     /*
