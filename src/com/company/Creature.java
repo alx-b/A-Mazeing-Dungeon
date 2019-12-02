@@ -2,7 +2,7 @@ package com.company;
 
 public abstract class Creature {
     private String name;
-    protected int health;  //Changed healt, maxHealt, damage to protected.
+    protected int health;  //Changed health, maxHealth, damage to protected.
     protected int damage;
     protected int maxHealth;
 
