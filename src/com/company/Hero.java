@@ -36,14 +36,13 @@ public class Hero extends Creature {
         return col;
     }
 
-    public void heroFight(Monster monster) throws InterruptedException {
+    public void heroFight(Monster monster){
 
         boolean control = true;
 
         while (control) {
 
             int fight = attack();
-            Thread.sleep(1000);
 
             if (fight < 50 && super.getHealth() > 0 && monster.getHealth() > 0) {
                 int changeHeroHealth = getHealth();
