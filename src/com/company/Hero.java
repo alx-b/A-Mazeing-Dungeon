@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -35,43 +37,41 @@ public class Hero extends Creature {
         return col;
     }
 
-    public void heroFight(Monster monster){
+    public void heroFight(Monster monster) {
 
         boolean control = true;
 
         while (control) {
 
             int fight = attack();
+            monster.displayInfo();
 
             if (fight < 50) {
                 int changeHeroHealth = super.getHealth();
                 System.out.println("The enemy hit you!");
-                int newHeroHealth= super.setHeroHealth(changeHeroHealth - monster.getDamage());
-                if (newHeroHealth <= 0){
-                    System.out.println("Health: 0"  + "/" + super.maxHealth);
+                int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
+                if (newHeroHealth <= 0) {
+                    System.out.println("Health: 0" + "/" + super.maxHealth);
                     restart();
                     control = false;
-                }
-                else {
+                } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
                 }
-            }
-            else if (fight >= 50) {
+            } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
-                    System.out.println("Health: 0" + "/" + monster.maxHealth);
+                    //System.out.println("Health: 0" + "/" + monster.maxHealth);
                     levelUp();
                     control = false;
-                }
-                else {
+                } else {
                     System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
                 }
             }
         }
     }
-
+/*
     private void restart() {
         String yesNo;
         System.out.println("You are dead");
@@ -86,7 +86,7 @@ public class Hero extends Creature {
         }
 
     }
-
+*/
     private int attack() {
         Random r = new Random();
         int low = 1;
@@ -100,11 +100,13 @@ public class Hero extends Creature {
         while (backpackIsOpen) {
             try {
                 Scanner scanner = new Scanner(System.in);
+                System.out.println("............................");
                 System.out.println("Inventory: ");
                 backpack.showItemsInBackpack();
                 System.out.println("'1' To heal yourself");
                 System.out.println("'2' To equip a weapon");
-                System.out.println("'3' To close backpack");
+                System.out.println("'3' To remove an item from backpack.");
+                System.out.println("'4' To close backpack");
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
 
@@ -119,9 +121,14 @@ public class Hero extends Creature {
 
                         break;
                     case 2:
+                        equipSword();
                         break;
 
                     case 3:
+                        backpack.removeItem();
+                        break;
+
+                    case 4:
                         backpackIsOpen = false;
                         break;
 
@@ -147,10 +154,32 @@ public class Hero extends Creature {
         System.out.println("Damage is: " + getDamage());
     }
 
+    public void equipSword() {
+        ArrayList<Sword> swords = new ArrayList<>();
+        if (backpack.getItems() != null) {
+            for (Item item : backpack.getItems()) {
+                if (item instanceof Sword) {
+                    swords.add((Sword) item);
+                }
+            }
+            if (!swords.isEmpty()) {
+                Collections.sort(swords);
+                setHeroDamage(getDamage() + swords.get(0).getSwordDamage());
+                System.out.printf("You equipped the strongest sword in your inventory. Now you deal %d damage \n", getDamage());
+            } else {
+                System.out.println("You have no swords in your backpack.");
+            }
+        } else {
+            System.out.println("You have no items in your backpack.");
+        }
+
+    }
+
+
     public HealthPotion returnHealthPotion() {
         for (Item item : backpack.getItems()) {
             if (item instanceof HealthPotion) {
-                return (HealthPotion)item;
+                return (HealthPotion) item;
             }
         }
         return null;
