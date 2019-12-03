@@ -52,7 +52,6 @@ public class Hero extends Creature {
                 int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
                 if (newHeroHealth <= 0) {
                     System.out.println("Health: 0" + "/" + super.maxHealth);
-                    //restart();
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
@@ -62,7 +61,6 @@ public class Hero extends Creature {
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
-                    //System.out.println("Health: 0" + "/" + monster.maxHealth);
                     levelUp();
                     control = false;
                 } else {
@@ -71,22 +69,7 @@ public class Hero extends Creature {
             }
         }
     }
-/*
-    private void restart() {
-        String yesNo;
-        System.out.println("\033[31;1;1mY o u   a r e   d e a d \033[0m"); //"\033[31;1;1mY o u   a r e   d e a d \033[0m"
-        System.out.println("Restart game, Yes or No?");
-        Scanner scanner = new Scanner(System.in);
-        yesNo = scanner.nextLine();
-        if (yesNo.equals("Yes")) {
-            System.out.println("Returning to beginning of map");
-            //dungeonGame.showMainMenu();
-        } else if (yesNo.equals("No")) {
-            System.exit(0);
-        }
 
-    }
-*/
     private int attack() {
         Random r = new Random();
         int low = 1;

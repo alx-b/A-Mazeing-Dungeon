@@ -2,13 +2,12 @@ package com.company;
 
 import java.util.Scanner;
 
-/*public class DragonBoss extends Monster{
+public class DragonBoss extends Monster {
 
-
-    /*public DragonBoss(String name, int health, int damage, int maxHealth) {
+    public DragonBoss(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
     }
-
+/*
     public void dragonBossQuest() throws InterruptedException {
         System.out.println("Hello, traveler! Are you here for my treasure? You can either fight me for it, or do me a quest and I'll give it to you.");
         System.out.println("___________________");
@@ -30,13 +29,9 @@ import java.util.Scanner;
 
         }
     }
+    */
+
     public int getDamage(){
         return this.damage;
     }
-
-    @Override
-    public String toString() {
-        return "DragonBoss{}";
-    }
 }
-*/

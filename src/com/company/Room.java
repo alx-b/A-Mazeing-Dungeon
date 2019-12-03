@@ -13,6 +13,7 @@ public class Room {
     private Item item = null;
     private Monster monster = null;
     private Store store = null;
+    private DragonBoss dragon = null;
 
     public Room(String name, int row, int col) {
         this.name = name;
@@ -83,6 +84,8 @@ public class Room {
         this.store = new Store();
     }
 
+    private void addDragontoRoom(){this.dragon = new DragonBoss("Draken", 1000, 100, 1000 );}
+
     private int randomizer(int min, int max) {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
@@ -120,8 +123,8 @@ public class Room {
     }
     private void addRandomMonsterToRoom(){
         Monster[] monsters = {
-                new Spider("Charlotte", 50,5,50),
-                new Bandit("Robin", 100, 10, 100)
+                new Spider("Charlotte the spider", 50,5,50),
+                new Bandit("Robin the bandit", 100, 10, 100)
         };
         int idx = randomizer(0, monsters.length - 1);
         this.monster = monsters[idx];
@@ -161,6 +164,8 @@ public class Room {
     public void displayRoom(Hero hero) {
         if (this.store != null) {
             this.store.buyItemsInStore(hero);
+        } else if (this.dragon != null){
+            // You talk with the dragon
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
