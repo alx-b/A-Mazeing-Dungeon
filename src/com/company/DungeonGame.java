@@ -78,6 +78,11 @@ public class DungeonGame {
                             loop = false;
                         };
                         break;
+
+                    case "b":
+                        hero.openBackpack();
+                            loop = false;
+
                     default:
                         System.out.println("Not a valid input!");
                         loop = true;
@@ -104,6 +109,7 @@ public class DungeonGame {
         System.out.println("Enter w to go North");
         System.out.println("Enter d to go East");
         System.out.println("Enter s to go South");
+        System.out.println("Enter b to open your backpack");
 
     }
 
