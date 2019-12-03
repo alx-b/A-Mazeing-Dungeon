@@ -123,15 +123,16 @@ public class Maze {
         for (String[] row : this.map) {
             for (String elem : row) {
                 if (elem.equals("#")) {
-                    System.out.printf("\033[1;30m[%s]\033[0m", elem);
+                    elem = "   ";
+                    System.out.printf("\033[1;40m%s\033[0m", elem);
                 } else if (elem.equals("H")) {
-                    System.out.printf("\033[1;34m[%s]\033[0m", elem);
+                    System.out.printf("\033[30;1;44m %s \033[0m", elem);
                 } else if (elem.equals("D")) {
-                    System.out.printf("\033[1;32m[%s]\033[0m", elem);
+                    System.out.printf("\033[30;1;42m %s \033[0m", elem);
                 } else if (elem.equals("S")){
-                    System.out.printf("\033[1;33m[%s]\033[0m", elem);
+                    System.out.printf("\033[30;1;43m %s \033[0m", elem);
                 } else {
-                    System.out.printf("[%s]", elem);
+                    System.out.printf(" %s ", elem);
                 }
             }
             System.out.println();
