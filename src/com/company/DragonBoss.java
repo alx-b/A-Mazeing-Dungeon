@@ -2,18 +2,18 @@ package com.company;
 
 import java.util.Scanner;
 
-/*public class DragonBoss extends Monster{
+public class DragonBoss extends Monster {
 
-
-    /*public DragonBoss(String name, int health, int damage, int maxHealth) {
+    public DragonBoss(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
     }
 
-    public void dragonBossQuest() throws InterruptedException {
+    public void quest(){
         System.out.println("Hello, traveler! Are you here for my treasure? You can either fight me for it, or do me a quest and I'll give it to you.");
         System.out.println("___________________");
         System.out.println("To fight dragon: type 1 and hit <enter>");
         System.out.println("To receive quest: type 2 and hit <enter>");
+        /*
         Scanner scanner = new Scanner(System.in);
         int userInput = Integer.parseInt(scanner.nextLine());
 
@@ -29,14 +29,10 @@ import java.util.Scanner;
 
 
         }
+        */
     }
+
     public int getDamage(){
         return this.damage;
     }
-
-    @Override
-    public String toString() {
-        return "DragonBoss{}";
-    }
 }
-*/

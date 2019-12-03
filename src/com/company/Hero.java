@@ -13,7 +13,7 @@ public class Hero extends Creature {
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12;
+        this.row = 2;
         this.col = 1;
     }
 
@@ -52,7 +52,6 @@ public class Hero extends Creature {
                 int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
                 if (newHeroHealth <= 0) {
                     System.out.println("Health: 0" + "/" + super.maxHealth);
-                    //restart();
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
@@ -62,7 +61,6 @@ public class Hero extends Creature {
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
-                    //System.out.println("Health: 0" + "/" + monster.maxHealth);
                     levelUp();
                     control = false;
                 } else {
@@ -70,21 +68,6 @@ public class Hero extends Creature {
                 }
             }
         }
-    }
-
-    private void restart() {
-        String yesNo;
-        System.out.println("You are dead");
-        System.out.println("Restart game, Yes or No?");
-        Scanner scanner = new Scanner(System.in);
-        yesNo = scanner.nextLine();
-        if (yesNo.equals("Yes")) {
-            System.out.println("Returning to beginning of map");
-            //dungeonGame.showMainMenu();
-        } else if (yesNo.equals("No")) {
-            System.exit(0);
-        }
-
     }
 
     private int attack() {
@@ -146,7 +129,9 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
+
         setHeroDamage(getDamage() + 10);
         System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());

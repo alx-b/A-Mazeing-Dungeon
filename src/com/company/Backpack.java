@@ -32,6 +32,7 @@ public class Backpack extends Item {
         while (iter.hasNext()) {
             if (iter.next().getName().equals(nameToSearchFor)) {
                 iter.remove();
+                break;
             }
         }
     }

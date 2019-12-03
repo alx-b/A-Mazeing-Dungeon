@@ -95,7 +95,7 @@ public class DungeonGame {
             System.out.println("YOU DIED, game over!");
         }
         else{
-            System.out.println("You found the exit!");
+            System.out.println("\033[33;1;1mCongratulations Hero, you found the exit!\033[0m");
         }
     }
 

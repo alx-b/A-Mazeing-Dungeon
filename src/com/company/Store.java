@@ -28,8 +28,8 @@ public class Store {
         while (isBuying) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Welcome to the store, traveler!");
-                System.out.println("What would you like to buy?");
+                System.out.println("\033[33;1;1mWelcome to the store, traveler!\033[0m"); //[\33;1;1m    \33[0m
+                System.out.println("\033[33;1;1mWhat would you like to buy?\033[0m");
                 System.out.printf(
                         "'1' Name: %s. Sword damage: %d. Price: %d gold.\n",
                         woodenSword.getName(), woodenSword.getSwordDamage(), woodenSword.getPrice()
@@ -107,7 +107,7 @@ public class Store {
                         }
                         break;
                     case 7:
-                        System.out.println("Are you sure you want to quit? '1' Yes -- '2' No");
+                        System.out.println("\033[33;1;1mAre you sure you want to quit? '1' Yes -- '2' No\033[0m");
                         System.out.print("Enter number: ");
                         int quitOrStay = Integer.parseInt(scanner.nextLine());
                         switch (quitOrStay) {
