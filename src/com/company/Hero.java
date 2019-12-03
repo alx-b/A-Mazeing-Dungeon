@@ -52,7 +52,7 @@ public class Hero extends Creature {
                 int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
                 if (newHeroHealth <= 0) {
                     System.out.println("Health: 0" + "/" + super.maxHealth);
-                    restart();
+                    //restart();
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
@@ -71,7 +71,7 @@ public class Hero extends Creature {
             }
         }
     }
-/*
+
     private void restart() {
         String yesNo;
         System.out.println("You are dead");
@@ -86,7 +86,7 @@ public class Hero extends Creature {
         }
 
     }
-*/
+
     private int attack() {
         Random r = new Random();
         int low = 1;
@@ -133,7 +133,7 @@ public class Hero extends Creature {
                         break;
 
                     default:
-                        System.out.println("Incorrect button. To choose between options use '1', '2' or '3'");
+                        System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
                 System.out.println("Letters are not allowed! You have to enter a number.");
