@@ -3,8 +3,10 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        DungeonGame game = new DungeonGame();
-        game.showMainMenu();
+        while (true){
+            DungeonGame game = new DungeonGame();
+            game.showMainMenu();
+        }
 /*
         Hero hero = new Hero("Gary", 20, 40, 100);
          Sword woodenSword = new Sword("Wooden Sword", 50);

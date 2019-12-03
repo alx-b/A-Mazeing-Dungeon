@@ -34,14 +34,24 @@ public class DungeonGame {
         }
     }
 
+    public boolean isHeroDead(){
+        return this.hero.getHealth() <= 0;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
     private void start() {
         Scanner scan = new Scanner(System.in);
-        while (!isHeroInLastRoom()) {
+        while (!isHeroInLastRoom() && !isHeroDead()) {
             this.maze.print(this.hero);
             this.hero.displayInfo();
 
             this.maze.displayCurrentRoom(this.hero);
-
+            if (isHeroDead()){
+                break;
+            }
             menu();
             boolean loop = true;
             while (loop) {
@@ -75,7 +85,12 @@ public class DungeonGame {
                 }
             }
         }
-        System.out.println("You found the exit!");
+        if (isHeroDead()){
+            System.out.println("YOU DIED, game over!");
+        }
+        else{
+            System.out.println("You found the exit!");
+        }
     }
 
     private boolean isHeroInLastRoom() {
