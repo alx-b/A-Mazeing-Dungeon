@@ -3,9 +3,10 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        while (true){
+       while (true){
             DungeonGame game = new DungeonGame();
             game.showMainMenu();
         }
+
     }
 }

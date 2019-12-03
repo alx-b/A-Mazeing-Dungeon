@@ -10,10 +10,11 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    private int baseHeroDamage = getDamage();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 2;
+        this.row = 12;
         this.col = 1;
     }
 
@@ -149,7 +150,7 @@ public class Hero extends Creature {
             }
             if (!swords.isEmpty()) {
                 Collections.sort(swords);
-                setHeroDamage(getDamage() + swords.get(0).getSwordDamage());
+                setHeroDamage(baseHeroDamage + swords.get(0).getSwordDamage());
                 System.out.printf("You equipped the strongest sword in your inventory. Now you deal %d damage \n", getDamage());
             } else {
                 System.out.println("You have no swords in your backpack.");
