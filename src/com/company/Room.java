@@ -22,7 +22,10 @@ public class Room {
 
         if (this.name.equals("Store")) {
             addStoreToRoom();
-        } else {
+        } else if (this.name.equals("Dragon")){
+            addDragonToRoom();
+        }
+        else {
             addRandomEventToRoom();
         }
 
@@ -84,7 +87,7 @@ public class Room {
         this.store = new Store();
     }
 
-    private void addDragontoRoom(){this.dragon = new DragonBoss("Draken", 1000, 100, 1000 );}
+    private void addDragonToRoom(){this.dragon = new DragonBoss("Draken", 1000, 100, 1000 );}
 
     private int randomizer(int min, int max) {
         Random random = new Random();
@@ -166,6 +169,7 @@ public class Room {
             this.store.buyItemsInStore(hero);
         } else if (this.dragon != null){
             // You talk with the dragon
+            this.dragon.quest();
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
