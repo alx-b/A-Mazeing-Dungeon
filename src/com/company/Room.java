@@ -119,7 +119,7 @@ public class Room {
         String[] events = {
                 "This room smells of blood, " + this.monster + " wants to fight!",
                 "You sense danger approaching... " + this.monster + " wants to fight!",
-                "This " + this.monster + " wants to fight!3"
+                "This " + this.monster + " wants to fight!"
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
