@@ -22,12 +22,11 @@ public class Backpack extends Item {
     }
 
     public void removeItem() {
-        System.out.println("The backpack contains the following items ; ");
-        System.out.println(items);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input item name which you want to remove from the Backpack");
-        String str = scanner.nextLine();
-        String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        String nameToSearchFor = scanner.nextLine();
+        nameToSearchFor.toLowerCase();
+        //String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 
         java.util.Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
