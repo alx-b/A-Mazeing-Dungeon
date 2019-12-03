@@ -34,13 +34,13 @@ public class Maze {
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#"},
             {"#", "#", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
-            {"#", "H", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", " ", "#"},
+            {"#", "H", " ", "S", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
             {"#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
     };
     private ArrayList<Room> rooms = new ArrayList<>();
     private final String WALL = "#";
-    private final String HERO = "H"; // Add blue color to Hero
+    private final String HERO = "H";
     private final String ROOM = " ";
     private final String STORE = "S";
     private final String DRAGON = "D";
@@ -80,9 +80,9 @@ public class Maze {
                     if (row == 12 && col == 13 || row == 12 && col == 3) {
                         this.rooms.add(new Room("Store", row, col));
                     }
-                    //if (row == 1 && col == 1){
-                    //    this.rooms.add()
-                    //}
+                    else if (row == 1 && col == 1){
+                        this.rooms.add(new Room("Dragon", row, col));
+                    }
                     else {
                         this.rooms.add(new Room("Room", row, col));
                     }
@@ -103,11 +103,13 @@ public class Maze {
         if (this.currentRoom.getName().equals("Store")) {
             this.map[hero.getRow()][hero.getCol()] = STORE;
             this.maze[hero.getRow()][hero.getCol()] = STORE;
-            System.out.println("HELLO");
+        }
+        else if (this.currentRoom.getName().equals("Dragon")){
+            this.map[hero.getRow()][hero.getCol()] = DRAGON;
+            this.maze[hero.getRow()][hero.getCol()] = DRAGON;
         } else {
             this.map[hero.getRow()][hero.getCol()] = ROOM;
             this.maze[hero.getRow()][hero.getCol()] = ROOM;
-            System.out.println("BYE");
         }
     }
 
@@ -121,9 +123,13 @@ public class Maze {
         for (String[] row : this.map) {
             for (String elem : row) {
                 if (elem.equals("#")) {
-                    System.out.printf("\033[32;1m[%s]\033[0m", elem);
+                    System.out.printf("\033[0;37m[%s]\033[0m", elem);
                 } else if (elem.equals("H")) {
-                    System.out.printf("\033[34;1m[%s]\033[0m", elem);
+                    System.out.printf("\033[1;34m[%s]\033[0m", elem);
+                } else if (elem.equals("D")) {
+                    System.out.printf("\033[1;32m[%s]\033[0m", elem);
+                } else if (elem.equals("S")){
+                    System.out.printf("\033[1;33m[%s]\033[0m", elem);
                 } else {
                     System.out.printf("[%s]", elem);
                 }
