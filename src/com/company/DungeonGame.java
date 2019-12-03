@@ -78,6 +78,12 @@ public class DungeonGame {
                             loop = false;
                         };
                         break;
+
+                    case "b":
+                        hero.openBackpack();
+                            loop = false;
+                            break;
+
                     default:
                         System.out.println("Not a valid input!");
                         loop = true;
@@ -89,7 +95,7 @@ public class DungeonGame {
             System.out.println("YOU DIED, game over!");
         }
         else{
-            System.out.println("You found the exit!");
+            System.out.println("\033[33;1;1mCongratulations Hero, you found the exit!\033[0m");
         }
     }
 
@@ -104,6 +110,7 @@ public class DungeonGame {
         System.out.println("Enter w to go North");
         System.out.println("Enter d to go East");
         System.out.println("Enter s to go South");
+        System.out.println("Enter b to open your backpack");
 
     }
 

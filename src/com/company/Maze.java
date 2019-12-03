@@ -61,16 +61,12 @@ public class Maze {
         addHeroOnMapAndMaze(hero);
         addHeroSurroundingToMap(hero);
         printMap();
-        //::wa
-        // printMaze(); // Temporary there, delete later
-        //System.out.println(hero.getRow());
-        //System.out.println(hero.getCol());
     }
 
     public void displayCurrentRoom(Hero hero) {
         System.out.println("---- Event ----");
         for (Room room : this.rooms) {
-            if (room.getRow() == hero.getRow() && room.getCol() == hero.getCol()) {
+            if(room.getRow()==hero.getRow()&&room.getCol()==hero.getCol()) {
                 room.displayRoom(hero);
                 this.currentRoom = room;
             }
@@ -115,29 +111,20 @@ public class Maze {
         }
     }
 
-    /*
-        private void changeHeroPositionTo(Hero hero, int posY, int posX){
-            hero.move(posY, posX);
-        }
-    */
     private void addHeroOnMapAndMaze(Hero hero) {
-        if (hero.getRow() > 0 && hero.getRow() < 15 && hero.getCol() > 0 && hero.getCol() < 15 ){
-            this.map[hero.getRow()][hero.getCol()] = HERO;
-            this.maze[hero.getRow()][hero.getCol()] = HERO;
-        }
+        this.map[hero.getRow()][hero.getCol()] = HERO;
+        this.maze[hero.getRow()][hero.getCol()] = HERO;
     }
 
     public void printMap() {
         System.out.println("------ Map ------");
         for (String[] row : this.map) {
             for (String elem : row) {
-                if (elem.equals("#")){
+                if (elem.equals("#")) {
                     System.out.printf("\033[32;1m[%s]\033[0m", elem);
-                }
-                else if (elem.equals("H")){
+                } else if (elem.equals("H")) {
                     System.out.printf("\033[34;1m[%s]\033[0m", elem);
-                }
-                else {
+                } else {
                     System.out.printf("[%s]", elem);
                 }
             }
@@ -176,5 +163,4 @@ public class Maze {
             this.map[heroPosY + 1][heroPosX] = this.maze[heroPosY + 1][heroPosX];
         }
     }
-
 }

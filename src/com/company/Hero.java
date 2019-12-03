@@ -61,7 +61,6 @@ public class Hero extends Creature {
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
-                    //System.out.println("Health: 0" + "/" + monster.maxHealth);
                     levelUp();
                     control = false;
                 } else {
@@ -70,22 +69,7 @@ public class Hero extends Creature {
             }
         }
     }
-/*
-    private void restart() {
-        String yesNo;
-        System.out.println("You are dead");
-        System.out.println("Restart game, Yes or No?");
-        Scanner scanner = new Scanner(System.in);
-        yesNo = scanner.nextLine();
-        if (yesNo.equals("Yes")) {
-            System.out.println("Returning to beginning of map");
-            //dungeonGame.showMainMenu();
-        } else if (yesNo.equals("No")) {
-            System.exit(0);
-        }
 
-    }
-*/
     private int attack() {
         Random r = new Random();
         int low = 1;
@@ -132,7 +116,7 @@ public class Hero extends Creature {
                         break;
 
                     default:
-                        System.out.println("Incorrect button. To choose between options use '1', '2' or '3'");
+                        System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
                 System.out.println("Letters are not allowed! You have to enter a number.");
@@ -145,7 +129,9 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
+
         setHeroDamage(getDamage() + 10);
         System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());
