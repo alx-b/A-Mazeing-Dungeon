@@ -133,7 +133,7 @@ public class Hero extends Creature {
                         break;
 
                     default:
-                        System.out.println("Incorrect button. To choose between options use '1', '2' or '3'");
+                        System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
                 System.out.println("Letters are not allowed! You have to enter a number.");
