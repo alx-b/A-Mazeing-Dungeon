@@ -44,6 +44,7 @@ public class Hero extends Creature {
         while (control) {
 
             int fight = attack();
+            monster.displayInfo();
 
             if (fight < 50) {
                 int changeHeroHealth = super.getHealth();
@@ -61,7 +62,7 @@ public class Hero extends Creature {
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
-                    System.out.println("Health: 0" + "/" + monster.maxHealth);
+                    //System.out.println("Health: 0" + "/" + monster.maxHealth);
                     levelUp();
                     control = false;
                 } else {
@@ -70,7 +71,7 @@ public class Hero extends Creature {
             }
         }
     }
-
+/*
     private void restart() {
         String yesNo;
         System.out.println("You are dead");
@@ -85,7 +86,7 @@ public class Hero extends Creature {
         }
 
     }
-
+*/
     private int attack() {
         Random r = new Random();
         int low = 1;

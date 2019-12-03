@@ -15,6 +15,10 @@ public abstract class Creature {
         this.maxHealth = maxHealth;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String newName) {
         this.name = newName;
     }
@@ -56,16 +60,8 @@ public abstract class Creature {
         );
     }
 
-    /*
     @Override
     public String toString() {
-
-        return "Creature{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                ", damage=" + damage +
-                ", maxHealth=" + maxHealth +
-                '}';
+        return this.name;
     }
-    */
 }
