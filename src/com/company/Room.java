@@ -123,8 +123,8 @@ public class Room {
     }
     private void addRandomMonsterToRoom(){
         Monster[] monsters = {
-                new Spider("Charlotte", 50,5,50),
-                new Bandit("Robin", 100, 10, 100)
+                new Spider("Charlotte the spider", 50,5,50),
+                new Bandit("Robin the bandit", 100, 10, 100)
         };
         int idx = randomizer(0, monsters.length - 1);
         this.monster = monsters[idx];
