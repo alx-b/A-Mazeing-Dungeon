@@ -74,7 +74,7 @@ public class Hero extends Creature {
 /*
     private void restart() {
         String yesNo;
-        System.out.println("You are dead");
+        System.out.println("\033[31;1;1mY o u   a r e   d e a d \033[0m"); //"\033[31;1;1mY o u   a r e   d e a d \033[0m"
         System.out.println("Restart game, Yes or No?");
         Scanner scanner = new Scanner(System.in);
         yesNo = scanner.nextLine();
@@ -146,7 +146,9 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
+        super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
+
         setHeroDamage(getDamage() + 10);
         System.out.println("You won, game continues...");
         System.out.println("Health is: " + getHealth());
