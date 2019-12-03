@@ -10,8 +10,4 @@ public class Spider extends Monster {
         return this.damage;
     }
 
-    @Override
-    public String toString() {
-        return "Spider{}";
-    }
 }

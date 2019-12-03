@@ -2,7 +2,7 @@ package com.company;
 
 public abstract class Creature {
     private String name;
-    protected int health;  //Changed healt, maxHealt, damage to protected.
+    protected int health;  //Changed health, maxHealth, damage to protected.
     protected int damage;
     protected int maxHealth;
 
@@ -13,6 +13,10 @@ public abstract class Creature {
         this.health = health;
         this.damage = damage;
         this.maxHealth = maxHealth;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String newName) {
@@ -56,16 +60,8 @@ public abstract class Creature {
         );
     }
 
-    /*
     @Override
     public String toString() {
-
-        return "Creature{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                ", damage=" + damage +
-                ", maxHealth=" + maxHealth +
-                '}';
+        return this.name;
     }
-    */
 }
