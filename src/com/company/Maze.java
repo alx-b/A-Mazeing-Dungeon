@@ -123,7 +123,7 @@ public class Maze {
         for (String[] row : this.map) {
             for (String elem : row) {
                 if (elem.equals("#")) {
-                    System.out.printf("\033[0;37m[%s]\033[0m", elem);
+                    System.out.printf("\033[1;30m[%s]\033[0m", elem);
                 } else if (elem.equals("H")) {
                     System.out.printf("\033[1;34m[%s]\033[0m", elem);
                 } else if (elem.equals("D")) {
