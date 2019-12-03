@@ -82,6 +82,7 @@ public class DungeonGame {
                     case "b":
                         hero.openBackpack();
                             loop = false;
+                            break;
 
                     default:
                         System.out.println("Not a valid input!");
