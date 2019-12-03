@@ -71,7 +71,7 @@ public class Hero extends Creature {
             }
         }
     }
-/*
+
     private void restart() {
         String yesNo;
         System.out.println("You are dead");
@@ -86,7 +86,7 @@ public class Hero extends Creature {
         }
 
     }
-*/
+
     private int attack() {
         Random r = new Random();
         int low = 1;
