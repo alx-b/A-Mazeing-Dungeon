@@ -3,11 +3,11 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-      /*  while (true){
+        while (true){
             DungeonGame game = new DungeonGame();
             game.showMainMenu();
         }
-        */
+
 //To test openBackpack method.
 /*
         Hero hero = new Hero("Gary", 20, 40, 100);

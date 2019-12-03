@@ -52,7 +52,7 @@ public class Hero extends Creature {
                 int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
                 if (newHeroHealth <= 0) {
                     System.out.println("Health: 0" + "/" + super.maxHealth);
-                    restart();
+                    //restart();
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
