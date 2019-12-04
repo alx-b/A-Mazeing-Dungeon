@@ -14,6 +14,7 @@ public class Room {
     private Monster monster = null;
     private Store store = null;
     private DragonBoss dragon = null;
+    private DragonQuest dragonQuest = null;
 
     public Room(String name, int row, int col) {
         this.name = name;
@@ -169,7 +170,7 @@ public class Room {
             this.store.buyItemsInStore(hero);
         } else if (this.dragon != null){
             // You talk with the dragon
-            this.dragon.quest();
+            this.dragonQuest.quest();
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
