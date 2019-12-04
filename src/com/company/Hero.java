@@ -8,14 +8,17 @@ import java.util.Scanner;
 public class Hero extends Creature {
     private int row;
     private int col;
+    private int level;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    private QuestItemBag questItemBag = new QuestItemBag();
     private int baseHeroDamage = getDamage();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12;
-        this.col = 1;
+        this.row = 1; //12
+        this.col = 13; //1
+        this.level = 1;
     }
 
     public int getTotalGoldInBag() {
@@ -38,7 +41,11 @@ public class Hero extends Creature {
         return col;
     }
 
-    public void heroFight(Monster monster) {
+    public QuestItemBag getQuestItemBag() {
+        return questItemBag;
+    }
+
+    public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
 
@@ -57,17 +64,20 @@ public class Hero extends Creature {
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                    Thread.sleep(1000);
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+
                 if (newMonsterHealth <= 0) {
                     levelUp();
                     control = false;
                 } else {
                     System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    Thread.sleep(1000);
                 }
             }
         }
@@ -122,7 +132,7 @@ public class Hero extends Creature {
                         System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
-                System.out.println("Letters are not allowed! You have to enter a number.");
+                System.out.println("Enter a number between 1-4.");
                 System.out.println("Hit <enter> to try again.");
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
@@ -132,10 +142,9 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
-
         setHeroDamage(getDamage() + 10);
+        this.level += 1;
         System.out.println("You won!");
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
@@ -218,7 +227,7 @@ public class Hero extends Creature {
         this.row += 1;
     }
 
-    public void restoreHealth(HealthPotion potion) { //Added method restore health
+    public void restoreHealth(HealthPotion potion) {
         if (getHealth() < getMaxHealth()) {
             setHeroHealth(getHealth() + potion.getHealthPoints());
             if (getHealth() >= getMaxHealth()) {
@@ -243,8 +252,8 @@ public class Hero extends Creature {
     public void displayInfo() {
         System.out.println("---- Hero ----");
         super.displayInfo();
-        System.out.println("Gold: " + this.bagOfGold);
-        System.out.println("---- Backpack ----");
-        this.backpack.showDescription();
+        System.out.printf("Level: %d  -  Gold: %s\n", this.level, this.bagOfGold);
+        System.out.printf("---- Backpack: %d items ----\n", this.backpack.numberOfItem());
+        //this.backpack.showDescription();
     }
 }

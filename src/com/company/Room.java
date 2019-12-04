@@ -22,40 +22,50 @@ public class Room {
 
         if (this.name.equals("Store")) {
             addStoreToRoom();
-        } else if (this.name.equals("Dragon")){
+        } else if (this.name.equals("Dragon")) {
             addDragonToRoom();
-        }
-        else {
+        } else {
             addRandomEventToRoom();
         }
 
     }
+
     // Getters
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
+
     public int getRow() {
         return row;
     }
+
     public int getCol() {
         return col;
     }
 
-
     private void addRandomEventToRoom() {
         int rand = randomizer(1, 10);
-        if  (rand == 1 || rand == 5){addGoldToRoom();}
-        else if (rand == 2 || rand == 7){addRandomPotionToRoom();}
-        else if (rand == 4){addRandomSwordToRoom();}
-        else if (rand == 8){addRandomMonsterToRoom();}
-        else if (rand == 10){
+        if (rand == 1 || rand == 5) {
+            addGoldToRoom();
+        } else if (rand == 2 || rand == 7) {
+            addRandomPotionToRoom();
+        } else if (rand == 4) {
+            addRandomSwordToRoom();
+        } else if (rand == 8) {
+            addRandomMonsterToRoom();
+        } else if (rand == 10) {
             addRandomMonsterToRoom();
             addGoldToRoom();
-        }
-        else if (rand == 3 || rand == 6 || rand == 9) {
+        } else if (rand == 3 || rand == 6 || rand == 9) {
             addEmptyRoomEvent();
-        }
-        else{
+        } else {
             System.out.println("That wasn't suppose to happen");
         }
+    }
+
+    private void addGoldToRoom() {
+        this.gold = randomizer(50, 100);
+        addGoldEvent();
     }
 
     private void addGoldEvent(){
@@ -66,11 +76,6 @@ public class Room {
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
-    }
-
-    private void addGoldToRoom() {
-        this.gold = randomizer(50, 100);
-        addGoldEvent();
     }
 
     private void addEmptyRoomEvent(){
@@ -87,26 +92,18 @@ public class Room {
         this.store = new Store();
     }
 
-    private void addDragonToRoom(){this.dragon = new DragonBoss("Draken", 1000, 100, 1000 );}
+    private void addDragonToRoom(){
+        this.dragon = new DragonBoss("Dino, the maze-keeper", 1000, 100, 1000);
+    }
 
-    private void addDragonToothToRoom(Hero hero){
+    private void addDragonToothToRoom(Hero hero) {
         System.out.println("You have found a dragon tooth!");
-        // this.hero.questBag....
+        hero.getQuestItemBag().setDragonToothInBag(true);
     }
 
     private int randomizer(int min, int max) {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
-    }
-
-    private void addPotionEvent(){
-        String[] events = {
-                "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room."
-        };
-        int idx = randomizer(0, events.length - 1);
-        this.events.add(events[idx]);
     }
 
     private void addRandomPotionToRoom() {
@@ -120,6 +117,26 @@ public class Room {
         addPotionEvent();
     }
 
+    private void addPotionEvent(){
+        String[] events = {
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room."
+        };
+        int idx = randomizer(0, events.length - 1);
+        this.events.add(events[idx]);
+    }
+
+    private void addRandomMonsterToRoom(){
+        Monster[] monsters = {
+                new Spider("Charlotte the spider", 50, 5, 50),
+                new Bandit("Robin the bandit", 100, 10, 100)
+        };
+        int idx = randomizer(0, monsters.length - 1);
+        this.monster = monsters[idx];
+        addMonsterEvent();
+    }
+
     private void addMonsterEvent(){
         String[] events = {
                 "This room smells of blood, " + this.monster + " wants to fight!",
@@ -129,14 +146,16 @@ public class Room {
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
     }
-    private void addRandomMonsterToRoom(){
-        Monster[] monsters = {
-                new Spider("Charlotte the spider", 50,5,50),
-                new Bandit("Robin the bandit", 100, 10, 100)
+
+    private void addRandomSwordToRoom() {
+        Sword[] swords = {
+                new Sword("Wooden Dagger", 2),
+                new Sword("Wooden Sword", 4),
+                new Sword("Fake Excalibur", 10)
         };
-        int idx = randomizer(0, monsters.length - 1);
-        this.monster = monsters[idx];
-        addMonsterEvent();
+        int idx = randomizer(0, swords.length - 1);
+        this.item = swords[idx];
+        addSwordEvent();
     }
 
     private void addSwordEvent(){
@@ -149,17 +168,6 @@ public class Room {
         this.events.add(events[idx]);
     }
 
-    private void addRandomSwordToRoom(){
-        Sword[] swords = {
-                new Sword("Wooden Dagger", 2),
-                new Sword("Wooden Sword", 4),
-                new Sword("Fake Excalibur", 10)
-        };
-        int idx = randomizer(0, swords.length - 1);
-        this.item = swords[idx];
-        addSwordEvent();
-    }
-
     public void heroGetItem(Hero hero) {
         if (this.item != null) {
             hero.addItemToBackpack(this.item);
@@ -169,20 +177,22 @@ public class Room {
         }
     }
 
-    public void displayRoom(Hero hero) {
+    public void displayRoom(Hero hero) throws InterruptedException {
+        // Display whatever is going on in a specific room.
+        //=================================================
         if (this.store != null) {
             this.store.buyItemsInStore(hero);
-        }else if (this.name.equals(("Dragon Tooth"))){
+        } else if (this.name.equals(("Dragon Tooth"))) {
             addDragonToothToRoom(hero);
             this.name = "Room";
             this.visited = true;
-        } else if (this.dragon != null){
-            this.dragon.quest();
+        } else if (this.dragon != null) {
+            this.dragon.quest(hero);
         } else if (!this.visited) {
-            for (String event : this.events){
+            for (String event : this.events) {
                 System.out.printf("%s\n", event);
             }
-            if (this.monster != null){
+            if (this.monster != null) {
                 hero.heroFight(this.monster);
             }
             heroGetItem(hero);
