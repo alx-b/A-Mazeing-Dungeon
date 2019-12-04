@@ -83,6 +83,9 @@ public class Maze {
                     else if (row == 1 && col == 1){
                         this.rooms.add(new Room("Dragon", row, col));
                     }
+                    else if (row == 1 && col == 12){
+                        this.rooms.add(new Room("Dragon Tooth", row, col));
+                    }
                     else {
                         this.rooms.add(new Room("Room", row, col));
                     }
@@ -124,7 +127,7 @@ public class Maze {
             for (String elem : row) {
                 if (elem.equals("#")) {
                     elem = "   ";
-                    System.out.printf("\033[1;40m%s\033[0m", elem);
+                    System.out.printf("\033[1;47m%s\033[0m", elem);
                 } else if (elem.equals("H")) {
                     System.out.printf("\033[30;1;44m %s \033[0m", elem);
                 } else if (elem.equals("D")) {
