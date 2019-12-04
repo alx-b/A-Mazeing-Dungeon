@@ -16,8 +16,8 @@ public class Hero extends Creature {
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 13; //1
-        this.col = 1; //13
+        this.row = 12; 
+        this.col = 1;
         this.level = 1;
     }
 
