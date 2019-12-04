@@ -8,7 +8,7 @@ public class DragonBoss extends Monster {
         super(name, health, damage, maxHealth);
     }
 
-    public void quest(Hero hero) {
+    public void quest(Hero hero) throws InterruptedException {
         System.out.println("Hello, traveler! Are you here for my treasure? You can either fight me for it, or do me a quest and I'll give it to you.");
         System.out.println("___________________");
         System.out.println("'1' To fight dragon");
@@ -53,7 +53,7 @@ public class DragonBoss extends Monster {
         }
     }
 
-    private void completedGame(DungeonGame game){
+    private void completedGame(DungeonGame game) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("--CONGRATULATIONS ON COMPLETING A GAME!--");
         System.out.println("Hit <enter> to return to main menu.");

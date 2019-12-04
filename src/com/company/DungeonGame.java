@@ -11,7 +11,7 @@ public class DungeonGame {
         this.maze = new Maze(hero);
     }
 
-    public void showMainMenu() {
+    public void showMainMenu() throws InterruptedException {
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("---- Welcome to the A-Mazeing Dungeon! ----");
         System.out.println("Start Game: Enter '1'");
@@ -42,7 +42,7 @@ public class DungeonGame {
         return hero;
     }
 
-    private void start() {
+    private void start() throws InterruptedException {
         Scanner scan = new Scanner(System.in);
         while (!isHeroInLastRoom() && !isHeroDead()) {
             this.maze.print(this.hero);

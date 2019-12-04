@@ -173,7 +173,7 @@ public class Room {
         }
     }
 
-    public void displayRoom(Hero hero) {
+    public void displayRoom(Hero hero) throws InterruptedException {
         if (this.store != null) {
             this.store.buyItemsInStore(hero);
         }else if (this.name.equals(("Dragon Tooth"))){
