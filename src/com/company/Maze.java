@@ -53,6 +53,10 @@ public class Maze {
         createRoom();
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     public String[][] getMaze() {
         return maze;
     }
@@ -63,7 +67,7 @@ public class Maze {
         printMap();
     }
 
-    public void displayCurrentRoom(Hero hero) {
+    public void displayCurrentRoom(Hero hero) throws InterruptedException {
         System.out.println("---- Event ----");
         for (Room room : this.rooms) {
             if(room.getRow()==hero.getRow()&&room.getCol()==hero.getCol()) {

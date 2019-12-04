@@ -16,7 +16,7 @@ public class Hero extends Creature {
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
         this.row = 1; //12
-        this.col = 11; //1
+        this.col = 13; //1
     }
 
     public int getTotalGoldInBag() {
@@ -43,7 +43,7 @@ public class Hero extends Creature {
         return questItemBag;
     }
 
-    public void heroFight(Monster monster) {
+    public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
 
@@ -62,17 +62,20 @@ public class Hero extends Creature {
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                Thread.sleep(1000);
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+
                 if (newMonsterHealth <= 0) {
                     levelUp();
                     control = false;
                 } else {
                     System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    Thread.sleep(1000);
                 }
             }
         }

@@ -15,7 +15,9 @@ public class Room {
     private Store store = null;
     private DragonBoss dragon = null;
 
-
+    public DragonBoss getDragon() {
+        return dragon;
+    }
 
     public Room(String name, int row, int col) {
         this.name = name;
@@ -93,8 +95,7 @@ public class Room {
 
     private void addDragonToothToRoom(Hero hero){
         System.out.println("You have found a dragon tooth!");
-         hero.getQuestItemBag().isDragonToothInBag(hero);
-        // this.hero.questBag....
+         hero.getQuestItemBag().setDragonToothInBag(true);
     }
 
     private int randomizer(int min, int max) {
@@ -172,7 +173,7 @@ public class Room {
         }
     }
 
-    public void displayRoom(Hero hero) {
+    public void displayRoom(Hero hero) throws InterruptedException {
         if (this.store != null) {
             this.store.buyItemsInStore(hero);
         }else if (this.name.equals(("Dragon Tooth"))){
