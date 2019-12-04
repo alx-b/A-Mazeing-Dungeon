@@ -53,6 +53,10 @@ public class Maze {
         createRoom();
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     public String[][] getMaze() {
         return maze;
     }

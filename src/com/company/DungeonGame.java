@@ -7,7 +7,7 @@ public class DungeonGame {
     private Maze maze;
 
     public DungeonGame() {
-        this.hero = new Hero("Player", 100, 10, 100);
+        this.hero = new Hero("Player", 100, 1000, 100);
         this.maze = new Maze(hero);
     }
 

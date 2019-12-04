@@ -13,7 +13,7 @@ public class DragonBoss extends Monster {
         System.out.println("___________________");
         System.out.println("'1' To fight dragon");
         System.out.println("'2' To receive quest");
-        System.out.println("'3' To give dragon his tooth");
+        //System.out.println("'3' To give dragon his tooth");
 
         Scanner scanner = new Scanner(System.in);
         int userInput = Integer.parseInt(scanner.nextLine());
@@ -25,22 +25,31 @@ public class DragonBoss extends Monster {
                 hero.heroFight(dragonBoss);
                 if (dragonBoss.getHealth() <= 0) {
                     System.out.println("It's enough! I give up. You are a worthy opponent, therefore, i grant you my treasure! ");
-                    // completedGame();
+                    System.out.println("Hit <enter> to continue.");
+                    scanner.nextLine();
+                    System.exit(0);
                 }
                 break;
 
             case 2:
                 System.out.println("I have lost my precious tooth somewhere in this maze, go find it, and I will reward you.");
+                if (hero.getQuestItemBag().isDragonToothInBag()) {
+                    System.out.println("I see you have found my tooth! Thank you, traveler. I'll give you my treasure for your troubles.");
+                    System.out.println("Hit <enter> to continue.");
+                    scanner.nextLine();
+                    System.exit(0);
+                }
                 System.out.println("Hit <enter> to continue.");
                 scanner.nextLine();
                 break;
-
+/*
             case 3:
                 if(hero.getQuestItemBag().isDragonToothInBag(hero) == true) {
-                    System.out.println("I see you have found my tooth! Thank you, traveler. I'll give you my treasure for your troubles.");
                 }
                 // completedGame(game);
                 break;
+
+*/
         }
     }
 
