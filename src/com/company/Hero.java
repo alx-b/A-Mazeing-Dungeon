@@ -10,12 +10,13 @@ public class Hero extends Creature {
     private int col;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    private QuestItemBag questItemBag = new QuestItemBag();
     private int baseHeroDamage = getDamage();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12;
-        this.col = 1;
+        this.row = 1; //12
+        this.col = 11; //1
     }
 
     public int getTotalGoldInBag() {
@@ -36,6 +37,10 @@ public class Hero extends Creature {
 
     public int getCol() {
         return col;
+    }
+
+    public QuestItemBag getQuestItemBag() {
+        return questItemBag;
     }
 
     public void heroFight(Monster monster) {
