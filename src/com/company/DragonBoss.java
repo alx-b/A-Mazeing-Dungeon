@@ -23,7 +23,8 @@ public class DragonBoss extends Monster {
                 System.out.println("Shall be it!");
                 //DragonBoss dragonBoss = new DragonBoss("Dino, the maze-keeper", 1000, 100, 1000);
                 hero.heroFight(this);
-                if (this.getHealth() <= 0) {
+
+                if (hero.getHealth() > 0 && this.getHealth() <= 0) {
                     System.out.println("It's enough! I give up. You are a worthy opponent, therefore, i grant you my treasure! ");
                     System.out.println("Hit <enter> to continue.");
                     scanner.nextLine();
