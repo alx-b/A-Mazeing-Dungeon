@@ -23,7 +23,7 @@ public abstract class Item {
     }
 
     public String getName() {
-        return name;
+        return name.toLowerCase();
     }
 
     @Override

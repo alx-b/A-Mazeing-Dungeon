@@ -16,8 +16,8 @@ public class Hero extends Creature {
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12; //12
-        this.col = 1; //1
+        this.row = 13; //1
+        this.col = 1; //13
         this.level = 1;
     }
 
@@ -64,20 +64,20 @@ public class Hero extends Creature {
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
-                int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+                int newMonsterHealth = monster.setMonsterHealth(changeMonsterHealth - getDamage());
 
                 if (newMonsterHealth <= 0) {
                     levelUp();
                     control = false;
                 } else {
-                    System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
-                    Thread.sleep(1000);
+                    System.out.println("Enemy health: " + monster.setMonsterHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    Thread.sleep(1500);
                 }
             }
         }
@@ -145,14 +145,15 @@ public class Hero extends Creature {
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
         setHeroDamage(getDamage() + 10);
         this.level += 1;
-        System.out.println("You won!");
+        System.out.println("===========================");
+        System.out.println("\u001B[32mYou Won!\033[0m");
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
         System.out.println("Damage is: " + getDamage());
         System.out.println("===========================");
-        System.out.println("Game continues...");
         System.out.println(" ");
+
     }
 
     public void equipSword() {
@@ -166,7 +167,7 @@ public class Hero extends Creature {
             if (!swords.isEmpty()) {
                 Collections.sort(swords);
                 setHeroDamage(baseHeroDamage + swords.get(0).getSwordDamage());
-                System.out.printf("You equipped the strongest sword in your inventory. Now you deal %d damage \n", getDamage());
+                System.out.printf("You equipped the strongest sword in your inventory. You now deal %d damage \n", getDamage());
             } else {
                 System.out.println("You have no swords in your backpack.");
             }
@@ -192,6 +193,15 @@ public class Hero extends Creature {
             backpack.removeItemFromBackpack(returnHealthPotion());
         } else {
             System.out.println("You do not have any health potions.");
+        }
+    }
+
+    public void restoreHealth(HealthPotion potion) {
+        if (getHealth() < getMaxHealth()) {
+            setHeroHealth(getHealth() + potion.getHealthPoints());
+            if (getHealth() >= getMaxHealth()) {
+                setHeroHealth(getMaxHealth());
+            }
         }
     }
 
@@ -227,15 +237,6 @@ public class Hero extends Creature {
         this.row += 1;
     }
 
-    public void restoreHealth(HealthPotion potion) {
-        if (getHealth() < getMaxHealth()) {
-            setHeroHealth(getHealth() + potion.getHealthPoints());
-            if (getHealth() >= getMaxHealth()) {
-                setHeroHealth(getMaxHealth());
-            }
-        }
-    }
-
     public Backpack getBackpack() {
         return backpack;
     }
@@ -254,6 +255,5 @@ public class Hero extends Creature {
         super.displayInfo();
         System.out.printf("Level: %d  -  Gold: %s\n", this.level, this.bagOfGold);
         System.out.printf("---- Backpack: %d items ----\n", this.backpack.numberOfItem());
-        //this.backpack.showDescription();
     }
 }

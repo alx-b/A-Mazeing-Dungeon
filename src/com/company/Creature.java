@@ -35,9 +35,9 @@ public abstract class Creature {
         return this.health = health;
     }
 
-    public int setHealth(int health) {
+    public int setMonsterHealth(int health) {
         return this.health = health;
-    } //Setter for monster health.
+    }
 
     public void setHeroMaxHealth(int health) {
         this.maxHealth = health;
@@ -46,8 +46,7 @@ public abstract class Creature {
     public int getMaxHealth() {
         return maxHealth;
     }
-
-    //public void setMaxHealth(int maxHealth) { this.maxHealth = maxHealth; } //Överflödig?
+    
 
     public void displayInfo() {
         System.out.printf(

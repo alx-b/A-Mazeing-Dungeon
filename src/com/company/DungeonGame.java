@@ -1,6 +1,6 @@
 package com.company;
 
-import java.sql.SQLOutput;
+
 import java.util.Scanner;
 
 public class DungeonGame {
@@ -39,14 +39,11 @@ public class DungeonGame {
         return this.hero.getHealth() <= 0;
     }
 
-    public Hero getHero() {
-        return hero;
-    }
+    //public Hero getHero() {return hero;}
 
     private void start() throws InterruptedException {
         Scanner scan = new Scanner(System.in);
         while (!isHeroDead()) {
-            //this.maze.print(this.hero);
             this.hero.displayInfo();
 
             this.maze.displayCurrentRoom(this.hero);
@@ -95,13 +92,8 @@ public class DungeonGame {
             }
         }
         System.out.println("\033[0;31mYou died, game over!\033[0m");
-        /*
-        if (isHeroDead()){
-            System.out.println("YOU DIED, game over!");
-        } else {
-            System.out.println("\033[33;1;1mCongratulations Hero, you found the exit!\033[0m");
-        }*/
     }
+
     private void menu() {
         System.out.println("---- Actions ----");
         System.out.println("Enter a to go West");
@@ -167,11 +159,5 @@ public class DungeonGame {
     private boolean invalidInput(String choice) {
         return !choice.equals("1") && !choice.equals("2");
     }
-
-/* NOT NEEDED ANYMORE
-    private boolean isHeroInLastRoom() {
-        return (hero.getRow() == 0 && hero.getCol() == 1);
-    }
-*/
 
 }

@@ -168,16 +168,4 @@ public class Maze {
             this.map[heroPosY + 1][heroPosX] = this.maze[heroPosY + 1][heroPosX];
         }
     }
-
-/* FOR TESTING PURPOSE NOT NEEDED ANYMORE
-    public void printMaze() {
-        System.out.println("------ Maze ------");
-        for (String[] row : this.maze) {
-            for (String elem : row) {
-                System.out.printf("[%s]", elem);
-            }
-            System.out.println();
-        }
-    }
- */
 }

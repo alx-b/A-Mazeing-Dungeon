@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class Store {
 
     private Sword goldenSword = new Sword("Golden Sword", 50);
-    private Sword dagger = new Sword("Iron Dagger", 100);
-    private Sword claymore = new Sword("Steel Claymore", 150);
-    private HealthPotion weakHealthPotion = new HealthPotion("Weak Health Potion", 20);
-    private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 40);
+    private Sword dagger = new Sword("Ebony Dagger", 100);
+    private Sword claymore = new Sword("Obsidian Claymore", 150);
+    private HealthPotion weakHealthPotion = new HealthPotion("Weak Health Potion", 50);
+    private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 70);
     private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 100);
 
 
     public Store() {
-        goldenSword.setPrice(70);
-        dagger.setPrice(100);
-        claymore.setPrice(200);
-        weakHealthPotion.setPrice(10);
-        mediumHealthPotion.setPrice(20);
-        strongHealthPotion.setPrice(50);
+        goldenSword.setPrice(100);
+        dagger.setPrice(400);
+        claymore.setPrice(800);
+        weakHealthPotion.setPrice(50);
+        mediumHealthPotion.setPrice(70);
+        strongHealthPotion.setPrice(100);
     }
 
     public void buyItemsInStore(Hero hero) {
@@ -121,7 +121,7 @@ public class Store {
         hero.getBagOfGold().removeGold(sword.getPrice());
         System.out.println("You just bought yourself " + sword.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
-        System.out.println("You now deal " + hero.getDamage() + " damage to your enemies.");
+
 
     }
 
@@ -130,7 +130,7 @@ public class Store {
         hero.getBagOfGold().removeGold(potion.getPrice());
         System.out.println("You just bought yourself " + potion.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
-        System.out.println("Your health is now " + hero.getHealth());
+
 
     }
 
