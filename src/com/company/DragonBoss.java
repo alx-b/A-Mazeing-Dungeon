@@ -20,9 +20,9 @@ public class DragonBoss extends Monster {
             switch (userInput) {
                 case 1:
                     System.out.println("Shall be it!");
-                    DragonBoss dragonBoss = new DragonBoss("Dino, the maze-keeper", 1000, 100, 1000);
-                    hero.heroFight(dragonBoss);
-                    if (dragonBoss.getHealth() <= 0) {
+                   // DragonBoss dragonBoss = new DragonBoss("Dino, the maze-keeper", 1000, 100, 1000);
+                    hero.heroFight(this);
+                    if (this.getHealth() <= 0) {
                         System.out.println("It's enough! I give up. You are a worthy opponent, therefore, i grant you my treasure! ");
                         System.out.println("---CONGRATULATIONS ON COMPLETING THE GAME!---");
                         System.out.println("Hit <enter> to EXIT.");

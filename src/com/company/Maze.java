@@ -67,7 +67,7 @@ public class Maze {
         printMap();
     }
 
-    public void displayCurrentRoom(Hero hero) {
+    public void displayCurrentRoom(Hero hero) throws InterruptedException {
         // Display whatever happens in the current Room.
         //===================================
         System.out.println("---- Event ----");

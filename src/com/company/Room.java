@@ -177,7 +177,7 @@ public class Room {
         }
     }
 
-    public void displayRoom(Hero hero) {
+    public void displayRoom(Hero hero) throws InterruptedException {
         // Display whatever is going on in a specific room.
         //=================================================
         if (this.store != null) {
