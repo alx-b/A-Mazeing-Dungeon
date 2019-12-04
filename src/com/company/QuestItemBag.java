@@ -3,7 +3,7 @@ package com.company;
 public class QuestItemBag {
     private boolean isDragonToothInBag;
 
-    public QuestItemBag(){
+    public QuestItemBag() {
         this.isDragonToothInBag = false;
     }
 

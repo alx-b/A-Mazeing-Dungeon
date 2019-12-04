@@ -62,7 +62,7 @@ public class Hero extends Creature {
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-                Thread.sleep(1000);
+                    Thread.sleep(1000);
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
@@ -130,7 +130,7 @@ public class Hero extends Creature {
                         System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
-                System.out.println("Letters are not allowed! You have to enter a number.");
+                System.out.println("Enter a number between 1-4.");
                 System.out.println("Hit <enter> to try again.");
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
@@ -140,9 +140,7 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
-
         setHeroDamage(getDamage() + 10);
         System.out.println("You won!");
         System.out.println("===== You leveled up! =====");
@@ -226,7 +224,7 @@ public class Hero extends Creature {
         this.row += 1;
     }
 
-    public void restoreHealth(HealthPotion potion) { //Added method restore health
+    public void restoreHealth(HealthPotion potion) {
         if (getHealth() < getMaxHealth()) {
             setHeroHealth(getHealth() + potion.getHealthPoints());
             if (getHealth() >= getMaxHealth()) {

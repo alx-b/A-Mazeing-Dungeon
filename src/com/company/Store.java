@@ -26,7 +26,7 @@ public class Store {
         while (isBuying) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("\033[33;1;1mWelcome to the store, traveler!\033[0m"); //[\33;1;1m    \33[0m
+                System.out.println("\033[33;1;1mWelcome to the store, traveler!\033[0m");
                 System.out.println("\033[33;1;1mWhat would you like to buy?\033[0m");
                 System.out.printf(
                         "'1' Name: %s. Sword damage: %d. Price: %d gold.\n",
@@ -99,30 +99,16 @@ public class Store {
                         }
                         break;
                     case 7:
-                        /*
-                        System.out.println("\033[33;1;1mAre you sure you want to quit? '1' Yes -- '2' No\033[0m");
-                        System.out.print("Enter number: ");
-                        int quitOrStay = Integer.parseInt(scanner.nextLine());
-                        switch (quitOrStay) {
-                            case 1:
-                                isBuying = false;
-                                break;
-                            case 2:
-                                isBuying = true;
-                        }
-                        */
                         System.out.println("Bye, hope to see you soon!");
                         isBuying = false;
                         break;
-
                     default:
-                        System.out.println("You have to choose between 1 and 7!");
+                        System.out.println("Enter a number between 1-7 to make a choice.");
                         System.out.println("Hit <enter> to continue");
                         scanner.nextLine();
-
                 }
             } catch (Exception ex) {
-                System.out.println("Letters are not allowed! You have to enter a number.");
+                System.out.println("Enter a number between 1-7 to make a choice.");
                 System.out.println("Hit <enter> to try again.");
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
@@ -132,7 +118,6 @@ public class Store {
 
     private void youBoughtSword(Hero hero, Sword sword) {
         hero.getBackpack().addItem(sword);
-        //hero.setHeroDamage(hero.getDamage() + sword.getSwordDamage()); // Plus both together, or assign swordDamage to heroDamage?
         hero.getBagOfGold().removeGold(sword.getPrice());
         System.out.println("You just bought yourself " + sword.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");
@@ -142,7 +127,6 @@ public class Store {
 
     private void youBoughtPotion(Hero hero, HealthPotion potion) {
         hero.getBackpack().addItem(potion);
-        //hero.restoreHealth(potion);
         hero.getBagOfGold().removeGold(potion.getPrice());
         System.out.println("You just bought yourself " + potion.getName() + "!");
         System.out.println("You have " + hero.getBagOfGold().getAmountOfGold() + " gold left");

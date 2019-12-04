@@ -25,7 +25,7 @@ public class Backpack extends Item {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input item name which you want to remove from the Backpack");
         String nameToSearchFor = scanner.nextLine();
-        nameToSearchFor.toLowerCase();
+        //nameToSearchFor.toLowerCase();
 
         java.util.Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
@@ -36,17 +36,17 @@ public class Backpack extends Item {
         }
     }
 
-    public void showItemsInBackpack(){
-        if(items == null){
+    public void showItemsInBackpack() {
+        if (items == null) {
             System.out.println("Backpack is empty.");
-        } else{
-        for(Item item : items) {
-            System.out.println(item);
-        }
+        } else {
+            for (Item item : items) {
+                System.out.println(item);
+            }
         }
     }
 
-    public void removeItemFromBackpack(Item item){
+    public void removeItemFromBackpack(Item item) {
         items.remove(item);
     }
 
