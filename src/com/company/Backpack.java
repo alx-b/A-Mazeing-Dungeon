@@ -12,6 +12,9 @@ public class Backpack extends Item {
         super(name);
     }
 
+    public int numberOfItem(){
+        return this.items.size();
+    }
 
     public void addItem(Item newItem) {
         if (items.size() < MAX_TOTAL_ITEM) {

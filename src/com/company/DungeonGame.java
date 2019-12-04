@@ -46,13 +46,14 @@ public class DungeonGame {
     private void start() throws InterruptedException {
         Scanner scan = new Scanner(System.in);
         while (!isHeroDead()) {
-            this.maze.print(this.hero);
+            //this.maze.print(this.hero);
             this.hero.displayInfo();
 
             this.maze.displayCurrentRoom(this.hero);
             if (isHeroDead()) {
                 break;
             }
+            this.maze.print(this.hero);
             menu();
             boolean loop = true;
             while (loop) {
