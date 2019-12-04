@@ -99,6 +99,7 @@ public class Store {
                         }
                         break;
                     case 7:
+                        /*
                         System.out.println("\033[33;1;1mAre you sure you want to quit? '1' Yes -- '2' No\033[0m");
                         System.out.print("Enter number: ");
                         int quitOrStay = Integer.parseInt(scanner.nextLine());
@@ -109,10 +110,13 @@ public class Store {
                             case 2:
                                 isBuying = true;
                         }
+                        */
+                        System.out.println("Bye, hope to see you soon!");
+                        isBuying = false;
                         break;
 
                     default:
-                        System.out.println("You have to choose between 1 and 6!");
+                        System.out.println("You have to choose between 1 and 7!");
                         System.out.println("Hit <enter> to continue");
                         scanner.nextLine();
 
