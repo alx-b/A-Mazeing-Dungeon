@@ -97,8 +97,8 @@ public class Room {
     private void addPotionEvent(){
         String[] events = {
                 "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room2.",
-                "You got " + this.item + " in this room3."
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room."
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
@@ -137,8 +137,8 @@ public class Room {
     private void addSwordEvent(){
         String[] events = {
                 "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room2.",
-                "You got " + this.item + " in this room3."
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room."
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
