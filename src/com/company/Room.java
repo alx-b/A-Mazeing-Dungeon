@@ -14,6 +14,7 @@ public class Room {
     private Monster monster = null;
     private Store store = null;
     private DragonBoss dragon = null;
+    private DragonQuest dragonQuest = null;
 
     public Room(String name, int row, int col) {
         this.name = name;
