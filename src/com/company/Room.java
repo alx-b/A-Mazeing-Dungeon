@@ -14,7 +14,8 @@ public class Room {
     private Monster monster = null;
     private Store store = null;
     private DragonBoss dragon = null;
-    private DragonQuest dragonQuest = null;
+
+
 
     public Room(String name, int row, int col) {
         this.name = name;
@@ -92,6 +93,7 @@ public class Room {
 
     private void addDragonToothToRoom(Hero hero){
         System.out.println("You have found a dragon tooth!");
+         hero.getQuestItemBag().isDragonToothInBag(hero);
         // this.hero.questBag....
     }
 
@@ -178,7 +180,7 @@ public class Room {
             this.name = "Room";
             this.visited = true;
         } else if (this.dragon != null){
-            this.dragon.quest();
+            this.dragon.quest(hero);
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
