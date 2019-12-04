@@ -4,21 +4,21 @@ import java.util.Scanner;
 
 public class Store {
 
-    private Sword woodenSword = new Sword("Wooden Sword", 50);
+    private Sword goldenSword = new Sword("Golden Sword", 50);
     private Sword dagger = new Sword("Iron Dagger", 100);
     private Sword claymore = new Sword("Steel Claymore", 150);
     private HealthPotion weakHealthPotion = new HealthPotion("Weak Health Potion", 20);
     private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 40);
-    private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 60);
+    private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 100);
 
 
     public Store() {
-        woodenSword.setPrice(20);
-        dagger.setPrice(40);
-        claymore.setPrice(60);
-        weakHealthPotion.setPrice(5);
-        mediumHealthPotion.setPrice(10);
-        strongHealthPotion.setPrice(15);
+        goldenSword.setPrice(70);
+        dagger.setPrice(100);
+        claymore.setPrice(200);
+        weakHealthPotion.setPrice(10);
+        mediumHealthPotion.setPrice(20);
+        strongHealthPotion.setPrice(50);
     }
 
     public void buyItemsInStore(Hero hero) {
@@ -30,7 +30,7 @@ public class Store {
                 System.out.println("\033[33;1;1mWhat would you like to buy?\033[0m");
                 System.out.printf(
                         "'1' Name: %s. Sword damage: %d. Price: %d gold.\n",
-                        woodenSword.getName(), woodenSword.getSwordDamage(), woodenSword.getPrice()
+                        goldenSword.getName(), goldenSword.getSwordDamage(), goldenSword.getPrice()
                 );
                 System.out.printf(
                         "'2' Name: %s. Sword damage: %d. Price: %d gold.\n",
@@ -57,8 +57,8 @@ public class Store {
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
-                        if (hero.getTotalGoldInBag() >= woodenSword.getPrice()) {
-                            youBoughtSword(hero, woodenSword);
+                        if (hero.getTotalGoldInBag() >= goldenSword.getPrice()) {
+                            youBoughtSword(hero, goldenSword);
                         } else {
                             notEnoughGold();
                         }

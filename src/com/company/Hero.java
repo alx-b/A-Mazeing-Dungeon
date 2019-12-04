@@ -49,6 +49,7 @@ public class Hero extends Creature {
 
             if (fight < 50) {
                 int changeHeroHealth = super.getHealth();
+                System.out.println(" ");
                 System.out.println("The enemy hit you!");
                 int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
                 if (newHeroHealth <= 0) {
@@ -59,6 +60,7 @@ public class Hero extends Creature {
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
+                System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
                 if (newMonsterHealth <= 0) {
@@ -134,10 +136,14 @@ public class Hero extends Creature {
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
 
         setHeroDamage(getDamage() + 10);
-        System.out.println("You won, game continues...");
+        System.out.println("You won!");
+        System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
         System.out.println("Damage is: " + getDamage());
+        System.out.println("===========================");
+        System.out.println("Game continues...");
+        System.out.println(" ");
     }
 
     public void equipSword() {
