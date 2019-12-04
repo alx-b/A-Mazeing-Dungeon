@@ -12,9 +12,6 @@ public class Backpack extends Item {
         super(name);
     }
 
-    public int numberOfItem(){
-        return this.items.size();
-    }
 
     public void addItem(Item newItem) {
         if (items.size() < MAX_TOTAL_ITEM) {
@@ -26,9 +23,9 @@ public class Backpack extends Item {
 
     public void removeItem() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please input item name which you want to remove from the Backpack");
+        System.out.println("Enter item name, in lower case letters, you wish to remove");
         String nameToSearchFor = scanner.nextLine();
-        //nameToSearchFor.toLowerCase();
+        nameToSearchFor.toLowerCase();
 
         java.util.Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
@@ -40,7 +37,7 @@ public class Backpack extends Item {
     }
 
     public void showItemsInBackpack() {
-        if (items == null) {
+        if (items.isEmpty()) {
             System.out.println("Backpack is empty.");
         } else {
             for (Item item : items) {
@@ -53,15 +50,14 @@ public class Backpack extends Item {
         items.remove(item);
     }
 
+    public int numberOfItem(){
+        return this.items.size();
+    }
+
     public ArrayList<Item> getItems() {
         return items;
     }
 
-    public void showDescription() {
-        for (Item item : items) {
-            System.out.println(item);
-        }
-    }
 
     public String toString() {
         String results = "+";
