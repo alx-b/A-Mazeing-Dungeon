@@ -90,6 +90,11 @@ public class Room {
 
     private void addDragonToRoom(){this.dragon = new DragonBoss("Draken", 1000, 100, 1000 );}
 
+    private void addDragonToothToRoom(Hero hero){
+        System.out.println("You have found a dragon tooth!");
+        // this.hero.questBag....
+    }
+
     private int randomizer(int min, int max) {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
@@ -98,8 +103,8 @@ public class Room {
     private void addPotionEvent(){
         String[] events = {
                 "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room2.",
-                "You got " + this.item + " in this room3."
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room."
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
@@ -138,8 +143,8 @@ public class Room {
     private void addSwordEvent(){
         String[] events = {
                 "You got " + this.item + " in this room.",
-                "You got " + this.item + " in this room2.",
-                "You got " + this.item + " in this room3."
+                "You got " + this.item + " in this room.",
+                "You got " + this.item + " in this room."
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
@@ -168,9 +173,12 @@ public class Room {
     public void displayRoom(Hero hero) {
         if (this.store != null) {
             this.store.buyItemsInStore(hero);
+        }else if (this.name.equals(("Dragon Tooth"))){
+            addDragonToothToRoom(hero);
+            this.name = "Room";
+            this.visited = true;
         } else if (this.dragon != null){
-            // You talk with the dragon
-            this.dragonQuest.quest();
+            this.dragon.quest();
         } else if (!this.visited) {
             for (String event : this.events){
                 System.out.printf("%s\n", event);
