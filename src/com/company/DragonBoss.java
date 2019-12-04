@@ -20,9 +20,6 @@ public class DragonBoss extends Monster {
                 Scanner scanner = new Scanner(System.in);
                 int userInput = Integer.parseInt(scanner.nextLine());
 
-                Scanner scanner = new Scanner(System.in);
-                int userInput = Integer.parseInt(scanner.nextLine());
-
                 switch (userInput) {
                     case 1:
                         System.out.println("Shall be it!");
