@@ -106,9 +106,9 @@ public class Room {
 
     private void addRandomPotionToRoom() {
         HealthPotion[] potions = {
-                new HealthPotion("Small health potion", 50),
-                new HealthPotion("Medium health potion", 100),
-                new HealthPotion("Big health potion", 150)
+                new HealthPotion("Small health potion", 10),
+                new HealthPotion("Medium health potion", 50),
+                new HealthPotion("Big health potion", 100)
         };
         int idx = randomizer(0, potions.length - 1);
         this.item = potions[idx];
