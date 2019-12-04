@@ -20,11 +20,15 @@ public class DragonBoss extends Monster {
                 Scanner scanner = new Scanner(System.in);
                 int userInput = Integer.parseInt(scanner.nextLine());
 
+                Scanner scanner = new Scanner(System.in);
+                int userInput = Integer.parseInt(scanner.nextLine());
+
                 switch (userInput) {
                     case 1:
                         System.out.println("Shall be it!");
                         hero.heroFight(this);
-                        if (this.getHealth() <= 0) {
+                        if (hero.getHealth() > 0 && this.getHealth() <= 0) {
+
                             System.out.println("It's enough! I give up. You are a worthy opponent, therefore, i grant you my treasure! ");
                             System.out.println("---CONGRATULATIONS ON COMPLETING THE GAME!---");
                             System.out.println("Hit <enter> to EXIT.");
@@ -51,11 +55,12 @@ public class DragonBoss extends Monster {
                         System.out.println("Enter number between 1 - 2 to make a choice.");
                         break;
                 }
-            } catch (Exception ex) {
-                System.out.println("Enter number between 1 - 2 to make a choice.");
-                System.out.println("Hit <enter> to try again.");
-                Scanner scanner = new Scanner(System.in);
-                scanner.nextLine();
+            }
+            catch (Exception ex) {
+                    System.out.println("Enter number between 1 - 2 to make a choice.");
+                    System.out.println("Hit <enter> to try again.");
+                    Scanner scanner = new Scanner(System.in);
+                    scanner.nextLine();
             }
         }
     }

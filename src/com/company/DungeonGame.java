@@ -8,7 +8,7 @@ public class DungeonGame {
     private Maze maze;
 
     public DungeonGame() {
-        this.hero = new Hero("Player", 100, 20, 100);
+        this.hero = new Hero("Player", 100, 10, 100);
         this.maze = new Maze(hero);
     }
 
@@ -54,7 +54,7 @@ public class DungeonGame {
             menu();
             boolean loop = true;
             while (loop) {
-                System.out.print("Where do you want to go: ");
+                System.out.print("Choose an action: ");
                 String choice = scan.nextLine();
                 switch (choice) {
                     case "a":
@@ -91,7 +91,7 @@ public class DungeonGame {
                 }
             }
         }
-        System.out.println("\\u001B[31mYou died, game over!\033[0m");
+        System.out.println("\033[0;31mYou died, game over!\033[0m");
     }
 
     private void menu() {

@@ -24,27 +24,27 @@ public class Maze {
     private String[][] maze = {
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"},
             {"#", "D", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "T", " ", "#"},
-            {"#", " ", "#", "#", " ", " ", " ", " ", "#", " ", "#", "#", "#", " ", "#"},
+            {"#", " ", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", " ", " ", " ", " ", "#", "#", "#", "#", " ", " ", "#", "#", " ", "#"},
             {"#", "#", " ", "#", " ", "#", "#", "#", "#", " ", " ", "#", "#", " ", "#"},
             {"#", "#", " ", "#", " ", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"},
             {"#", "#", " ", "#", " ", "#", "#", "#", "#", " ", " ", "#", "#", " ", "#"},
             {"#", "#", " ", " ", " ", "#", "#", "#", "#", " ", " ", "#", "#", " ", "#"},
-            {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#"},
-            {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#"},
-            {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#"},
-            {"#", "#", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
-            {"#", "H", " ", "S", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
+            {"#", "#", "#", "#", "#", "#", "#", " ", "#", "#", " ", "#", "#", " ", "#"},
+            {"#", "#", " ", " ", " ", " ", " ", " ", "#", "#", " ", " ", " ", " ", "#"},
+            {"#", "#", " ", "#", "#", "#", " ", "#", "#", "#", " ", "#", "#", " ", "#"},
+            {"#", "#", " ", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", " ", "#"},
+            {"#", "H", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", "S", "#"},
             {"#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
     };
-    private ArrayList<Room> rooms = new ArrayList<>();
     private final String WALL = "#";
     private final String HERO = "H";
     private final String ROOM = " ";
     private final String STORE = "S";
     private final String DRAGON = "D";
-
+    private final String TOOTH = "T";
+    private ArrayList<Room> rooms = new ArrayList<>();
     private Room currentRoom;
 
     public Maze(Hero hero) {
@@ -52,8 +52,6 @@ public class Maze {
         addHeroSurroundingToMap(hero);
         createRoom();
     }
-
-  // public Room getCurrentRoom() { return currentRoom; }
 
     public String[][] getMaze() {
         return maze;
@@ -83,11 +81,11 @@ public class Maze {
         for (int row = 0; row < this.maze.length; row++) {
             for (int col = 0; col < this.maze[0].length; col++) {
                 if (isARoom(new int[]{row, col})) {
-                    if (row == 12 && col == 13 || row == 12 && col == 3) {
+                    if (this.maze[row][col].equals(STORE)) {
                         this.rooms.add(new Room("Store", row, col));
-                    } else if (row == 1 && col == 1) {
+                    } else if (this.maze[row][col].equals(DRAGON)){
                         this.rooms.add(new Room("Dragon", row, col));
-                    } else if (row == 1 && col == 12) {
+                    } else if (this.maze[row][col].equals(TOOTH)){
                         this.rooms.add(new Room("Dragon Tooth", row, col));
                     } else {
                         this.rooms.add(new Room("Room", row, col));
