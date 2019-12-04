@@ -45,7 +45,7 @@ public class Hero extends Creature {
         return questItemBag;
     }
 
-    public void heroFight(Monster monster) {
+    public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
 
@@ -64,17 +64,20 @@ public class Hero extends Creature {
                     control = false;
                 } else {
                     System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                    Thread.sleep(1000);
                 }
             } else if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setHealth(changeMonsterHealth - getDamage());
+
                 if (newMonsterHealth <= 0) {
                     levelUp();
                     control = false;
                 } else {
                     System.out.println("Enemy health: " + monster.setHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    Thread.sleep(1000);
                 }
             }
         }
@@ -129,7 +132,7 @@ public class Hero extends Creature {
                         System.out.println("Incorrect button. To choose between options use '1', '2', '3' or '4'");
                 }
             } catch (Exception ex) {
-                System.out.println("Letters are not allowed! You have to enter a number.");
+                System.out.println("Enter a number between 1-4.");
                 System.out.println("Hit <enter> to try again.");
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
@@ -139,7 +142,6 @@ public class Hero extends Creature {
     }
 
     private void levelUp() {
-        //super.setHeroMaxHealth(super.getMaxHealth() + 10);
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
         setHeroDamage(getDamage() + 10);
         this.level += 1;
@@ -225,7 +227,7 @@ public class Hero extends Creature {
         this.row += 1;
     }
 
-    public void restoreHealth(HealthPotion potion) { //Added method restore health
+    public void restoreHealth(HealthPotion potion) {
         if (getHealth() < getMaxHealth()) {
             setHeroHealth(getHealth() + potion.getHealthPoints());
             if (getHealth() >= getMaxHealth()) {
