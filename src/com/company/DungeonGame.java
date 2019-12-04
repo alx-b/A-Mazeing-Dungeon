@@ -18,7 +18,7 @@ public class DungeonGame {
         System.out.println("Start Game: Enter '1'");
         System.out.println("Exit Game: Enter '2'");
         String userInitialChoice = "";
-        while(invalidInput(userInitialChoice)) {
+        while (invalidInput(userInitialChoice)) {
             System.out.print("Enter choice: ");
             userInitialChoice = scanner1.next();
             switch (userInitialChoice) {
@@ -35,7 +35,7 @@ public class DungeonGame {
         }
     }
 
-    public boolean isHeroDead(){
+    public boolean isHeroDead() {
         return this.hero.getHealth() <= 0;
     }
 
@@ -50,7 +50,7 @@ public class DungeonGame {
             this.hero.displayInfo();
 
             this.maze.displayCurrentRoom(this.hero);
-            if (isHeroDead()){
+            if (isHeroDead()) {
                 break;
             }
             this.maze.print(this.hero);
@@ -66,25 +66,26 @@ public class DungeonGame {
                         }
                         break;
                     case "w":
-                        if (moveHeroNorth()){
+                        if (moveHeroNorth()) {
                             loop = false;
                         }
                         break;
                     case "d":
-                        if (moveHeroEast()){
+                        if (moveHeroEast()) {
                             loop = false;
                         }
                         break;
                     case "s":
-                        if (moveHeroSouth()){
+                        if (moveHeroSouth()) {
                             loop = false;
-                        };
+                        }
+                        ;
                         break;
 
                     case "b":
                         hero.openBackpack();
-                            loop = false;
-                            break;
+                        loop = false;
+                        break;
 
                     default:
                         System.out.println("Not a valid input!");
@@ -97,8 +98,7 @@ public class DungeonGame {
         /*
         if (isHeroDead()){
             System.out.println("YOU DIED, game over!");
-        }
-        else{
+        } else {
             System.out.println("\033[33;1;1mCongratulations Hero, you found the exit!\033[0m");
         }*/
     }
@@ -117,8 +117,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveWest();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -129,8 +128,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveEast();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -141,8 +139,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveNorth();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -153,8 +150,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveSouth();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -168,7 +164,7 @@ public class DungeonGame {
         this.hero.setName(name);
     }
 
-    private boolean invalidInput(String choice){
+    private boolean invalidInput(String choice) {
         return !choice.equals("1") && !choice.equals("2");
     }
 

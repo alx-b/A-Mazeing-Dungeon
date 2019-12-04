@@ -2,11 +2,9 @@ package com.company;
 
 public abstract class Creature {
     private String name;
-    protected int health;  //Changed health, maxHealth, damage to protected.
+    protected int health;
     protected int damage;
     protected int maxHealth;
-
-    //private final int MAX_HEALTH =  200;
 
     public Creature(String name, int health, int damage, int maxHealth) {
         this.name = name;
@@ -23,7 +21,7 @@ public abstract class Creature {
         this.name = newName;
     }
 
-    public abstract int getDamage(); //Changed to int (Mantas)
+    public abstract int getDamage();
 
     public int setHeroDamage(int damage) { // Setter for new damage?
         return this.damage = damage;
@@ -37,7 +35,7 @@ public abstract class Creature {
         return this.health = health;
     }
 
-    public int setHealth(int health){
+    public int setHealth(int health) {
         return this.health = health;
     } //Setter for monster health.
 
@@ -49,9 +47,7 @@ public abstract class Creature {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    } //Överflödig?
+    //public void setMaxHealth(int maxHealth) { this.maxHealth = maxHealth; } //Överflödig?
 
     public void displayInfo() {
         System.out.printf(
