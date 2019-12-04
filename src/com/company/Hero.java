@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Hero extends Creature {
     private int row;
     private int col;
+    private int level;
     private Backpack backpack = new Backpack("Backpack");
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
     private QuestItemBag questItemBag = new QuestItemBag();
@@ -17,6 +18,7 @@ public class Hero extends Creature {
         super(name, health, damage, maxHealth);
         this.row = 1; //12
         this.col = 13; //1
+        this.level = 1;
     }
 
     public int getTotalGoldInBag() {
@@ -139,8 +141,8 @@ public class Hero extends Creature {
     private void levelUp() {
         //super.setHeroMaxHealth(super.getMaxHealth() + 10);
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
-
         setHeroDamage(getDamage() + 10);
+        this.level += 1;
         System.out.println("You won!");
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
@@ -248,8 +250,8 @@ public class Hero extends Creature {
     public void displayInfo() {
         System.out.println("---- Hero ----");
         super.displayInfo();
-        System.out.println("Gold: " + this.bagOfGold);
-        System.out.println("---- Backpack ----");
-        this.backpack.showDescription();
+        System.out.printf("Level: %d  -  Gold: %s\n", this.level, this.bagOfGold);
+        System.out.printf("---- Backpack: %d items ----\n", this.backpack.numberOfItem());
+        //this.backpack.showDescription();
     }
 }
