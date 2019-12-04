@@ -26,7 +26,6 @@ public class Backpack extends Item {
         System.out.println("Please input item name which you want to remove from the Backpack");
         String nameToSearchFor = scanner.nextLine();
         nameToSearchFor.toLowerCase();
-        //String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 
         java.util.Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
