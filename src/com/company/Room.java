@@ -82,7 +82,7 @@ public class Room {
         String[] events = {
                 "You enter a spacious room with several pillars that reach floor to ceiling,\nunfortunately there is nothing for you",
                 "There is nothing in this room.",
-                "There is nothing in this room3."
+                "There is nothing in this room."
         };
         int idx = randomizer(0, events.length - 1);
         this.events.add(events[idx]);
@@ -93,7 +93,7 @@ public class Room {
     }
 
     private void addDragonToRoom(){
-        this.dragon = new DragonBoss("Dino, the maze-keeper", 1000, 100, 1000);
+        this.dragon = new DragonBoss("Dino, the maze-keeper", 500, 50, 500);
     }
 
     private void addDragonToothToRoom(Hero hero) {
