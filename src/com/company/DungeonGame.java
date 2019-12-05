@@ -1,5 +1,6 @@
 package com.company;
 
+
 import java.util.Scanner;
 
 public class DungeonGame {
@@ -11,13 +12,13 @@ public class DungeonGame {
         this.maze = new Maze(hero);
     }
 
-    public void showMainMenu() {
+    public void showMainMenu() throws InterruptedException {
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("---- Welcome to the A-Mazeing Dungeon! ----");
         System.out.println("Start Game: Enter '1'");
         System.out.println("Exit Game: Enter '2'");
         String userInitialChoice = "";
-        while(invalidInput(userInitialChoice)) {
+        while (invalidInput(userInitialChoice)) {
             System.out.print("Enter choice: ");
             userInitialChoice = scanner1.next();
             switch (userInitialChoice) {
@@ -34,77 +35,70 @@ public class DungeonGame {
         }
     }
 
-    public boolean isHeroDead(){
+    public boolean isHeroDead() {
         return this.hero.getHealth() <= 0;
     }
 
-    public Hero getHero() {
-        return hero;
-    }
+    //public Hero getHero() {return hero;}
 
-    private void start() {
+    private void start() throws InterruptedException {
         Scanner scan = new Scanner(System.in);
-        while (!isHeroInLastRoom() && !isHeroDead()) {
-            this.maze.print(this.hero);
+        while (!isHeroDead()) {
             this.hero.displayInfo();
 
-            this.maze.displayCurrentRoom(this.hero);
-            if (isHeroDead()){
+            if (!isHeroDead()) {
+                this.maze.displayCurrentRoom(this.hero);
+            } else {
                 break;
             }
-            menu();
-            boolean loop = true;
-            while (loop) {
-                System.out.print("Where do you want to go: ");
-                String choice = scan.nextLine();
-                switch (choice) {
-                    case "a":
-                        if (moveHeroWest()) {
-                            loop = false;
-                        }
-                        break;
-                    case "w":
-                        if (moveHeroNorth()){
-                            loop = false;
-                        }
-                        break;
-                    case "d":
-                        if (moveHeroEast()){
-                            loop = false;
-                        }
-                        break;
-                    case "s":
-                        if (moveHeroSouth()){
-                            loop = false;
-                        };
-                        break;
 
-                    case "b":
-                        hero.openBackpack();
+            this.maze.print(this.hero);
+            menu();
+            if (!isHeroDead()) {
+                boolean loop = true;
+                while (loop) {
+                    System.out.print("Choose an action: \n");
+                    String choice = scan.nextLine();
+                    switch (choice) {
+                        case "a":
+                            if (moveHeroWest()) {
+                                loop = false;
+                            }
+                            break;
+                        case "w":
+                            if (moveHeroNorth()) {
+                                loop = false;
+                            }
+                            break;
+                        case "d":
+                            if (moveHeroEast()) {
+                                loop = false;
+                            }
+                            break;
+                        case "s":
+                            if (moveHeroSouth()) {
+                                loop = false;
+                            }
+                            ;
+                            break;
+
+                        case "b":
+                            hero.openBackpack();
                             loop = false;
                             break;
 
-                    default:
-                        System.out.println("Not a valid input!");
-                        loop = true;
-                        break;
+                        default:
+                            System.out.println("Not a valid input!");
+                            loop = true;
+                            break;
+                    }
                 }
             }
         }
-        if (isHeroDead()){
-            System.out.println("YOU DIED, game over!");
-        }
-        else{
-            System.out.println("You found the exit!");
-        }
-    }
-
-    private boolean isHeroInLastRoom() {
-        return (hero.getRow() == 0 && hero.getCol() == 1);
+        System.out.println("\033[0;31mYou died, game over!\033[0m");
     }
 
     private void menu() {
-
         System.out.println("---- Actions ----");
         System.out.println("Enter a to go West");
         System.out.println("Enter w to go North");
@@ -119,8 +113,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveWest();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -131,8 +124,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveEast();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -143,8 +135,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveNorth();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -155,8 +146,7 @@ public class DungeonGame {
             this.maze.removeHeroFromMapAndMaze(this.hero);
             this.hero.moveSouth();
             return true;
-        }
-        else{
+        } else {
             System.out.println("There is a wall in the way.");
             return false;
         }
@@ -170,9 +160,8 @@ public class DungeonGame {
         this.hero.setName(name);
     }
 
-    private boolean invalidInput(String choice){
+    private boolean invalidInput(String choice) {
         return !choice.equals("1") && !choice.equals("2");
     }
-
 
 }

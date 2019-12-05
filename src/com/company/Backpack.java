@@ -23,42 +23,41 @@ public class Backpack extends Item {
 
     public void removeItem() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please input item name which you want to remove from the Backpack");
+        System.out.println("Enter item name, in lower case letters, you wish to remove");
         String nameToSearchFor = scanner.nextLine();
         nameToSearchFor.toLowerCase();
-        //String nameToSearchFor = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 
         java.util.Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
             if (iter.next().getName().equals(nameToSearchFor)) {
                 iter.remove();
+                break;
             }
         }
     }
 
-    public void showItemsInBackpack(){
-        if(items == null){
+    public void showItemsInBackpack() {
+        if (items.isEmpty()) {
             System.out.println("Backpack is empty.");
-        } else{
-        for(Item item : items) {
-            System.out.println(item);
-        }
+        } else {
+            for (Item item : items) {
+                System.out.println(item);
+            }
         }
     }
 
-    public void removeItemFromBackpack(Item item){
+    public void removeItemFromBackpack(Item item) {
         items.remove(item);
+    }
+
+    public int numberOfItem(){
+        return this.items.size();
     }
 
     public ArrayList<Item> getItems() {
         return items;
     }
 
-    public void showDescription() {
-        for (Item item : items) {
-            System.out.println(item);
-        }
-    }
 
     public String toString() {
         String results = "+";
