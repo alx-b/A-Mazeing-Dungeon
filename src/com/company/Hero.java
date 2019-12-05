@@ -143,7 +143,7 @@ public class Hero extends Creature {
 
     private void levelUp() {
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
-        setHeroDamage(getDamage() + 10);
+        setHeroDamage(baseHeroDamage + 10);
         this.level += 1;
         System.out.println("===========================");
         System.out.println("\u001B[32mYou Won!\033[0m");
