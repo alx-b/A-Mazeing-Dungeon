@@ -38,12 +38,29 @@ public class Maze {
             {"#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", " ", "#"},
             {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
     };
+
+    private enum Symbol{
+        WALL("#"),
+        HERO("H"),
+        ROOM(" "),
+        STORE("S"),
+        DRAGON("D"),
+        TOOTH("T");
+
+        public String value;
+
+        Symbol(String value){
+            this.value = value;
+        }
+    }
+    /*
     private final String WALL = "#";
     private final String HERO = "H";
     private final String ROOM = " ";
     private final String STORE = "S";
     private final String DRAGON = "D";
     private final String TOOTH = "T";
+    */
     private ArrayList<Room> rooms = new ArrayList<>();
     private Room currentRoom;
 
@@ -81,11 +98,11 @@ public class Maze {
         for (int row = 0; row < this.maze.length; row++) {
             for (int col = 0; col < this.maze[0].length; col++) {
                 if (isARoom(new int[]{row, col})) {
-                    if (this.maze[row][col].equals(STORE)) {
+                    if (this.maze[row][col].equals(Symbol.STORE.value)) {
                         this.rooms.add(new Room("Store", row, col));
-                    } else if (this.maze[row][col].equals(DRAGON)){
+                    } else if (this.maze[row][col].equals(Symbol.DRAGON.value)){
                         this.rooms.add(new Room("Dragon", row, col));
-                    } else if (this.maze[row][col].equals(TOOTH)){
+                    } else if (this.maze[row][col].equals(Symbol.TOOTH.value)){
                         this.rooms.add(new Room("Dragon Tooth", row, col));
                     } else {
                         this.rooms.add(new Room("Room", row, col));
@@ -98,27 +115,27 @@ public class Maze {
     public boolean isARoom(int[] position) {
         int row = position[0];
         int col = position[1];
-        return !this.maze[row][col].equals(WALL);
+        return !this.maze[row][col].equals(Symbol.WALL.value);
     }
 
     public void removeHeroFromMapAndMaze(Hero hero) {
         // Reset the map tile the Hero was on to its old icon.
         //=========================================
         if (this.currentRoom.getName().equals("Store")) {
-            this.map[hero.getRow()][hero.getCol()] = STORE;
-            this.maze[hero.getRow()][hero.getCol()] = STORE;
+            this.map[hero.getRow()][hero.getCol()] = Symbol.STORE.value;
+            this.maze[hero.getRow()][hero.getCol()] = Symbol.STORE.value;
         } else if (this.currentRoom.getName().equals("Dragon")) {
-            this.map[hero.getRow()][hero.getCol()] = DRAGON;
-            this.maze[hero.getRow()][hero.getCol()] = DRAGON;
+            this.map[hero.getRow()][hero.getCol()] = Symbol.DRAGON.value;
+            this.maze[hero.getRow()][hero.getCol()] = Symbol.DRAGON.value;
         } else {
-            this.map[hero.getRow()][hero.getCol()] = ROOM;
-            this.maze[hero.getRow()][hero.getCol()] = ROOM;
+            this.map[hero.getRow()][hero.getCol()] = Symbol.ROOM.value;
+            this.maze[hero.getRow()][hero.getCol()] = Symbol.ROOM.value;
         }
     }
 
     private void addHeroOnMapAndMaze(Hero hero) {
-        this.map[hero.getRow()][hero.getCol()] = HERO;
-        this.maze[hero.getRow()][hero.getCol()] = HERO;
+        this.map[hero.getRow()][hero.getCol()] = Symbol.HERO.value;
+        this.maze[hero.getRow()][hero.getCol()] = Symbol.HERO.value;
     }
 
     public void printMap() {

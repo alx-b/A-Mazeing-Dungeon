@@ -25,12 +25,14 @@ public class DragonBoss extends Monster {
                         System.out.println("Shall be it!");
                         hero.heroFight(this);
                         if (hero.getHealth() > 0 && this.getHealth() <= 0) {
-
                             System.out.println("It's enough! I give up. You are a worthy opponent, therefore, i grant you my treasure! ");
                             System.out.println("---CONGRATULATIONS ON COMPLETING THE GAME!---");
                             System.out.println("Hit <enter> to EXIT.");
                             scanner.nextLine();
                             System.exit(0);
+                        }
+                        else{
+                            isMakingChoice = false;
                         }
                         break;
                     case 2:
