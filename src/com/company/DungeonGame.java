@@ -46,48 +46,52 @@ public class DungeonGame {
         while (!isHeroDead()) {
             this.hero.displayInfo();
 
-            this.maze.displayCurrentRoom(this.hero);
-            if (isHeroDead()) {
+            if (!isHeroDead()) {
+                this.maze.displayCurrentRoom(this.hero);
+            } else {
                 break;
             }
+
             this.maze.print(this.hero);
             menu();
-            boolean loop = true;
-            while (loop) {
-                System.out.print("Choose an action: ");
-                String choice = scan.nextLine();
-                switch (choice) {
-                    case "a":
-                        if (moveHeroWest()) {
-                            loop = false;
-                        }
-                        break;
-                    case "w":
-                        if (moveHeroNorth()) {
-                            loop = false;
-                        }
-                        break;
-                    case "d":
-                        if (moveHeroEast()) {
-                            loop = false;
-                        }
-                        break;
-                    case "s":
-                        if (moveHeroSouth()) {
-                            loop = false;
-                        }
-                        ;
-                        break;
+            if (!isHeroDead()) {
+                boolean loop = true;
+                while (loop) {
+                    System.out.print("Choose an action: ");
+                    String choice = scan.nextLine();
+                    switch (choice) {
+                        case "a":
+                            if (moveHeroWest()) {
+                                loop = false;
+                            }
+                            break;
+                        case "w":
+                            if (moveHeroNorth()) {
+                                loop = false;
+                            }
+                            break;
+                        case "d":
+                            if (moveHeroEast()) {
+                                loop = false;
+                            }
+                            break;
+                        case "s":
+                            if (moveHeroSouth()) {
+                                loop = false;
+                            }
+                            ;
+                            break;
 
-                    case "b":
-                        hero.openBackpack();
-                        loop = false;
-                        break;
+                        case "b":
+                            hero.openBackpack();
+                            loop = false;
+                            break;
 
-                    default:
-                        System.out.println("Not a valid input!");
-                        loop = true;
-                        break;
+                        default:
+                            System.out.println("Not a valid input!");
+                            loop = true;
+                            break;
+                    }
                 }
             }
         }
