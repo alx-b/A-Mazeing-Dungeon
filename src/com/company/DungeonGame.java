@@ -57,7 +57,7 @@ public class DungeonGame {
             if (!isHeroDead()) {
                 boolean loop = true;
                 while (loop) {
-                    System.out.print("Choose an action: ");
+                    System.out.print("Choose an action: \n");
                     String choice = scan.nextLine();
                     switch (choice) {
                         case "a":
