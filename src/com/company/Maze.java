@@ -144,16 +144,16 @@ public class Maze {
         System.out.println("------ Map ------");
         for (String[] row : this.map) {
             for (String elem : row) {
-                if (elem.equals("#")) {
+                if (elem.equals(Symbol.WALL.value)) {
                     elem = " ";
                     System.out.printf("\033[1;47m %s \033[0m", elem);
-                } else if (elem.equals("H")) {
+                } else if (elem.equals(Symbol.HERO.value)) {
                     System.out.printf("\033[30;1;44m %s \033[0m", elem);
-                } else if (elem.equals("D")) {
+                } else if (elem.equals(Symbol.DRAGON.value)) {
                     System.out.printf("\033[30;1;42m %s \033[0m", elem);
-                } else if (elem.equals("S")) {
+                } else if (elem.equals(Symbol.STORE.value)) {
                     System.out.printf("\033[30;1;43m %s \033[0m", elem);
-                } else if (elem.equals("T")) {
+                } else if (elem.equals(Symbol.TOOTH.value)) {
                     System.out.printf("\033[30;1;42m %s \033[0m", elem);
                 } else {
                     System.out.printf(" %s ", elem);
