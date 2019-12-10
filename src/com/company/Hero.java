@@ -16,10 +16,11 @@ public class Hero extends Creature {
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12;
-        this.col = 1;
+        //this.row = 12;
+        //this.col = 1;
         this.level = 1;
     }
+
 
     public int getTotalGoldInBag() {
         return this.bagOfGold.getAmountOfGold();
@@ -33,12 +34,24 @@ public class Hero extends Creature {
         this.bagOfGold.addAmountOfGold(gold);
     }
 
+    public void addQuestItemToQuestBag(QuestItem item){
+        this.questItemBag.addItem(item);
+    }
+
     public int getRow() {
         return row;
     }
 
     public int getCol() {
         return col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 
     public QuestItemBag getQuestItemBag() {

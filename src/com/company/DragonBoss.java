@@ -37,7 +37,7 @@ public class DragonBoss extends Monster {
                         break;
                     case 2:
                         System.out.println("I have lost my precious tooth somewhere in this maze, go find it, and I will reward you.");
-                        if (hero.getQuestItemBag().isDragonToothInBag()) {
+                        if (hero.getQuestItemBag().contains("Dragon Tooth")) {
                             System.out.println("I see you have found my tooth! Thank you, traveler. I'll give you my treasure for your troubles.");
                             System.out.println("---CONGRATULATIONS ON COMPLETING THE GAME!---");
                             System.out.println("Hit <enter> to EXIT.");
