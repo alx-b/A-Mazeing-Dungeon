@@ -3,14 +3,17 @@ package com.company;
 public class Sword extends Item implements Comparable<Sword> {
     private int swordDamage;
 
-    public Sword(String name, int swordDamage) {
-        super(name);
+
+    public Sword(String name, int swordDamage, int value) {
+        super(name, value);
         this.swordDamage = swordDamage;
+
     }
 
     public int getSwordDamage() {
         return swordDamage;
     }
+
 
     @Override
     public String toString() {

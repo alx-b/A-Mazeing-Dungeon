@@ -9,8 +9,8 @@ public class Hero extends Creature {
     private int row;
     private int col;
     private int level;
-    private Backpack backpack = new Backpack("Backpack");
-    private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    private Backpack backpack = new Backpack("Backpack",0);
+    private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100,0);
     private QuestItemBag questItemBag = new QuestItemBag();
     private int baseHeroDamage = getDamage();
 
@@ -107,14 +107,17 @@ public class Hero extends Creature {
                 switch (userInput) {
 
                     case 1:
-                        if (getHealth() < getMaxHealth()) {
-                            consumeHealthPotion();
-                            System.out.println("Your health is now " + getHealth());
-                        } else if (getHealth() >= getMaxHealth()) {
-                            setHeroHealth(getMaxHealth());
-                            System.out.println("Your health is full.");
+                        if (returnHealthPotionFromBackpack() == null) {
+                            System.out.println("You have no health potions in your inventory.");
+                        } else {
+                            if (getHealth() < getMaxHealth()) {
+                                consumeHealthPotion();
+                                System.out.println("Your health is now " + getHealth());
+                            } else if (getHealth() >= getMaxHealth()) {
+                                setHeroHealth(getMaxHealth());
+                                System.out.println("Your health is full.");
+                            }
                         }
-
                         break;
                     case 2:
                         equipSword();
@@ -150,7 +153,7 @@ public class Hero extends Creature {
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
-        System.out.println("Damage is: " + getDamage());
+        System.out.println("Base damage is: " + getDamage());
         System.out.println("===========================");
         System.out.println(" ");
 
@@ -178,22 +181,34 @@ public class Hero extends Creature {
     }
 
 
-    public HealthPotion returnHealthPotion() {
+    public HealthPotion returnHealthPotionFromBackpack() {
+        ArrayList<HealthPotion> healthPotions = new ArrayList<>();
         for (Item item : backpack.getItems()) {
             if (item instanceof HealthPotion) {
-                return (HealthPotion) item;
+                healthPotions.add((HealthPotion) item);
+            }
+            Collections.sort(healthPotions);
+            for (HealthPotion potion : healthPotions) {
+                return potion;
             }
         }
         return null;
     }
+/*
+    public Sword returnSwordFromBackpack() {
+        for (Item item : backpack.getItems()) {
+            if (item instanceof Sword) {
+                return (Sword) item;
+            }
+        }
+        return null;
+    }
+*/
+
 
     public void consumeHealthPotion() {
-        if (returnHealthPotion() != null) {
-            restoreHealth(returnHealthPotion());
-            backpack.removeItemFromBackpack(returnHealthPotion());
-        } else {
-            System.out.println("You do not have any health potions.");
-        }
+        restoreHealth(returnHealthPotionFromBackpack());
+        backpack.removeItemFromBackpack(returnHealthPotionFromBackpack());
     }
 
     public void restoreHealth(HealthPotion potion) {
