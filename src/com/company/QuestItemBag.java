@@ -1,8 +1,9 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class QuestItemBag {
+public class QuestItemBag implements Serializable {
     private ArrayList<QuestItem> questItems = new ArrayList<>();
 
     public QuestItemBag() {

@@ -1,11 +1,12 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Hero extends Creature {
+public class Hero extends Creature implements Serializable {
     private int row;
     private int col;
     private int level;
@@ -181,6 +182,11 @@ public class Hero extends Creature {
             }
 
         }
+    }
+//Saves game to file
+    public void saveGame(){
+        Maze maze = new Maze(this);
+        FileUtility.writeObject(maze, "SaveGame.ser");
     }
 
     private void levelUp() {

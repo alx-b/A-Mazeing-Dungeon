@@ -1,10 +1,11 @@
 package com.company;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Store {
+public class Store implements Serializable {
 
     private Sword goldenSword = new Sword("Golden Sword", 50, 50);
     private Sword dagger = new Sword("Ebony Dagger", 100, 200);

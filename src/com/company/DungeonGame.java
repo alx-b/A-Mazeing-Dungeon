@@ -1,9 +1,10 @@
 package com.company;
 
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class DungeonGame {
+public class DungeonGame implements Serializable {
     private Hero hero;
     private Maze maze;
 
@@ -87,6 +88,10 @@ public class DungeonGame {
                             loop = false;
                             break;
 
+                        case "y":
+                            hero.saveGame();
+                            break;
+
                         default:
                             System.out.println("Not a valid input!");
                             loop = true;
@@ -105,6 +110,7 @@ public class DungeonGame {
         System.out.println("Enter d to go East");
         System.out.println("Enter s to go South");
         System.out.println("Enter b to open your backpack");
+        System.out.println("Enter y to save game");
 
     }
 
