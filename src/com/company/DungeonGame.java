@@ -29,8 +29,12 @@ public class DungeonGame implements Serializable {
                     start();
                     break;
                 case "2":
-                    loadGame();
-                    start();
+                    try {
+                        loadGame();
+                        start();
+                    }catch(Exception ex){
+                        System.out.println("Saved game not found!");
+                    }
                     break;
 
                 case "3":
@@ -98,6 +102,21 @@ public class DungeonGame implements Serializable {
                             FileUtility.writeObject(this, "SaveGame.ser");
                             break;
 
+                        case "u":
+                            System.out.println("Save game before leaving! Enter 'y' to quit. Enter 'n' to cancel");
+                            Scanner scanner = new Scanner(System.in);
+                            String quitGame = scanner.nextLine();
+                            switch(quitGame){
+                                case "y":
+                                    System.out.println("Hope to see you soon!");
+                                    System.exit(0);
+                                    break;
+                                case "n":
+                                    loop = true;
+                                    break;
+                            }
+                            break;
+
                         default:
                             System.out.println("Not a valid input!");
                             loop = true;
@@ -125,6 +144,8 @@ public class DungeonGame implements Serializable {
         System.out.println("Enter s to go South");
         System.out.println("Enter b to open your backpack");
         System.out.println("Enter y to save game");
+        System.out.println("Enter u to quit game");
+        ;
 
     }
 
