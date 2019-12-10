@@ -48,42 +48,68 @@ public class Hero extends Creature {
     public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
+        monster.displayInfo();
 
         while (control) {
 
             int fight = attack();
-            monster.displayInfo();
+            int fightMonster = attackMonster();
 
-            if (fight < 50) {
-                int changeHeroHealth = super.getHealth();
-                System.out.println(" ");
-                System.out.println("The enemy hit you!");
-                int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
-                if (newHeroHealth <= 0) {
-                    System.out.println("Health: 0" + "/" + super.maxHealth);
-                    control = false;
-                } else {
-                    System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-                    Thread.sleep(1500);
-                }
-            } else if (fight >= 50) {
+
+            if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setMonsterHealth(changeMonsterHealth - getDamage());
 
                 if (newMonsterHealth <= 0) {
+                    System.out.println("Enemy died.");
                     levelUp();
                     control = false;
                 } else {
                     System.out.println("Enemy health: " + monster.setMonsterHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
                     Thread.sleep(1500);
                 }
+
+            } else {
+                System.out.println(" ");
+                System.out.println("You missed!");
             }
+
+            if (monster.getHealth() > 0) {
+                if (fightMonster >= 50) {
+                    int changeHeroHealth = super.getHealth();
+                    System.out.println(" ");
+                    System.out.println("The enemy hit you!");
+                    int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
+
+                    if (newHeroHealth <= 0) {
+                        System.out.println("You died.");
+                        //System.out.println("Health: 0" + "/" + super.maxHealth);
+                        control = false;
+                    } else {
+                        System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                        Thread.sleep(1500);
+                    }
+
+                } else {
+                    System.out.println(" ");
+                    System.out.println("Enemy missed!");
+                }
+            }
+
         }
     }
 
     private int attack() {
+        Random r = new Random();
+        int low = 1;
+        int high = 100;
+        int result = r.nextInt(high - low) + low;
+        return result;
+    }
+
+    private int attackMonster() {
         Random r = new Random();
         int low = 1;
         int high = 100;

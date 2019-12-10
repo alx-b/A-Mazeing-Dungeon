@@ -93,7 +93,7 @@ public class Room {
     }
 
     private void addDragonToRoom(){
-        this.dragon = new DragonBoss("Dino, the maze-keeper", 500, 50, 500);
+        this.dragon = new DragonBoss("Dino, the maze-keeper", 700, 50, 700);
     }
 
     private void addDragonToothToRoom(Hero hero) {
