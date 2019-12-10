@@ -6,7 +6,8 @@ public enum Color {
     WHITE_BG_GREEN("\033[30;42m"),
     WHITE_BG_BLUE("\033[30;44m"),
     WHITE_BG_YELLOW("\033[30;43m"),
-    WHITE_BG_MAGENTA("\033[30;45m");
+    WHITE_BG_MAGENTA("\033[30;45m"),
+    BG_RED("\u001B[41m");
 
     public String v;
     Color(String value){
