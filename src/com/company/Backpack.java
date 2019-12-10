@@ -8,8 +8,8 @@ public class Backpack extends Item {
     private static final int MAX_TOTAL_ITEM = 10;
     private ArrayList<Item> items = new ArrayList<>();
 
-    public Backpack(String name) {
-        super(name);
+    public Backpack(String name, int value) {
+        super(name, value);
     }
 
 
@@ -31,6 +31,11 @@ public class Backpack extends Item {
         while (iter.hasNext()) {
             if (iter.next().getName().equals(nameToSearchFor)) {
                 iter.remove();
+                System.out.println(nameToSearchFor + " is removed from your backpack.");
+                break;
+            }
+            else{
+                System.out.println("Item with this name not found.");
                 break;
             }
         }

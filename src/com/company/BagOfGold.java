@@ -4,8 +4,8 @@ public class BagOfGold extends Item {
 
     private int amountOfGold;
 
-    public BagOfGold(String name, int amountOfGold) {
-        super(name);
+    public BagOfGold(String name, int amountOfGold, int value) {
+        super(name, value);
         this.amountOfGold = amountOfGold;
     }
 

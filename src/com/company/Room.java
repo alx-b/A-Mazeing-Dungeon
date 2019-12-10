@@ -102,9 +102,9 @@ public class Room {
 
     private HealthPotion randomPotion() {
         HealthPotion[] potions = {
-                new HealthPotion("Small health potion", 10),
-                new HealthPotion("Medium health potion", 50),
-                new HealthPotion("Big health potion", 100)
+                new HealthPotion("Small health potion", 10, 5),
+                new HealthPotion("Medium health potion", 50, 15),
+                new HealthPotion("Big health potion", 100, 30)
         };
         int idx = randomizer(0, potions.length - 1);
         return potions[idx];
@@ -155,9 +155,9 @@ public class Room {
 
     private Sword randomSword() {
         Sword[] swords = {
-                new Sword("Wooden Dagger", 2),
-                new Sword("Wooden Sword", 4),
-                new Sword("Fake Excalibur", 10)
+                new Sword("Wooden Dagger", 2, 10),
+                new Sword("Wooden Sword", 4, 20),
+                new Sword("Fake Excalibur", 10, 50)
         };
         int idx = randomizer(0, swords.length - 1);
         return swords[idx];
