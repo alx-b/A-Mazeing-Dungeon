@@ -183,11 +183,6 @@ public class Hero extends Creature implements Serializable {
 
         }
     }
-//Saves game to file
-    public void saveGame(){
-        DungeonGame game = new DungeonGame();
-        FileUtility.writeObject(game, "SaveGame.ser");
-    }
 
     private void levelUp() {
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
@@ -239,16 +234,6 @@ public class Hero extends Creature implements Serializable {
         }
         return null;
     }
-/*
-    public Sword returnSwordFromBackpack() {
-        for (Item item : backpack.getItems()) {
-            if (item instanceof Sword) {
-                return (Sword) item;
-            }
-        }
-        return null;
-    }
-*/
 
 
     public void consumeHealthPotion() {
