@@ -1,25 +1,27 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Hero extends Creature {
+public class Hero extends Creature implements Serializable {
     private int row;
     private int col;
     private int level;
-    private Backpack backpack = new Backpack("Backpack");
-    private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100);
+    private Backpack backpack = new Backpack("Backpack",0);
+    private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100,0);
     private QuestItemBag questItemBag = new QuestItemBag();
     private int baseHeroDamage = getDamage();
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
-        this.row = 12;
-        this.col = 1;
+        //this.row = 12;
+        //this.col = 1;
         this.level = 1;
     }
+
 
     public int getTotalGoldInBag() {
         return this.bagOfGold.getAmountOfGold();
@@ -33,12 +35,24 @@ public class Hero extends Creature {
         this.bagOfGold.addAmountOfGold(gold);
     }
 
+    public void addQuestItemToQuestBag(QuestItem item){
+        this.questItemBag.addItem(item);
+    }
+
     public int getRow() {
         return row;
     }
 
     public int getCol() {
         return col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 
     public QuestItemBag getQuestItemBag() {
@@ -48,42 +62,68 @@ public class Hero extends Creature {
     public void heroFight(Monster monster) throws InterruptedException {
 
         boolean control = true;
+        monster.displayInfo();
 
         while (control) {
 
             int fight = attack();
-            monster.displayInfo();
+            int fightMonster = attackMonster();
 
-            if (fight < 50) {
-                int changeHeroHealth = super.getHealth();
-                System.out.println(" ");
-                System.out.println("The enemy hit you!");
-                int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
-                if (newHeroHealth <= 0) {
-                    System.out.println("Health: 0" + "/" + super.maxHealth);
-                    control = false;
-                } else {
-                    System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
-                    Thread.sleep(1500);
-                }
-            } else if (fight >= 50) {
+
+            if (fight >= 50) {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
                 int newMonsterHealth = monster.setMonsterHealth(changeMonsterHealth - getDamage());
 
                 if (newMonsterHealth <= 0) {
+                    System.out.println("Enemy died.");
                     levelUp();
                     control = false;
                 } else {
                     System.out.println("Enemy health: " + monster.setMonsterHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
                     Thread.sleep(1500);
                 }
+
+            } else {
+                System.out.println(" ");
+                System.out.println("You missed!");
             }
+
+            if (monster.getHealth() > 0) {
+                if (fightMonster >= 50) {
+                    int changeHeroHealth = super.getHealth();
+                    System.out.println(" ");
+                    System.out.println("The enemy hit you!");
+                    int newHeroHealth = super.setHeroHealth(changeHeroHealth - monster.getDamage());
+
+                    if (newHeroHealth <= 0) {
+                        System.out.println("You died.");
+                        //System.out.println("Health: 0" + "/" + super.maxHealth);
+                        control = false;
+                    } else {
+                        System.out.println("Health: " + super.setHeroHealth(changeHeroHealth - monster.getDamage()) + "/" + super.maxHealth);
+                        Thread.sleep(1500);
+                    }
+
+                } else {
+                    System.out.println(" ");
+                    System.out.println("Enemy missed!");
+                }
+            }
+
         }
     }
 
     private int attack() {
+        Random r = new Random();
+        int low = 1;
+        int high = 100;
+        int result = r.nextInt(high - low) + low;
+        return result;
+    }
+
+    private int attackMonster() {
         Random r = new Random();
         int low = 1;
         int high = 100;
@@ -107,14 +147,17 @@ public class Hero extends Creature {
                 switch (userInput) {
 
                     case 1:
-                        if (getHealth() < getMaxHealth()) {
-                            consumeHealthPotion();
-                            System.out.println("Your health is now " + getHealth());
-                        } else if (getHealth() >= getMaxHealth()) {
-                            setHeroHealth(getMaxHealth());
-                            System.out.println("Your health is full.");
+                        if (returnHealthPotionFromBackpack() == null) {
+                            System.out.println("You have no health potions in your inventory.");
+                        } else {
+                            if (getHealth() < getMaxHealth()) {
+                                consumeHealthPotion();
+                                System.out.println("Your health is now " + getHealth());
+                            } else if (getHealth() >= getMaxHealth()) {
+                                setHeroHealth(getMaxHealth());
+                                System.out.println("Your health is full.");
+                            }
                         }
-
                         break;
                     case 2:
                         equipSword();
@@ -150,7 +193,7 @@ public class Hero extends Creature {
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
-        System.out.println("Damage is: " + getDamage());
+        System.out.println("Base damage is: " + getDamage());
         System.out.println("===========================");
         System.out.println(" ");
 
@@ -178,22 +221,24 @@ public class Hero extends Creature {
     }
 
 
-    public HealthPotion returnHealthPotion() {
+    public HealthPotion returnHealthPotionFromBackpack() {
+        ArrayList<HealthPotion> healthPotions = new ArrayList<>();
         for (Item item : backpack.getItems()) {
             if (item instanceof HealthPotion) {
-                return (HealthPotion) item;
+                healthPotions.add((HealthPotion) item);
+            }
+            Collections.sort(healthPotions);
+            for (HealthPotion potion : healthPotions) {
+                return potion;
             }
         }
         return null;
     }
 
+
     public void consumeHealthPotion() {
-        if (returnHealthPotion() != null) {
-            restoreHealth(returnHealthPotion());
-            backpack.removeItemFromBackpack(returnHealthPotion());
-        } else {
-            System.out.println("You do not have any health potions.");
-        }
+        restoreHealth(returnHealthPotionFromBackpack());
+        backpack.removeItemFromBackpack(returnHealthPotionFromBackpack());
     }
 
     public void restoreHealth(HealthPotion potion) {

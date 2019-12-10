@@ -1,15 +1,18 @@
 package com.company;
 
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Store {
+public class Store implements Serializable {
 
-    private Sword goldenSword = new Sword("Golden Sword", 50);
-    private Sword dagger = new Sword("Ebony Dagger", 100);
-    private Sword claymore = new Sword("Obsidian Claymore", 150);
-    private HealthPotion weakHealthPotion = new HealthPotion("Weak Health Potion", 50);
-    private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 70);
-    private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 100);
+    private Sword goldenSword = new Sword("Golden Sword", 50, 50);
+    private Sword dagger = new Sword("Ebony Dagger", 100, 200);
+    private Sword claymore = new Sword("Obsidian Claymore", 150, 400);
+    private HealthPotion weakHealthPotion = new HealthPotion("Weak Health Potion", 50, 25);
+    private HealthPotion mediumHealthPotion = new HealthPotion("Medium Health Potion", 70, 35);
+    private HealthPotion strongHealthPotion = new HealthPotion("Strong Health Potion", 100, 50);
 
 
     public Store() {
@@ -27,78 +30,89 @@ public class Store {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("\033[33;1;1mWelcome to the store, traveler!\033[0m");
-                System.out.println("\033[33;1;1mWhat would you like to buy?\033[0m");
-                System.out.printf(
-                        "'1' Name: %s. Sword damage: %d. Price: %d gold.\n",
-                        goldenSword.getName(), goldenSword.getSwordDamage(), goldenSword.getPrice()
-                );
-                System.out.printf(
-                        "'2' Name: %s. Sword damage: %d. Price: %d gold.\n",
-                        dagger.getName(), dagger.getSwordDamage(), dagger.getPrice()
-                );
-                System.out.printf(
-                        "'3' Name: %s. Sword damage: %d. Price: %d gold.\n",
-                        claymore.getName(), claymore.getSwordDamage(), claymore.getPrice()
-                );
-                System.out.printf(
-                        "'4' Name: %s. Health Points: %d. Price: %d gold.\n",
-                        weakHealthPotion.getName(), weakHealthPotion.getHealthPoints(), weakHealthPotion.getPrice()
-                );
-                System.out.printf(
-                        "'5' Name: %s. Health Points: %d. Price: %d gold.\n",
-                        mediumHealthPotion.getName(), mediumHealthPotion.getHealthPoints(), mediumHealthPotion.getPrice()
-                );
-                System.out.printf(
-                        "'6' Name: %s. Health Points: %d. Price: %d gold.\n",
-                        strongHealthPotion.getName(), strongHealthPotion.getHealthPoints(), strongHealthPotion.getPrice()
-                );
-                System.out.println("'7' Exit store");
+                System.out.println("'1' To buy goods.");
+                System.out.println("'2' To sell goods");
+                System.out.println("'3' Exit store");
                 System.out.print("Enter number: ");
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
-                        if (hero.getTotalGoldInBag() >= goldenSword.getPrice()) {
-                            youBoughtSword(hero, goldenSword);
-                        } else {
-                            notEnoughGold();
+                        Scanner buyItem = new Scanner(System.in);
+                        System.out.println("\033[33;1;1mWhat would you like to buy?\033[0m");
+                        System.out.printf(
+                                "'1' Name: %s. Sword damage: %d. Price: %d gold.\n",
+                                goldenSword.getName(), goldenSword.getSwordDamage(), goldenSword.getPrice()
+                        );
+                        System.out.printf(
+                                "'2' Name: %s. Sword damage: %d. Price: %d gold.\n",
+                                dagger.getName(), dagger.getSwordDamage(), dagger.getPrice()
+                        );
+                        System.out.printf(
+                                "'3' Name: %s. Sword damage: %d. Price: %d gold.\n",
+                                claymore.getName(), claymore.getSwordDamage(), claymore.getPrice()
+                        );
+                        System.out.printf(
+                                "'4' Name: %s. Health Points: %d. Price: %d gold.\n",
+                                weakHealthPotion.getName(), weakHealthPotion.getHealthPoints(), weakHealthPotion.getPrice()
+                        );
+                        System.out.printf(
+                                "'5' Name: %s. Health Points: %d. Price: %d gold.\n",
+                                mediumHealthPotion.getName(), mediumHealthPotion.getHealthPoints(), mediumHealthPotion.getPrice()
+                        );
+                        System.out.printf(
+                                "'6' Name: %s. Health Points: %d. Price: %d gold.\n",
+                                strongHealthPotion.getName(), strongHealthPotion.getHealthPoints(), strongHealthPotion.getPrice()
+                        );
+                        int userBuying = Integer.parseInt(buyItem.nextLine());
+                        switch(userBuying) {
+                            case 1:
+                                if (hero.getTotalGoldInBag() >= goldenSword.getPrice()) {
+                                    youBoughtSword(hero, goldenSword);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
+                            case 2:
+                                if (hero.getTotalGoldInBag() >= dagger.getPrice()) {
+                                    youBoughtSword(hero, dagger);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
+                            case 3:
+                                if (hero.getTotalGoldInBag() >= claymore.getPrice()) {
+                                    youBoughtSword(hero, claymore);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
+                            case 4:
+                                if (hero.getTotalGoldInBag() >= weakHealthPotion.getPrice()) {
+                                    youBoughtPotion(hero, weakHealthPotion);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
+                            case 5:
+                                if (hero.getTotalGoldInBag() >= mediumHealthPotion.getPrice()) {
+                                    youBoughtPotion(hero, mediumHealthPotion);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
+                            case 6:
+                                if (hero.getTotalGoldInBag() >= strongHealthPotion.getPrice()) {
+                                    youBoughtPotion(hero, strongHealthPotion);
+                                } else {
+                                    notEnoughGold();
+                                }
+                                break;
                         }
                         break;
                     case 2:
-                        if (hero.getTotalGoldInBag() >= dagger.getPrice()) {
-                            youBoughtSword(hero, dagger);
-                        } else {
-                            notEnoughGold();
-                        }
+                        sellItems(hero);
                         break;
                     case 3:
-                        if (hero.getTotalGoldInBag() >= claymore.getPrice()) {
-                            youBoughtSword(hero, claymore);
-                        } else {
-                            notEnoughGold();
-                        }
-                        break;
-                    case 4:
-                        if (hero.getTotalGoldInBag() >= weakHealthPotion.getPrice()) {
-                            youBoughtPotion(hero, weakHealthPotion);
-                        } else {
-                            notEnoughGold();
-                        }
-                        break;
-                    case 5:
-                        if (hero.getTotalGoldInBag() >= mediumHealthPotion.getPrice()) {
-                            youBoughtPotion(hero, mediumHealthPotion);
-                        } else {
-                            notEnoughGold();
-                        }
-                        break;
-                    case 6:
-                        if (hero.getTotalGoldInBag() >= strongHealthPotion.getPrice()) {
-                            youBoughtPotion(hero, strongHealthPotion);
-                        } else {
-                            notEnoughGold();
-                        }
-                        break;
-                    case 7:
                         System.out.println("Bye, hope to see you soon!");
                         isBuying = false;
                         break;
@@ -139,5 +153,27 @@ public class Store {
         System.out.println("Hit <enter> to buy something else");
         Scanner scan = new Scanner(System.in);
         scan.nextLine();
+    }
+
+    private void sellItems(Hero hero) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("--------------------------------");
+        System.out.println("Inventory: ");
+        hero.getBackpack().showItemsInBackpack();
+        System.out.println("---------------------------------");
+        System.out.println("Enter item name you wish to sell:");
+        String itemName = scanner.nextLine();
+        if (!hero.getBackpack().getItems().isEmpty()) {
+            for (Item item : hero.getBackpack().getItems()) {
+                if (itemName.equals(item.getName())) {
+                    hero.getBagOfGold().addAmountOfGold(item.getValue());
+                    hero.getBackpack().removeItemFromBackpack(item);
+                    System.out.println(item.getName() + " sold. Gold: " + hero.getBagOfGold().getAmountOfGold());
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Your backpack is empty.");
+        }
     }
 }

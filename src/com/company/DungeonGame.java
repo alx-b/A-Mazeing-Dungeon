@@ -1,9 +1,10 @@
 package com.company;
 
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class DungeonGame {
+public class DungeonGame implements Serializable {
     private Hero hero;
     private Maze maze;
 
@@ -16,7 +17,8 @@ public class DungeonGame {
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("---- Welcome to the A-Mazeing Dungeon! ----");
         System.out.println("Start Game: Enter '1'");
-        System.out.println("Exit Game: Enter '2'");
+        System.out.println("Load game '2'");
+        System.out.println("Exit Game: Enter '3'");
         String userInitialChoice = "";
         while (invalidInput(userInitialChoice)) {
             System.out.print("Enter choice: ");
@@ -27,6 +29,15 @@ public class DungeonGame {
                     start();
                     break;
                 case "2":
+                    try {
+                        loadGame();
+                        start();
+                    }catch(Exception ex){
+                        System.out.println("Saved game not found!");
+                    }
+                    break;
+
+                case "3":
                     System.exit(0);
                     break;
                 default:
@@ -87,6 +98,25 @@ public class DungeonGame {
                             loop = false;
                             break;
 
+                        case "y":
+                            FileUtility.writeObject(this, "SaveGame.ser");
+                            break;
+
+                        case "u":
+                            System.out.println("Save game before leaving! Enter 'y' to quit. Enter 'n' to cancel");
+                            Scanner scanner = new Scanner(System.in);
+                            String quitGame = scanner.nextLine();
+                            switch(quitGame){
+                                case "y":
+                                    System.out.println("Hope to see you soon!");
+                                    System.exit(0);
+                                    break;
+                                case "n":
+                                    loop = true;
+                                    break;
+                            }
+                            break;
+
                         default:
                             System.out.println("Not a valid input!");
                             loop = true;
@@ -98,6 +128,14 @@ public class DungeonGame {
         System.out.println("\033[0;31mYou died, game over!\033[0m");
     }
 
+    public void loadGame() {
+        DungeonGame gameFromFile = (DungeonGame) (FileUtility.readObject("SaveGame.ser"));
+        this.hero = gameFromFile.hero;
+        this.maze = gameFromFile.maze;
+        System.out.println("Game successfully loaded..");
+        System.out.println("Hero name: " + hero.getName());
+    }
+
     private void menu() {
         System.out.println("---- Actions ----");
         System.out.println("Enter a to go West");
@@ -105,6 +143,9 @@ public class DungeonGame {
         System.out.println("Enter d to go East");
         System.out.println("Enter s to go South");
         System.out.println("Enter b to open your backpack");
+        System.out.println("Enter y to save game");
+        System.out.println("Enter u to quit game");
+        ;
 
     }
 
@@ -159,6 +200,7 @@ public class DungeonGame {
         String name = scanner.nextLine();
         this.hero.setName(name);
     }
+
 
     private boolean invalidInput(String choice) {
         return !choice.equals("1") && !choice.equals("2");

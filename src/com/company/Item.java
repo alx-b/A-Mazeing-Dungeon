@@ -1,10 +1,22 @@
 package com.company;
 
-public abstract class Item {
+import java.io.Serializable;
+
+public abstract class Item implements Serializable {
 
     private String name;
     protected int amountOfGold;
     private int price = 0;
+    private int value = 0;
+
+    public Item(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public Item(String name) {
+        this.name = name;
+    }
 
     public int getPrice() {
         return price;
@@ -14,8 +26,8 @@ public abstract class Item {
         this.price = price;
     }
 
-    public Item(String name) {
-        this.name = name;
+    public int getValue() {
+        return value;
     }
 
     public int getAmountOfGold() {
