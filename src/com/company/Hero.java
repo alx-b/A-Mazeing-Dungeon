@@ -185,8 +185,8 @@ public class Hero extends Creature implements Serializable {
     }
 //Saves game to file
     public void saveGame(){
-        Maze maze = new Maze(this);
-        FileUtility.writeObject(maze, "SaveGame.ser");
+        DungeonGame game = new DungeonGame();
+        FileUtility.writeObject(game, "SaveGame.ser");
     }
 
     private void levelUp() {
