@@ -17,7 +17,7 @@ public class DungeonGame implements Serializable {
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("---- Welcome to the A-Mazeing Dungeon! ----");
         System.out.println("Start Game: Enter '1'");
-        System.out.println("Load game '2");
+        System.out.println("Load game '2'");
         System.out.println("Exit Game: Enter '3'");
         String userInitialChoice = "";
         while (invalidInput(userInitialChoice)) {
@@ -30,6 +30,7 @@ public class DungeonGame implements Serializable {
                     break;
                 case "2":
                     loadGame();
+                    start();
                     break;
 
                 case "3":
@@ -94,7 +95,7 @@ public class DungeonGame implements Serializable {
                             break;
 
                         case "y":
-                            hero.saveGame();
+                            FileUtility.writeObject(this, "SaveGame.ser");
                             break;
 
                         default:
@@ -110,7 +111,10 @@ public class DungeonGame implements Serializable {
 
     public void loadGame() {
         DungeonGame gameFromFile = (DungeonGame) (FileUtility.readObject("SaveGame.ser"));
-        System.out.println(gameFromFile);
+        this.hero = gameFromFile.hero;
+        this.maze = gameFromFile.maze;
+        System.out.println("Game successfully loaded..");
+        System.out.println("Hero name: " + hero.getName());
     }
 
     private void menu() {
@@ -175,6 +179,7 @@ public class DungeonGame implements Serializable {
         String name = scanner.nextLine();
         this.hero.setName(name);
     }
+
 
     private boolean invalidInput(String choice) {
         return !choice.equals("1") && !choice.equals("2");
