@@ -5,6 +5,12 @@ public abstract class Item {
     private String name;
     protected int amountOfGold;
     private int price = 0;
+    private int value = 0;
+
+    public Item(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
 
     public int getPrice() {
         return price;
@@ -14,8 +20,8 @@ public abstract class Item {
         this.price = price;
     }
 
-    public Item(String name) {
-        this.name = name;
+    public int getValue() {
+        return value;
     }
 
     public int getAmountOfGold() {

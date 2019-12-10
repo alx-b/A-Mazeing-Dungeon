@@ -164,7 +164,7 @@ public class Maze {
     }
 
     private void addHeroSurroundingToMap(Hero hero) {
-        // Show the map as the Hero explores it.
+        // Show the map as the Hero explores it.1
         //=========================================
         int heroPosY = hero.getRow();
         int heroPosX = hero.getCol();
