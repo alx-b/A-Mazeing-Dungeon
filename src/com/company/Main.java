@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException, UnsupportedAudioFileException, IOException, LineUnavailableException {
-        String backgroundMusicFilePath = "D:/DungeonMaze/A-Mazeing-Dungeon/audio/soundtrack.wav";
+        String backgroundMusicFilePath = "audio/soundtrack.wav";
        new BackgroundMusic(backgroundMusicFilePath);
 
         while (true) {
