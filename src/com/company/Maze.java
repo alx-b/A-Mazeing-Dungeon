@@ -1,9 +1,10 @@
 package com.company;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Maze {
+public class Maze implements Serializable {
     private String[][] map = {
             {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
             {" ", "D", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
