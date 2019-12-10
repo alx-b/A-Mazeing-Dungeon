@@ -12,6 +12,10 @@ public abstract class Item {
         this.value = value;
     }
 
+    public Item(String name) {
+        this.name = name;
+    }
+
     public int getPrice() {
         return price;
     }
