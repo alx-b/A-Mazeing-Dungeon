@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+//import java.io.IOException;
 import java.util.Scanner;
 
 public class DragonBoss extends Monster {
@@ -12,6 +15,18 @@ public class DragonBoss extends Monster {
         boolean isMakingChoice = true;
         while (isMakingChoice) {
             try {
+                FileReader fr = new FileReader("banner.txt");
+                BufferedReader br = new BufferedReader(fr);
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+
+                br.close();
+                fr.close();
+
+                System.out.println(" ");
                 System.out.println("Hello, traveler! Are you here for my treasure? You can either fight me for it, or do me a quest and I'll give it to you.");
                 System.out.println("___________________");
                 System.out.println("'1' To fight dragon");
