@@ -25,6 +25,10 @@ public abstract class Creature implements Serializable {
 
     public abstract int getDamage();
 
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
     public int setHeroDamage(int damage) { // Setter for new damage?
         return this.damage = damage;
     }

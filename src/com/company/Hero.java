@@ -14,6 +14,8 @@ public class Hero extends Creature implements Serializable {
     private BagOfGold bagOfGold = new BagOfGold("Bag of gold", 100,0);
     private QuestItemBag questItemBag = new QuestItemBag();
     private int baseHeroDamage = getDamage();
+    private int swordDamage = 0;
+    private int totalDamage = baseHeroDamage + swordDamage;
 
     public Hero(String name, int health, int damage, int maxHealth) {
         super(name, health, damage, maxHealth);
@@ -74,14 +76,14 @@ public class Hero extends Creature implements Serializable {
                 int changeMonsterHealth = monster.getHealth();
                 System.out.println(" ");
                 System.out.println("You hit the enemy!");
-                int newMonsterHealth = monster.setMonsterHealth(changeMonsterHealth - getDamage());
+                int newMonsterHealth = monster.setMonsterHealth(changeMonsterHealth - this.totalDamage);
 
                 if (newMonsterHealth <= 0) {
                     System.out.println("Enemy died.");
                     levelUp();
                     control = false;
                 } else {
-                    System.out.println("Enemy health: " + monster.setMonsterHealth(changeMonsterHealth - getDamage()) + "/" + monster.maxHealth);
+                    System.out.println("Enemy health: " + monster.setMonsterHealth(changeMonsterHealth - this.totalDamage) + "/" + monster.maxHealth);
                     Thread.sleep(1500);
                 }
 
@@ -186,14 +188,16 @@ public class Hero extends Creature implements Serializable {
 
     private void levelUp() {
         super.setHeroMaxHealth(getMaxHealth() + 10); // This is just a TEST. I was just wondering why we use "super.", discard when TEST is done.
-        setHeroDamage(baseHeroDamage += 10);
+        super.setDamage(this.baseHeroDamage += 10);
+        this.baseHeroDamage = getDamage();
+        this.totalDamage = this.baseHeroDamage + this.swordDamage;
         this.level += 1;
         System.out.println("===========================");
         System.out.println("\u001B[32mYou Won!\033[0m");
         System.out.println("===== You leveled up! =====");
         System.out.println("Health is: " + getHealth());
         System.out.println("Max health is: " + getMaxHealth());
-        System.out.println("Base damage is: " + getDamage());
+        System.out.println("Base damage is: " + this.baseHeroDamage);
         System.out.println("===========================");
         System.out.println(" ");
 
@@ -209,8 +213,9 @@ public class Hero extends Creature implements Serializable {
             }
             if (!swords.isEmpty()) {
                 Collections.sort(swords);
-                setHeroDamage(baseHeroDamage + swords.get(0).getSwordDamage());
-                System.out.printf("You equipped the strongest sword in your inventory. You now deal %d damage \n", getDamage());
+                this.swordDamage = swords.get(0).getSwordDamage();
+                this.totalDamage = this.baseHeroDamage + this.swordDamage;
+                System.out.printf("You equipped the strongest sword in your inventory. You now deal %d damage \n", this.totalDamage);
             } else {
                 System.out.println("You have no swords in your backpack.");
             }
@@ -298,7 +303,7 @@ public class Hero extends Creature implements Serializable {
     public void displayInfo() {
         System.out.println("---- Hero ----");
         super.displayInfo();
-        System.out.printf("Level: %d  -  Gold: %s\n", this.level, this.bagOfGold);
+        System.out.printf("Level: %d  -  Gold: %s  -  Total Damage: %d\n", this.level, this.bagOfGold, this.totalDamage);
         System.out.printf("---- Backpack: %d items ----\n", this.backpack.numberOfItem());
     }
 }

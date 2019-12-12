@@ -170,7 +170,7 @@ public class Maze implements Serializable {
     }
 
     private void addHeroSurroundingToMap(Hero hero) {
-        // Show the map as the Hero explores it.1
+        // Show the map as the Hero explores it.
         //=========================================
         int heroRow = hero.getRow();
         int heroCol = hero.getCol();
